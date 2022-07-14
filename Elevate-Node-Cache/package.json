@@ -1,12 +1,12 @@
 {
-  "name": "@ankitpws/caching-library",
+  "name": "elevate-node-cache",
   "version": "1.0.1",
   "description": "Caching Library",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/ELEVATE-Project/utils/tree/master/Caching-Library",
+  "homepage": "https://github.com/ELEVATE-Project/utils/tree/master/Elevate-Node-Cache",
   "author": "Ankit Shahu",
   "license": "ISC",
   "dependencies": {
