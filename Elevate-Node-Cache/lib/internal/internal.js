@@ -1,24 +1,20 @@
 const NodeCache = require("node-cache");
 const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
-module.exports = class InternalCache {
-  static async setKey(key, value, exp) {
-    const result = myCache.set(key, value, exp);
-    return result;
-  }
+const InternalCache = {};
 
-  static async getKey(key) {
-    const result = myCache.get(key);
-    return result;
-  }
-
-  static async delKey(key) {
-    const result = myCache.del(key);
-    return result;
-  }
-
-  static async delKey(key) {
-    const result = myCache.del(key);
-    return result;
-  }
+InternalCache.setKey = async (key, value) => {
+  return myCache.set(key, value, this.Exp_time);
 };
+
+InternalCache.getKey = async (key) => {
+  return myCache.get(key);
+};
+
+InternalCache.delKey = async (key) => {
+  return myCache.del(key);
+};
+InternalCache.init = (Exp_time) => {
+  this.Exp_time = Exp_time;
+};
+module.exports = InternalCache;
