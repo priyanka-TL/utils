@@ -8,9 +8,13 @@ const RedisClientHelper = {};
  * @returns {Promise<Object>} Returns the success response
  * @author Aman Gupta
  */
-RedisClientHelper.setKey = async (key, value) => {
+RedisClientHelper.setKey = async (key, value, expRedis) => {
+  expRedis = expRedis;
+
   value = JSON.stringify(value);
-  const result = await redisClient.set(key, value, {});
+  const result = await redisClient.set(key, value, {
+    EX: expRedis,
+  });
   return result;
 };
 

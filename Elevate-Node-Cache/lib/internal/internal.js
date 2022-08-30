@@ -3,8 +3,8 @@ const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 const InternalCache = {};
 
-InternalCache.setKey = async (key, value) => {
-  return myCache.set(key, value);
+InternalCache.setKey = async (key, value, Exp_time) => {
+  return myCache.set(key, value, Exp_time);
 };
 
 InternalCache.getKey = async (key) => {
