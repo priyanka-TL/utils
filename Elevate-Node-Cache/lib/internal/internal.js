@@ -4,11 +4,17 @@ const myCache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 const InternalCache = {};
 
 InternalCache.setKey = async (key, value) => {
+  value = JSON.stringify(value);
   return myCache.set(key, value, this.Exp_time);
 };
 
 InternalCache.getKey = async (key) => {
-  return myCache.get(key);
+  const data = await myCache.get(key);
+  if (data) {
+    return JSON.parse(data);
+  } else {
+    return data;
+  }
 };
 
 InternalCache.delKey = async (key) => {

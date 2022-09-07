@@ -9,11 +9,10 @@ const RedisClientHelper = {};
  * @author Aman Gupta
  */
 RedisClientHelper.setKey = async (key, value, expRedis) => {
-  expRedis = expRedis || this.expRedis;
+  expRedis = expRedis;
 
   value = JSON.stringify(value);
   const result = await redisClient.set(key, value, {
-    // NX: true, // Only set the key if it does not already exist.
     EX: expRedis,
   });
   return result;
@@ -44,7 +43,4 @@ RedisClientHelper.deleteKey = async (key) => {
   return JSON.parse(data);
 };
 
-RedisClientHelper.init = (expRedis) => {
-  this.expRedis = expRedis;
-};
 module.exports = RedisClientHelper;
