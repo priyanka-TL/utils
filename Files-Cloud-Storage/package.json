@@ -1,6 +1,6 @@
 {
-  "name": "files-cloud-storage",
-  "version": "1.2.3",
+  "name": "@elevate-shikshalokam/elevate-cloud-storage",
+  "version": "1.2.4",
   "description": "This is npm package which exports the functions to upload file in GCP, AWS S3 and AZURE",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aman-g202/Files-Cloud-Storage.git"
+    "url": "git+https://github.com/ELEVATE-Project/utils.git"
   },
   "keywords": [
     "upload files",

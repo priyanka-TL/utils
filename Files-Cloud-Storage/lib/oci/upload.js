@@ -22,7 +22,7 @@ module.exports = class OCIFileHelper {
        * @see secretAccessKey - Get from oci console
        * @see bucketRegion - Get from oci console
      */
-    static async uploadFile({ filePath, destFileName, bucketName, accessKeyId, secretAccessKey, bucketRegion }) {
+    static async uploadFile({ filePath, destFileName, bucketName, accessKeyId, secretAccessKey, bucketRegion,endpoint }) {
 
         if (!filePath) {
             const error = new Error('filePath is not passed in parameter');
@@ -66,13 +66,26 @@ module.exports = class OCIFileHelper {
             throw error;
         }
 
+        if (!endpoint) {
+            const error = new Error('endpoint is not passed in parameter');
+            error.code = 500;
+            throw error;
+        }
+
+        if (typeof endpoint !== 'string') {
+            const error = new Error('expected endpoint as string');
+            error.code = 500;
+            throw error;
+        }
+
         /* Instantiate s3 cloud storage class */
         const s3 = new S3({
             accessKeyId: accessKeyId,
             secretAccessKey: secretAccessKey,
             signatureVersion: 'v4',
             region: bucketRegion,
-            s3ForcePathStyle: true
+            s3ForcePathStyle: true,
+            endpoint: endpoint
         });
 
         // Read content from the file as buffer
@@ -107,7 +120,7 @@ module.exports = class OCIFileHelper {
       * @see secretAccessKey - Get from oci console
       * @see bucketRegion - Get from oci console
     */
-    static async getSignedUrl({ destFilePath, bucketName, actionType, expiry, accessKeyId, secretAccessKey, bucketRegion }) {
+    static async getSignedUrl({ destFilePath, bucketName, actionType, expiry, accessKeyId, secretAccessKey, bucketRegion,endpoint }) {
 
         if (!destFilePath) {
             const error = new Error('destFilePath is not passed in parameter');
@@ -163,13 +176,27 @@ module.exports = class OCIFileHelper {
             throw error;
         }
 
+        if (!endpoint) {
+            const error = new Error('endpoint is not passed in parameter');
+            error.code = 500;
+            throw error;
+        }
+
+        if (typeof endpoint !== 'string') {
+            const error = new Error('expected endpoint as string');
+            error.code = 500;
+            throw error;
+        }
+
+
         /* Instantiate s3 cloud storage class */
         const s3 = new S3({
             accessKeyId: accessKeyId,
             secretAccessKey: secretAccessKey,
             signatureVersion: 'v4',
             region: bucketRegion,
-            s3ForcePathStyle: true
+            s3ForcePathStyle: true,
+            endpoint: endpoint
         });
 
         /* Signed url options */
@@ -201,7 +228,7 @@ module.exports = class OCIFileHelper {
      * @returns {Promise<string>} Get downloadable url link
     */
  
-    static async getDownloadableUrl({ destFilePath, bucketName, expiry, accessKeyId, secretAccessKey, bucketRegion }) {
+    static async getDownloadableUrl({ destFilePath, bucketName, expiry, accessKeyId, secretAccessKey, bucketRegion, endpoint }) {
 
         if (!destFilePath) {
             const error = new Error('destFilePath is not passed in parameter');
@@ -217,12 +244,6 @@ module.exports = class OCIFileHelper {
 
         if (!bucketName) {
             const error = new Error('bucketName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
-
-        if (!actionType) {
-            const error = new Error('actionType is not passed in parameter');
             error.code = 500;
             throw error;
         }
@@ -251,13 +272,26 @@ module.exports = class OCIFileHelper {
             throw error;
         }
 
+        if (!endpoint) {
+            const error = new Error('endpoint is not passed in parameter');
+            error.code = 500;
+            throw error;
+        }
+
+        if (typeof endpoint !== 'string') {
+            const error = new Error('expected endpoint as string');
+            error.code = 500;
+            throw error;
+        }
+
         /* Instantiate s3 cloud storage class */
         const s3 = new S3({
             accessKeyId: accessKeyId,
             secretAccessKey: secretAccessKey,
             signatureVersion: 'v4',
             region: bucketRegion,
-            s3ForcePathStyle: true
+            s3ForcePathStyle: true,
+            endpoint:endpoint
         });
 
         /* Signed url options */
