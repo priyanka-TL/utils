@@ -1,13 +1,13 @@
-# Files-Cloud-Storage
-This package exports the methods to upload file in GCP, AWS S3 and AZURE
+# elevate-Cloud-Storage
+This package exports the methods to upload file in GCP, AWS S3, OCI and AZURE
 
 ## PreRequisite
-You must have all type of required credentials of AWS/GCP/AZURE cloud storage while calling upload methods
+You must have all type of required credentials of AWS/GCP/AZURE/OCI cloud storage while calling upload methods
 
 ## Installation
 
 ```
-npm i files-cloud-storage
+npm i elevate-cloud-storage
 ```
 
 ## Usage Google Cloud Storage
@@ -15,7 +15,7 @@ npm i files-cloud-storage
 ### To upload file
 
 ```
-const { GcpFileHelper } = require('files-cloud-storage');
+const { GcpFileHelper } = require('elevate-cloud-storage');
 const path = require('path');
 
 // assuming logo.png is present in your root directory
@@ -79,7 +79,7 @@ GcpFileHelper.getDownloadableUrl(options).then(response => {
 ### To upload file
 
 ```
-const { AwsFileHelper } = require('files-cloud-storage');
+const { AwsFileHelper } = require('elevate-cloud-storage');
 
 // assuming logo.png is present in your root directory
 const filePath = path.join(__dirname, 'logo.png'); // Stored file path - pass absolute path.
@@ -140,7 +140,7 @@ AwsFileHelper.getDownloadableUrl(options).then(response => {
 ### To upload file
 
 ```
-const { AzureFileHelper } = require('files-cloud-storage');
+const { AzureFileHelper } = require('elevate-cloud-storage');
 
 // assuming logo.png is present in your root directory
 const filePath = path.join(__dirname, 'logo.png'); // Stored file path - pass absolute path.
@@ -190,6 +190,75 @@ const options = {
 };
 
 AzureFileHelper.getDownloadableUrl(options).then(response => {
+    console.log(response);
+}).catch(err => {
+    console.log(err);
+});
+```
+
+
+## Usage Oracle Cloud Object Storage
+
+### To upload file
+
+```
+const { OciFileHelper } = require('elevate-cloud-storage');
+
+// assuming logo.png is present in your root directory
+const filePath = path.join(__dirname, 'logo.png'); // Stored file path - pass absolute path.
+
+const destFileName = 'logo.png'; // fileName to be saved in oci bucket
+const bucketName = '<bucket-name>'; // oci bucket in which file gets saved
+const accessKeyId = '<access-key-id>'; // oci access key id - Get from oci 
+const secretAccessKey = '<secret-access-key>' // oci secret access key - Get from awoci
+const endpoint = '<endpoint>' // OCI endpoint
+
+// oci region where bucket will be located for fastest delivery of resources - Get bucket-region from oci console
+const bucketRegion = '<bucket-region>'
+
+OciFileHelper.uploadFile({filePath, destFileName, bucketName, accessKeyId, secretAccessKey, bucketRegion, endpoint}).then(response => {
+    console.log(response);
+}).catch(error => {
+    console.log(error);
+});
+```
+
+### To generate signed url
+
+```
+const options = {
+    destFilePath: 'users/abc.png', // Stored file path - i.e location from bucket - ex - users/abc.png
+    bucketName: '<Bucket-Name>', // oci storage bucket in which action is peformed over file
+    actionType: 'putObject', // signed url usage type - example ('putObject' | 'getObject')
+    expiry: 30 * 60, // signed url expiration time - In sec - type number
+    accessKeyId: '<Access-Key-Id>', // oci access key id
+    secretAccessKey: '<Secret-Access-Key>', // oci secret access key
+    bucketRegion: '<Bucket-Region>' // oci region where bucket will be located, example - 'ap-hyderabad-1'
+     endpoint :  '<endpoint>' // OCI endpoint
+}
+
+OciFileHelper.getSignedUrl(options).then(res => {
+    console.log(res);
+}).catch(err => {
+    console.log(err);
+});
+```
+
+### To get downloadable url
+
+```
+const options = {
+   destFilePath: 'users/abc.png', // Stored file path - i.e location from bucket - ex - users/abc.png
+    bucketName: '<Bucket-Name>', // oci storage bucket in which action is peformed over file
+    actionType: 'putObject', // signed url usage type - example ('putObject' | 'getObject')
+    expiry: 30 * 60, // signed url expiration time - In sec - type number
+    accessKeyId: '<Access-Key-Id>', // oci access key id
+    secretAccessKey: '<Secret-Access-Key>', // oci secret access key
+    bucketRegion: '<Bucket-Region>' // oci region where bucket will be located, example - 'ap-hyderabad-1'
+    endpoint :  '<endpoint>' // OCI endpoint
+}
+
+OciFileHelper.getDownloadableUrl(options).then(response => {
     console.log(response);
 }).catch(err => {
     console.log(err);
