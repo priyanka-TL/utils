@@ -228,7 +228,7 @@ module.exports = class OCIFileHelper {
      * @returns {Promise<string>} Get downloadable url link
     */
  
-    static async getDownloadableUrl({ destFilePath, bucketName, expiry, accessKeyId, secretAccessKey, bucketRegion, endpoint }) {
+    static async getDownloadableUrl({ destFilePath, bucketName,endpoint }) {
 
         if (!destFilePath) {
             const error = new Error('destFilePath is not passed in parameter');
@@ -236,38 +236,8 @@ module.exports = class OCIFileHelper {
             throw error;
         }
 
-        if (typeof destFilePath !== 'string') {
-            const error = new Error('expected destFilePath as string');
-            error.code = 500;
-            throw error;
-        }
-
         if (!bucketName) {
             const error = new Error('bucketName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
-
-        if (expiry && typeof expiry !== 'number') {
-            const error = new Error('expiry is invalid');
-            error.code = 500;
-            throw error;
-        }
-
-        if (!accessKeyId) {
-            const error = new Error('accessKeyId is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
-
-        if (!secretAccessKey) {
-            const error = new Error('secretAccessKey is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
-
-        if (!bucketRegion) {
-            const error = new Error('bucketRegion is not passed in parameter');
             error.code = 500;
             throw error;
         }
@@ -284,29 +254,10 @@ module.exports = class OCIFileHelper {
             throw error;
         }
 
-        /* Instantiate s3 cloud storage class */
-        const s3 = new S3({
-            accessKeyId: accessKeyId,
-            secretAccessKey: secretAccessKey,
-            signatureVersion: 'v4',
-            region: bucketRegion,
-            s3ForcePathStyle: true,
-            endpoint:endpoint
-        });
-
-        /* Signed url options */
-        let options = {
-            Bucket: bucketName,
-            Key: destFilePath,
-            Expires: expiry
-        };
-
-        options = JSON.parse(JSON.stringify(options));
-
         try {
-            /* connected to bucket and instantiated file object to get signed url */
-            const signedUrl = await s3.getSignedUrlPromise("putObject", options);
-            return { signedUrl, filePath: destFilePath };
+            let downloadableUrl = `${endpoint}/${bucketName}/${destFilePath}`;
+            return { downloadableUrl, filePath: destFilePath };
+
         } catch (error) {
             throw error;
         }
