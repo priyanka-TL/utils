@@ -1,271 +1,334 @@
-'use strict';
+'use strict'
 
-const { BlobServiceClient, generateBlobSASQueryParameters, BlobSASPermissions, StorageSharedKeyCredential } = require('@azure/storage-blob');
+const {
+	BlobServiceClient,
+	generateBlobSASQueryParameters,
+	BlobSASPermissions,
+	StorageSharedKeyCredential,
+} = require('@azure/storage-blob')
 
 module.exports = class AzureFileHelper {
+	/**
+	 * Upload file to AWS
+	 * @method
+	 * @name uploadFile - Required all parameters*
+	 * @param  {filePath} filePath - Stored file path - absolute path.
+	 * @param  {string} destFileName - fileName to be saved in azure container
+	 * @param  {string} containerName - container in which file gets saved
+	 * @param  {string} accountName - account name of azure storage
+	 * @param  {string} accountKey - account key of azure storage
+	 * @returns {Promise<JSON>} Uploaded json result.
+	 * @see accountName - Get from azure storage console
+	 * @see accountKey - Get from azure storage console
+	 */
+	static async uploadFile({ filePath, destFileName, containerName, accountName, accountKey }) {
+		if (!filePath) {
+			const error = new Error('filePath is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-    /**
-       * Upload file to AWS 
-       * @method
-       * @name uploadFile - Required all parameters*
-       * @param  {filePath} filePath - Stored file path - absolute path.
-       * @param  {string} destFileName - fileName to be saved in azure container
-       * @param  {string} containerName - container in which file gets saved
-       * @param  {string} accountName - account name of azure storage 
-       * @param  {string} accountKey - account key of azure storage 
-       * @returns {Promise<JSON>} Uploaded json result.
-       * @see accountName - Get from azure storage console
-       * @see accountKey - Get from azure storage console
-     */
-    static async uploadFile({filePath, destFileName, containerName, accountName, accountKey}) {
+		if (typeof filePath !== 'string') {
+			const error = new Error('expected filepath as string')
+			error.code = 500
+			throw error
+		}
 
-        if (!filePath) {
-            const error = new Error('filePath is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		if (!destFileName) {
+			const error = new Error('destFileName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (typeof filePath !== 'string') {
-            const error = new Error('expected filepath as string');
-            error.code = 500;
-            throw error;
-        }
+		if (!containerName) {
+			const error = new Error('containerName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!destFileName) {
-            const error = new Error('destFileName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		if (!accountName) {
+			const error = new Error('accountName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!containerName) {
-            const error = new Error('containerName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		if (!accountKey) {
+			const error = new Error('accountKey is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!accountName) {
-            const error = new Error('accountName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		/* Instantiate storage credentials */
+		const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey)
 
-        if (!accountKey) {
-            const error = new Error('accountKey is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		// Create the BlobServiceClient object which will be used to create a container client
+		const blobServiceClient = new BlobServiceClient( // The storage account used via blobServiceClient
+			`https://${accountName}.blob.core.windows.net`,
+			sharedKeyCredential
+		)
 
-        /* Instantiate storage credentials */
-        const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+		const containerClient = blobServiceClient.getContainerClient(containerName)
+		const blobName = destFileName
+		const blockBlobClient = containerClient.getBlockBlobClient(blobName)
 
-        // Create the BlobServiceClient object which will be used to create a container client
-        const blobServiceClient = new BlobServiceClient( // The storage account used via blobServiceClient
-            `https://${accountName}.blob.core.windows.net`,
-            sharedKeyCredential
-        );
+		try {
+			const uploadBlobResponse = await blockBlobClient.uploadFile(filePath)
+			uploadBlobResponse.accessUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${destFileName}`
+			uploadBlobResponse.containerName = containerName
+			uploadBlobResponse.accountName = accountName
+			return uploadBlobResponse
+		} catch (error) {
+			throw error
+		}
+	}
 
-        const containerClient = blobServiceClient.getContainerClient(containerName);
-        const blobName = destFileName;
-        const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+	/**
+	 * Get signed url to create, read or delete objects
+	 * @method
+	 * @name getSignedUrl
+	 * @param  {destFilePath} destFilePath - Stored file path - i.e location from container - ex - users/profile.png
+	 * @param  {string} containerName - container in which file gets saved
+	 * @param  {string} expiry - signed url expiration time - In minute - type number
+	 * @param  {string} actionType - signed url usage type - example ('w' | 'r' | 'wr' | 'racwdl') - pair of any alphabets among racwdl
+	 * @param  {string} accountName - account name of azure storage
+	 * @param  {string} accountKey - account key of azure storage
+	 * @param  {string} contentType - content type of file
+	 * @returns {Promise<JSON>} Signed url json result.
+	 * @see accountName - Get from azure storage console
+	 * @see accountKey - Get from azure storage console
+	 */
+	static async getSignedUrl({
+		destFilePath,
+		containerName,
+		expiry,
+		actionType,
+		accountName,
+		accountKey,
+		contentType,
+	}) {
+		if (!destFilePath) {
+			const error = new Error('destFilePath is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        try {
-            const uploadBlobResponse = await blockBlobClient.uploadFile(filePath);
-            uploadBlobResponse.accessUrl = `https://${accountName}.blob.core.windows.net/${containerName}/${destFileName}`;
-            uploadBlobResponse.containerName = containerName;
-            uploadBlobResponse.accountName = accountName;
-            return uploadBlobResponse;
-        } catch (error) {
-            throw error;
-        }
+		if (typeof destFilePath !== 'string') {
+			const error = new Error('expected destFilePath as string')
+			error.code = 500
+			throw error
+		}
 
-    }
+		if (!containerName) {
+			const error = new Error('containerName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-    /**
-      * Get signed url to create, read or delete objects
-      * @method
-      * @name getSignedUrl
-      * @param  {destFilePath} destFilePath - Stored file path - i.e location from container - ex - users/profile.png
-      * @param  {string} containerName - container in which file gets saved
-      * @param  {string} expiry - signed url expiration time - In minute - type number
-      * @param  {string} actionType - signed url usage type - example ('w' | 'r' | 'wr' | 'racwdl') - pair of any alphabets among racwdl
-      * @param  {string} accountName - account name of azure storage 
-      * @param  {string} accountKey - account key of azure storage 
-      * @param  {string} contentType - content type of file
-      * @returns {Promise<JSON>} Signed url json result.
-      * @see accountName - Get from azure storage console
-      * @see accountKey - Get from azure storage console
-    */
-    static async getSignedUrl({destFilePath, containerName, expiry, actionType, accountName, accountKey, contentType}) {
+		if (expiry && typeof expiry !== 'number') {
+			const error = new Error('expiry is invalid')
+			error.code = 500
+			throw error
+		}
 
-        if (!destFilePath) {
-            const error = new Error('destFilePath is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		if (!actionType) {
+			const error = new Error('actionType is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (typeof destFilePath !== 'string') {
-            const error = new Error('expected destFilePath as string');
-            error.code = 500;
-            throw error;
-        }
+		if (!accountName) {
+			const error = new Error('accountName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!containerName) {
-            const error = new Error('containerName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		if (!accountKey) {
+			const error = new Error('accountKey is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (expiry && typeof expiry !== 'number') {
-            const error = new Error('expiry is invalid');
-            error.code = 500;
-            throw error;
-        }
+		if (!contentType) {
+			const error = new Error('contentType is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!actionType) {
-            const error = new Error('actionType is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		/* Instantiate storage credentials */
+		const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey)
 
-        if (!accountName) {
-            const error = new Error('accountName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		// Create the BlobServiceClient object which will be used to create a container client
+		const blobServiceClient = new BlobServiceClient( // The storage account used via blobServiceClient
+			`https://${accountName}.blob.core.windows.net`,
+			sharedKeyCredential
+		)
 
-        if (!accountKey) {
-            const error = new Error('accountKey is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		const containerClient = blobServiceClient.getContainerClient(containerName)
 
-        if (!contentType) {
-            const error = new Error('contentType is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		const startDate = new Date()
 
-        /* Instantiate storage credentials */
-        const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+		const expiryDate = new Date(startDate)
+		expiryDate.setMinutes(startDate.getMinutes() + (expiry ? expiry : 0))
 
-        // Create the BlobServiceClient object which will be used to create a container client
-        const blobServiceClient = new BlobServiceClient( // The storage account used via blobServiceClient
-            `https://${accountName}.blob.core.windows.net`,
-            sharedKeyCredential
-        );
+		/* Blob SAS Signature options */
+		let options = {
+			containerName: containerName,
+			blobName: destFilePath,
+			contentType,
+		}
 
-        const containerClient = blobServiceClient.getContainerClient(containerName);
+		options = JSON.parse(JSON.stringify(options))
+		options.permissions = BlobSASPermissions.parse(actionType) // can not be parsed
+		options.startsOn = startDate // can not be parsed
+		expiry ? (options.expiresOn = expiryDate) : null // can not be parsed
 
-        const startDate = new Date();
+		const sasToken = generateBlobSASQueryParameters(options, sharedKeyCredential).toString()
 
-        const expiryDate = new Date(startDate);
-        expiryDate.setMinutes(startDate.getMinutes() + (expiry ? expiry : 0));
+		const signedUrl = containerClient.url + '/' + destFilePath + '?' + sasToken
 
-        /* Blob SAS Signature options */
-        let options = {
-            containerName: containerName,
-            blobName: destFilePath,
-            contentType
-        };
+		return { signedUrl, filePath: destFilePath }
+	}
 
-        options = JSON.parse(JSON.stringify(options));
-        options.permissions = BlobSASPermissions.parse(actionType); // can not be parsed
-        options.startsOn = startDate; // can not be parsed
-        expiry ? options.expiresOn = expiryDate : null; // can not be parsed
+	/**
+	 * Get downloadable url of uploaded object
+	 * @method
+	 * @name getDownloadableUrl
+	 * @param  {destFilePath} destFilePath - Stored file path - i.e location from container - ex - users/profile.png
+	 * @param  {string} containerName - container in which file gets saved
+	 * @param  {string} expiry - signed url expiration time - In minute - type number - default 30 min
+	 * @param  {string} actionType - signed url usage type - example ('w' | 'r' | 'wr' | 'racwdl') - pair of any alphabets among racwdl
+	 * @param  {string} accountName - account name of azure storage
+	 * @param  {string} accountKey - account key of azure storage
+	 * @returns {Promise<string>} Downloadable url
+	 * @see accountName - Get from azure storage console
+	 * @see accountKey - Get from azure storage console
+	 */
+	static async getDownloadableUrl({ destFilePath, containerName, expiry = 30, actionType, accountName, accountKey }) {
+		if (!destFilePath) {
+			const error = new Error('destFilePath is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        const sasToken = generateBlobSASQueryParameters(options, sharedKeyCredential).toString();
+		if (typeof destFilePath !== 'string') {
+			const error = new Error('expected destFilePath as string')
+			error.code = 500
+			throw error
+		}
 
-        const signedUrl = containerClient.url + "/" + destFilePath + "?" + sasToken;
+		if (!containerName) {
+			const error = new Error('containerName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        return { signedUrl , filePath: destFilePath };
-    }
+		if (expiry && typeof expiry !== 'number') {
+			const error = new Error('expiry is invalid')
+			error.code = 500
+			throw error
+		}
 
-    /**
-      * Get downloadable url of uploaded object
-      * @method
-      * @name getDownloadableUrl
-      * @param  {destFilePath} destFilePath - Stored file path - i.e location from container - ex - users/profile.png
-      * @param  {string} containerName - container in which file gets saved
-      * @param  {string} expiry - signed url expiration time - In minute - type number - default 30 min
-      * @param  {string} actionType - signed url usage type - example ('w' | 'r' | 'wr' | 'racwdl') - pair of any alphabets among racwdl
-      * @param  {string} accountName - account name of azure storage 
-      * @param  {string} accountKey - account key of azure storage 
-      * @returns {Promise<string>} Downloadable url
-      * @see accountName - Get from azure storage console
-      * @see accountKey - Get from azure storage console
-    */
-     static async getDownloadableUrl({destFilePath, containerName, expiry = 30, actionType, accountName, accountKey}) {
+		if (!actionType) {
+			const error = new Error('actionType is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!destFilePath) {
-            const error = new Error('destFilePath is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		if (!accountName) {
+			const error = new Error('accountName is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (typeof destFilePath !== 'string') {
-            const error = new Error('expected destFilePath as string');
-            error.code = 500;
-            throw error;
-        }
+		if (!accountKey) {
+			const error = new Error('accountKey is not passed in parameter')
+			error.code = 500
+			throw error
+		}
 
-        if (!containerName) {
-            const error = new Error('containerName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		/* Instantiate storage credentials */
+		const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey)
 
-        if (expiry && typeof expiry !== 'number') {
-            const error = new Error('expiry is invalid');
-            error.code = 500;
-            throw error;
-        }
+		// Create the BlobServiceClient object which will be used to create a container client
+		const blobServiceClient = new BlobServiceClient( // The storage account used via blobServiceClient
+			`https://${accountName}.blob.core.windows.net`,
+			sharedKeyCredential
+		)
 
-        if (!actionType) {
-            const error = new Error('actionType is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		const containerClient = blobServiceClient.getContainerClient(containerName)
 
-        if (!accountName) {
-            const error = new Error('accountName is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		const startDate = new Date()
 
-        if (!accountKey) {
-            const error = new Error('accountKey is not passed in parameter');
-            error.code = 500;
-            throw error;
-        }
+		const expiryDate = new Date(startDate)
+		expiryDate.setMinutes(startDate.getMinutes() + expiry)
 
-        /* Instantiate storage credentials */
-        const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+		/* Blob SAS Signature options */
+		let options = {
+			containerName: containerName,
+			blobName: destFilePath,
+			permissions: BlobSASPermissions.parse(actionType),
+			startsOn: startDate,
+			expiresOn: expiryDate,
+		}
 
-        // Create the BlobServiceClient object which will be used to create a container client
-        const blobServiceClient = new BlobServiceClient( // The storage account used via blobServiceClient
-            `https://${accountName}.blob.core.windows.net`,
-            sharedKeyCredential
-        );
+		const sasToken = generateBlobSASQueryParameters(options, sharedKeyCredential).toString()
 
-        const containerClient = blobServiceClient.getContainerClient(containerName);
+		return containerClient.url + '/' + destFilePath + '?' + sasToken
+	}
 
-        const startDate = new Date();
+	/**
+	 * Delete a folder and its subfiles/subfolders in Azure Blob Storage
+	 * @method
+	 * @name deleteFolder
+	 * @param  {string} containerName - container name
+	 * @param  {string} folderPath - folder path to delete
+	 * @param  {string} accountName - account name of Azure storage
+	 * @param  {string} accountKey - account key of Azure storage
+	 * @returns {Promise<void>}
+	 * @see accountName - Get from Azure storage console
+	 * @see accountKey - Get from Azure storage console
+	 */
+	static async deleteFolder(containerName, folderPath, accountName, accountKey) {
+		if (!folderPath) {
+			throw new Error('folderPath is not passed in the parameter')
+		}
 
-        const expiryDate = new Date(startDate);
-        expiryDate.setMinutes(startDate.getMinutes() + expiry);
+		if (!containerName) {
+			throw new Error('containerName is not passed in the parameter')
+		}
 
-        /* Blob SAS Signature options */
-        let options = {
-            containerName: containerName,
-            blobName: destFilePath,
-            permissions: BlobSASPermissions.parse(actionType),
-            startsOn: startDate,
-            expiresOn: expiryDate
-        };
+		if (!accountName) {
+			throw new Error('accountName is not passed in the parameter')
+		}
 
-        const sasToken = generateBlobSASQueryParameters(options, sharedKeyCredential).toString();
+		if (!accountKey) {
+			throw new Error('accountKey is not passed in the parameter')
+		}
 
-        return containerClient.url + "/" + destFilePath + "?" + sasToken;
-    }
+		try {
+			const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey)
+			const blobServiceClient = new BlobServiceClient(
+				`https://${accountName}.blob.core.windows.net`,
+				sharedKeyCredential
+			)
+			const containerClient = blobServiceClient.getContainerClient(containerName)
+			const folderPathWithSlash = folderPath.endsWith('/') ? folderPath : folderPath + '/'
+			const iter = containerClient.listBlobsByHierarchy(folderPathWithSlash, { prefix: folderPathWithSlash })
 
+			for await (const item of iter) {
+				if (item.kind === 'prefix') {
+					await deleteFolder(containerName, item.name, accountName, accountKey)
+				} else {
+					await containerClient.deleteBlob(item.name)
+				}
+			}
+
+			await containerClient.deleteBlob(folderPathWithSlash)
+			return true
+		} catch (error) {
+			if (error.statusCode !== 404) {
+				throw error
+			}
+		}
+	}
 }
