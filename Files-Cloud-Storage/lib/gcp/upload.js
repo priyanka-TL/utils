@@ -254,7 +254,7 @@ module.exports = class GcpFileHelper {
 	 * @param {string} gcpJsonFilePath - Path to the JSON configuration file for connectivity.
 	 * @returns {Promise<void>}
 	 */
-	static async deleteGCSFolder({ bucketName, folderPath, gcpProjectId, gcpJsonFilePath }) {
+	static async deleteFolder({ bucketName, folderPath, gcpProjectId, gcpJsonFilePath }) {
 		if (!bucketName) {
 			throw new Error('bucketName is not provided')
 		}
