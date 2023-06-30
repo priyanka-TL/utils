@@ -1,6 +1,6 @@
 {
   "name": "elevate-cloud-storage",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "This is npm package which exports the functions to upload file in GCP, AWS S3 and AZURE",
   "main": "index.js",
   "scripts": {
