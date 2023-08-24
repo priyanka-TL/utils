@@ -6,7 +6,7 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
+			target: [
 				{
 					basePackageName: 'user',
 					packageName: 'elevate-user',

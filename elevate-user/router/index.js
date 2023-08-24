@@ -1,8 +1,8 @@
-const userController = require('../controllers/user')
-const packageRouter = (req, res) => {
-	//Process the reqbody
-	//call the relevant function
-	//passback the response
+const { passThroughRequester } = require('../utils/requester')
+const packageRouter = async (req, res) => {
+	const targetUrl = req.baseUrl + req.sourceRoute
+	const response = req.orchestrated ? null : await passThroughRequester(req, res, targetUrl)
+	console.log(response)
 }
 
 module.exports = packageRouter
