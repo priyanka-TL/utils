@@ -1,37 +1,37 @@
-const express = require('express');
-const router = express.Router();
-const routes = require('./constants/routes');
-const userController = require('./controllers/user');
+const express = require('express')
+const router = express.Router()
+const routes = require('./constants/routes')
+const packageRouter = require('./router')
 
 const getDependencies = () => {
-	return ['kafka', 'kafka-connect', 'redis'];
-};
+	return ['kafka', 'kafka-connect', 'redis']
+}
 
 const getPackageMeta = () => {
 	return {
 		basePackageName: 'user',
 		packageName: 'elevate-user',
-	};
-};
+	}
+}
 
 const createPackage = (options) => {
 	return {
 		router: () => {
-			console.log('router');
+			console.log('router')
 		},
 		endpoints: [],
 		dependencies: [],
-	};
-};
+	}
+}
 
 router.get('/', (req, res) => {
-	res.send('Hello, world! From package2');
-});
+	res.send('Hello, world! From package2')
+})
 
 module.exports = {
 	dependencies: getDependencies(),
 	routes,
 	createPackage,
 	packageMeta: getPackageMeta(),
-	controllers: { userController },
-};
+	packageRouter,
+}
