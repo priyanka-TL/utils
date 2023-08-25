@@ -47,8 +47,15 @@ const passThroughRequester = async (req, res) => {
 	}
 }
 
+const post = async (baseUrl, route, requestBody, headers) => {
+	const url = baseUrl + route
+	const response = await axios.post(url, requestBody, { headers })
+	return response.data
+}
+
 const requesters = {
 	passThroughRequester,
+	post,
 }
 
 module.exports = requesters

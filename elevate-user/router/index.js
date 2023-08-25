@@ -1,7 +1,10 @@
 const { passThroughRequester } = require('../utils/requester')
-const packageRouter = async (req, res) => {
-	const response = req.orchestrated ? null : await passThroughRequester(req, res)
-	console.log(response)
+const { orchestrationHandler } = require('../controllers/orchestrationController')
+const packageRouter = async (req, res, responses) => {
+	const response = req.orchestrated
+		? await orchestrationHandler(req, res, responses)
+		: await passThroughRequester(req, res)
+	return response
 }
 
 module.exports = packageRouter

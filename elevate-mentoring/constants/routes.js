@@ -1,5 +1,4 @@
-exports.routesConfigs = {
-	services: ['user', 'mentoring'],
+module.exports = {
 	routes: [
 		{
 			sourceRoute: '/interface/user-signup',
@@ -9,6 +8,7 @@ exports.routesConfigs = {
 			targetRoute: {
 				path: '/mentoring/v1/mentors/create',
 				type: 'POST',
+				functionName: 'createProfile',
 			},
 		},
 	],

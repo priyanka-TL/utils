@@ -18,6 +18,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/create',
 				type: 'POST',
+				functionName: 'createUser',
 			},
 		},
 		{

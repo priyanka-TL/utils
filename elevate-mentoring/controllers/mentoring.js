@@ -1,19 +1,14 @@
-const createProfile = (responses, body) => {
-	console.log('CREATE PROFILE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-	console.log('BODY', body);
-	console.log('responses', responses);
-	return {
-		string: 'Response from Mentoring Service',
-	};
-};
+const requesters = require('../utils/requester')
 
-const forgotPassword = (req, res) => {
-	res.status(200).send({ data: 'Happy from get' });
-};
+const createProfile = async (req, res, responses) => {
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body.mentoring, {
+		'X-auth-token': `bearer ${responses.user.result.access_token}`,
+	})
+}
 
 mentoringController = {
 	createProfile,
-	forgotPassword,
-};
+}
 
-module.exports = mentoringController;
+module.exports = mentoringController

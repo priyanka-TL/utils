@@ -3,6 +3,7 @@ const https = require('https')
 const { matchPathsAndExtractParams } = require('../utils/patternMatcher')
 const routesConfig = require('../constants/routes')
 const { pathParamSetter } = require('../utils/pathParamSetter')
+const axios = require('axios')
 
 const handleInterfaceError = (res, err) => {
 	console.log('Error: ', err)
@@ -47,8 +48,15 @@ const passThroughRequester = async (req, res) => {
 	}
 }
 
+const post = async (baseUrl, route, requestBody, headers) => {
+	const url = baseUrl + route
+	const response = await axios.post(url, requestBody, { headers })
+	return response.data
+}
+
 const requesters = {
 	passThroughRequester,
+	post,
 }
 
 module.exports = requesters
