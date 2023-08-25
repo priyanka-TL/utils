@@ -11,6 +11,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/user-signup',
+			type: 'POST',
+			inSequence: true,
+			orchestrated: true,
+			targetRoute: {
+				path: '/user/v1/account/create',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/account/login',
 			type: 'POST',
 			inSequence: false,
