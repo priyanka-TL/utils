@@ -3,6 +3,7 @@ const https = require('https')
 const { matchPathsAndExtractParams } = require('../utils/patternMatcher')
 const routesConfig = require('../constants/routes')
 const { pathParamSetter } = require('../utils/pathParamSetter')
+const axios = require('axios')
 
 const handleInterfaceError = (res, err) => {
 	console.log('Error: ', err)
