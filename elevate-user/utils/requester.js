@@ -1,5 +1,8 @@
 const http = require('http')
 const https = require('https')
+const { matchPathsAndExtractParams } = require('../utils/patternMatcher')
+const routesConfig = require('../constants/routes')
+const { pathParamSetter } = require('../utils/pathParamSetter')
 
 const handleInterfaceError = (res, err) => {
 	console.log('Error: ', err)
@@ -7,15 +10,20 @@ const handleInterfaceError = (res, err) => {
 	res.end('Interface Server Error')
 }
 
-const passThroughRequester = async (req, res, targetUrl) => {
+const passThroughRequester = async (req, res) => {
 	try {
-		const parsedUrl = new URL(targetUrl)
+		const sourceBaseUrl = req.protocol + '://' + req.headers.host + '/'
+		const sourceUrl = new URL(req.originalUrl, sourceBaseUrl)
+		const route = routesConfig.routes.find((route) => route.sourceRoute === req.sourceRoute)
+		const params = matchPathsAndExtractParams(route.sourceRoute, req.originalUrl)
+		const targetRoute = pathParamSetter(route.targetRoute.path, params)
+		const parsedUrl = new URL(targetRoute, req.baseUrl)
 		const options = {
 			method: req.method,
 			headers: req.headers,
 			hostname: parsedUrl.hostname,
 			port: parsedUrl.port,
-			path: parsedUrl.pathname,
+			path: parsedUrl.pathname + sourceUrl.search,
 		}
 		const proxyReq = (parsedUrl.protocol === 'https:' ? https : http).request(options, (proxyRes) => {
 			res.writeHead(proxyRes.statusCode, proxyRes.headers)
