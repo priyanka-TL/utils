@@ -1,5 +1,5 @@
 {
-	"name": "elevate-notification",
+	"name": "elevate-scheduler",
 	"version": "1.0.0",
 	"description": "Npm package for Elevate-Scheduler service integration with Interface service. ",
 	"main": "index.js",
