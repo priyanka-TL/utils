@@ -1,12 +1,12 @@
 module.exports = {
 	routes: [
 		{
-			sourceRoute: '/user/v1/account/create/:userId/temp/:test',
+			sourceRoute: '/user/v1/account/create',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/account/create/:test/temp2/:userId',
+				path: '/user/v1/account/create',
 				type: 'POST',
 			},
 		},
