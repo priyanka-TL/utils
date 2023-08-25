@@ -3,405 +3,330 @@ module.exports = {
 		{
 			sourceRoute: 'v1/account/create',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			target: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/create',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/login',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/login',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/acceptTermsAndCondition',
 			type: 'PATCH',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/acceptTermsAndCondition',
+				type: 'PATCH',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/resetPassword',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/resetPassword',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/generateToken',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/generateToken',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/generateOtp',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/generateOtp',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/logout',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/logout',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/list',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/list',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/account/registrationOtp',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/account/registrationOtp',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/user/read',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/user/read',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/user/update',
 			type: 'PATCH',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/user/update',
+				type: 'PATCH',
+			},
 		},
 		{
 			sourceRoute: 'v1/user/share',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/user/share',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/userRole/list',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/userRole/list',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/form/create',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/form/create',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/form/read',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/form/read',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/form/update',
 			type: 'PATCH',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/form/update',
+				type: 'PATCH',
+			},
 		},
 		{
 			sourceRoute: 'v1/cloud-services/file/getSignedUrl',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/cloud-services/file/getSignedUrl',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/admin/deleteUser',
 			type: 'DELETE',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/admin/deleteUser',
+				type: 'DELETE',
+			},
 		},
 		{
 			sourceRoute: 'v1/admin/create',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/admin/create',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/admin/login',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/admin/login',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/organization/create',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/organization/create',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/organization/update',
 			type: 'PATCH',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/organization/update',
+				type: 'PATCH',
+			},
 		},
 		{
 			sourceRoute: 'v1/organization/list',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/organization/list',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity-type/create',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity-type/create',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity-type/update',
 			type: 'PATCH',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity-type/update',
+				type: 'PATCH',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity-type/read',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity-type/read',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity-type/delete',
 			type: 'DELETE',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity-type/delete',
+				type: 'DELETE',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity/create',
 			type: 'POST',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity/create',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity/update',
 			type: 'PATCH',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity/update',
+				type: 'PATCH',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity/delete',
 			type: 'DELETE',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity/delete',
+				type: 'DELETE',
+			},
 		},
 		{
 			sourceRoute: 'v1/entity/read',
 			type: 'GET',
-			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'user',
-					packageName: 'elevate-user',
-				},
-			],
+			targetRoute: {
+				path: 'v1/entity/read',
+				type: 'GET',
+			},
 		},
 	],
 }
+
+/* const fs = require('fs')
+const modifiedArray = [].map((item) => ({
+	...item,
+	targetRoute: {
+		path: item.sourceRoute,
+		type: item.type,
+	},
+}))
+const modifiedArrayJSON = JSON.stringify(modifiedArray, null, 2)
+const filePath = 'modifiedArray.json'
+fs.writeFile(filePath, modifiedArrayJSON, 'utf8', (err) => {
+	if (err) {
+		console.error('Error writing to file:', err)
+	} else {
+		console.log('Modified array has been written to', filePath)
+	}
+}) */
