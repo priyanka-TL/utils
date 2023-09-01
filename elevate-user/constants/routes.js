@@ -1,13 +1,14 @@
 module.exports = {
 	routes: [
 		{
-			sourceRoute: '/user/v1/account/create',
+			sourceRoute: '/interface/v1/account/create',
 			type: 'POST',
 			inSequence: false,
-			orchestrated: false,
+			orchestrated: true,
 			targetRoute: {
 				path: '/user/v1/account/create',
 				type: 'POST',
+				functionName: 'createUser',
 			},
 		},
 		{

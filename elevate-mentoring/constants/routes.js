@@ -1,4 +1,4 @@
-exports.routesConfigs = {
+module.exports = {
 	routes: [
 		{
 			sourceRoute: '/mentoring/v1/entity/create',
@@ -846,6 +846,17 @@ exports.routesConfigs = {
 			targetRoute: {
 				path: '/mentoring/v1/admin/userDelete',
 				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/interface/v1/account/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/mentoring/v1/profile/create',
+				type: 'POST',
+				functionName: 'createProfile',
 			},
 		},
 	],

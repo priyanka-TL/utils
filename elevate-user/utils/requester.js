@@ -48,10 +48,17 @@ const passThroughRequester = async (req, res) => {
 	}
 }
 
-const post = async (baseUrl, route, requestBody, headers) => {
+const post = (baseUrl, route, requestBody, headers) => {
 	const url = baseUrl + route
-	const response = await axios.post(url, requestBody, { headers })
-	return response.data
+	return axios
+		.post(url, requestBody, { headers })
+		.then((response) => response.data)
+		.catch((error) => {
+			if (error.response) {
+				return error.response
+			}
+			return error
+		})
 }
 
 const requesters = {
