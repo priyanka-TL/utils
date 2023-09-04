@@ -859,5 +859,16 @@ module.exports = {
 				functionName: 'createProfile',
 			},
 		},
+		{
+			sourceRoute: '/interface/v1/account/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/mentoring/v1/profile/update/',
+				type: 'POST',
+				functionName: 'updateUser',
+			},
+		},
 	],
 }
