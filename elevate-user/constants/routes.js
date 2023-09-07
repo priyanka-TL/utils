@@ -1,13 +1,25 @@
 module.exports = {
 	routes: [
 		{
-			sourceRoute: '/user/v1/account/create',
+			sourceRoute: '/interface/v1/account/create',
 			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
+			inSequence: true,
+			orchestrated: true,
 			targetRoute: {
 				path: '/user/v1/account/create',
 				type: 'POST',
+				functionName: 'createUser',
+			},
+		},
+		{
+			sourceRoute: '/interface/v1/account/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/user/v1/user/update',
+				type: 'POST',
+				functionName: 'updateUser',
 			},
 		},
 		{
