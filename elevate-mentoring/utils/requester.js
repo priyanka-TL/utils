@@ -73,10 +73,6 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 
 		const response = await fetch(url, options)
 
-		if (!response.ok) {
-			throw new Error(`HTTP Error: ${response.status}`)
-		}
-
 		const data = await response.json()
 		return data
 	} catch (error) {
