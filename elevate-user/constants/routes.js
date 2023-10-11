@@ -348,7 +348,79 @@ module.exports = {
 				path: '/user/v1/organization/read',
 				type: 'GET',
 			},
-		}
+		},
+		{
+			sourceRoute: '/user/v1/admin/addOrgAdmin',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/admin/addOrgAdmin',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/bulkUserCreate',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/org-admin/bulkUserCreate',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/getBulkInvitesFilesList',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/org-admin/getBulkInvitesFilesList',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/getRequestDetails/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/org-admin/getRequestDetails/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/deactivateUser',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/org-admin/deactivateUser',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/getRequests',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/org-admin/getRequests',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/updateRequestStatus',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/org-admin/updateRequestStatus',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/organization/requestOrgRole',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/organization/requestOrgRole',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/admin/deactivateOrg/:id',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/admin/deactivateOrg/:id',
+				type: 'POST',
+			},
+		},
 	],
 }
 
