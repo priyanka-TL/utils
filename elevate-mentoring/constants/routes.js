@@ -870,5 +870,21 @@ module.exports = {
 				functionName: 'updateUser',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/inheritEntityType',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/inheritEntityType',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/roleChange',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/roleChange',
+				type: 'POST',
+			},
+		},
 	],
 }

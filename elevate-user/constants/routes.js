@@ -333,6 +333,22 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/org-admin/inheritEntityType',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/org-admin/inheritEntityType',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/organization/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/organization/read',
+				type: 'GET',
+			},
+		}
 	],
 }
 
