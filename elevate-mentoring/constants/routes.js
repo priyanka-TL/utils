@@ -886,5 +886,21 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/setOrgPolicies',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/setOrgPolicies',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/getOrgPolicies',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/getOrgPolicies',
+				type: 'GET',
+			},
+		},
 	],
 }
