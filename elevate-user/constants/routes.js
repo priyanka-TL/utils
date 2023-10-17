@@ -204,6 +204,14 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/cloud-services/file/getDownloadableUrl',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/cloud-services/file/getDownloadableUrl',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/admin/deleteUser',
 			type: 'DELETE',
 			inSequence: false,
