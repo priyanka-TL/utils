@@ -233,12 +233,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/admin/login',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/admin/login',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
@@ -258,6 +258,16 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/organization/update',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/organization/update/:id',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/update/:id',
 				type: 'PATCH',
 			},
 		},
@@ -292,6 +302,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/entity-type/update/:id',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity-type/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/entity-type/read',
 			type: 'GET',
 			inSequence: false,
@@ -308,6 +328,16 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/entity-type/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/entity-type/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity-type/delete/:id',
 				type: 'DELETE',
 			},
 		},
@@ -332,12 +362,22 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/entity/delete',
+			sourceRoute: '/user/v1/entity/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/entity/delete/:id',
 			type: 'DELETE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/entity/delete',
+				path: '/user/v1/entity/delete/:id',
 				type: 'DELETE',
 			},
 		},
