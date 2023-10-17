@@ -276,12 +276,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/start',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/start/:id',
@@ -289,12 +287,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/start/:id',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/update',
@@ -302,12 +298,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/update',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/update/:id',
@@ -315,12 +309,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/update/:id',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/feedback',
@@ -328,12 +320,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/feedback',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/feedback/:id',
@@ -341,12 +331,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/feedback/:id',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/updateRecordingUrl',
@@ -354,12 +342,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/updateRecordingUrl',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/updateRecordingUrl/:id',
@@ -367,12 +353,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/updateRecordingUrl/:id',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/completed',
@@ -380,12 +364,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/completed',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/completed/:id',
@@ -393,12 +375,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/completed/:id',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/getRecording',
@@ -406,12 +386,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/getRecording',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/getRecording/:id',
@@ -419,12 +397,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/sessions/getRecording/:id',
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/mentees/sessions',
@@ -432,12 +408,10 @@ module.exports = {
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
-			targetPackages: [
-				{
-					basePackageName: 'mentoring',
-					packageName: 'elevate-mentoring',
-				},
-			],
+			targetRoute: {
+				path: '/mentoring/v1/mentees/sessions',
+				type: 'GET',
+			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/mentees/joinSession',

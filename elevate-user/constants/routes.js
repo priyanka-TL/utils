@@ -114,12 +114,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/user/read/:userId',
+			sourceRoute: '/user/v1/user/read/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/user/read',
+				path: '/user/v1/user/read/:id',
 				type: 'GET',
 			},
 		},
