@@ -105,12 +105,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/account/registrationOtp',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/account/registrationOtp',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{

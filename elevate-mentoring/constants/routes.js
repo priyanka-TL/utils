@@ -142,22 +142,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/entity-type/update',
-			type: 'PUT',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/entity-type/update',
-				type: 'PUT',
+				type: 'POST',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/entity-type/update/:id',
-			type: 'PUT',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/entity-type/update/:id',
-				type: 'PUT',
+				type: 'POST',
 			},
 		},
 		{
@@ -212,22 +212,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/share',
-			type: 'POST',
+			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/share',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/share/:id',
-			type: 'POST',
+			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/share/:id',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
@@ -316,90 +316,90 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/feedback',
-			type: 'POST',
+			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/feedback',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/feedback/:id',
-			type: 'POST',
+			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/feedback/:id',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/updateRecordingUrl',
-			type: 'POST',
+			type: 'PATCH',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/updateRecordingUrl',
-				type: 'POST',
+				type: 'PATCH',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/updateRecordingUrl/:id',
-			type: 'POST',
+			type: 'PATCH',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/updateRecordingUrl/:id',
-				type: 'POST',
+				type: 'PATCH',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/completed',
-			type: 'POST',
+			type: 'PATCH',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/completed',
-				type: 'POST',
+				type: 'PATCH',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/completed/:id',
-			type: 'POST',
+			type: 'PATCH',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/completed/:id',
-				type: 'POST',
+				type: 'PATCH',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/getRecording',
-			type: 'POST',
+			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/getRecording',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/getRecording/:id',
-			type: 'POST',
+			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/getRecording/:id',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
@@ -569,24 +569,24 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/mentors/share',
-			type: 'POST',
+			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/mentors/share',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/mentors/share/:id',
-			type: 'POST',
+			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/mentors/share/:id',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
@@ -734,22 +734,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/questionsSet/update',
-			type: 'PUT',
+			type: 'PATCH',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/questionsSet/update',
-				type: 'PUT',
+				type: 'PATCH',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/questionsSet/update/:id',
-			type: 'PUT',
+			type: 'PATCH',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/questionsSet/update/:id',
-				type: 'PUT',
+				type: 'PATCH',
 			},
 		},
 		{
@@ -874,6 +874,30 @@ module.exports = {
 			targetRoute: {
 				path: '/mentoring/v1/org-admin/getOrgPolicies',
 				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: 'mentoring/v1/profile/create',
+			type: 'POST',
+			targetRoute: {
+				path: 'mentoring/v1/profile/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: 'mentoring/v1/profile/read',
+			type: 'GET',
+			targetRoute: {
+				path: 'mentoring/v1/profile/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: 'mentoring/v1/profile/update',
+			type: 'POST',
+			targetRoute: {
+				path: 'mentoring/v1/profile/update',
+				type: 'POST',
 			},
 		},
 	],
