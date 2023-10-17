@@ -144,6 +144,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/user/share/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/share/:id',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/userRole/list',
 			type: 'GET',
 			inSequence: false,
