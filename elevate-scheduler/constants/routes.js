@@ -1,42 +1,42 @@
 module.exports = {
 	routes: [
 		{
-			sourceRoute: 'scheduler/jobs/create',
+			sourceRoute: '/scheduler/jobs/create',
 			type: 'POST',
 			targetRoute: {
-				path: 'scheduler/jobs/create',
+				path: '/scheduler/jobs/create',
 				type: 'POST',
 			},
 		},
 		{
-			sourceRoute: 'scheduler/jobs/updateDelay',
+			sourceRoute: '/scheduler/jobs/updateDelay',
 			type: 'POST',
 			targetRoute: {
-				path: 'scheduler/jobs/updateDelay',
+				path: '/scheduler/jobs/updateDelay',
 				type: 'POST',
 			},
 		},
 		{
-			sourceRoute: 'scheduler/jobs/remove',
+			sourceRoute: '/scheduler/jobs/remove',
 			type: 'POST',
 			targetRoute: {
-				path: 'scheduler/jobs/remove',
+				path: '/scheduler/jobs/remove',
 				type: 'POST',
 			},
 		},
 		{
-			sourceRoute: 'scheduler/jobs/list',
+			sourceRoute: '/scheduler/jobs/list',
 			type: 'GET',
 			targetRoute: {
-				path: 'scheduler/jobs/list',
+				path: '/scheduler/jobs/list',
 				type: 'GET',
 			},
 		},
 		{
-			sourceRoute: 'scheduler/jobs/purge',
+			sourceRoute: '/scheduler/jobs/purge',
 			type: 'POST',
 			targetRoute: {
-				path: 'scheduler/jobs/purge',
+				path: '/scheduler/jobs/purge',
 				type: 'POST',
 			},
 		}

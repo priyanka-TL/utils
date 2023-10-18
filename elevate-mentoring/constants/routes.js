@@ -667,6 +667,14 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/feedback/forms/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/feedback/forms/:id',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/questions/create',
 			type: 'POST',
 			priority: 'MUST_HAVE',
@@ -877,26 +885,26 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: 'mentoring/v1/profile/create',
+			sourceRoute: '/mentoring/v1/profile/create',
 			type: 'POST',
 			targetRoute: {
-				path: 'mentoring/v1/profile/create',
+				path: '/mentoring/v1/profile/create',
 				type: 'POST',
 			},
 		},
 		{
-			sourceRoute: 'mentoring/v1/profile/read',
+			sourceRoute: '/mentoring/v1/profile/read',
 			type: 'GET',
 			targetRoute: {
-				path: 'mentoring/v1/profile/read',
+				path: '/mentoring/v1/profile/read',
 				type: 'GET',
 			},
 		},
 		{
-			sourceRoute: 'mentoring/v1/profile/update',
+			sourceRoute: '/mentoring/v1/profile/update',
 			type: 'POST',
 			targetRoute: {
-				path: 'mentoring/v1/profile/update',
+				path: '/mentoring/v1/profile/update',
 				type: 'POST',
 			},
 		},
