@@ -1,6 +1,6 @@
 {
 	"name": "elevate-scheduler",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Npm package for Elevate-Scheduler service integration with Interface service. ",
 	"main": "index.js",
 	"scripts": {

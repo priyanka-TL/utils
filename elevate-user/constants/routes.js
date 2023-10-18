@@ -222,6 +222,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/admin/deleteUser/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/deleteUser/:id',
+				type: 'DELETE',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/admin/create',
 			type: 'POST',
 			inSequence: false,
