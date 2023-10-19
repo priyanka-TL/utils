@@ -135,22 +135,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/user/share',
-			type: 'POST',
+			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/user/share',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
 			sourceRoute: '/user/v1/user/share/:id',
-			type: 'POST',
+			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/user/share/:id',
-				type: 'POST',
+				type: 'GET',
 			},
 		},
 		{
