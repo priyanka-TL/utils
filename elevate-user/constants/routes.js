@@ -184,6 +184,14 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/form/read/:id',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/form/read/:id',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/form/update',
 			type: 'PATCH',
 			inSequence: false,
