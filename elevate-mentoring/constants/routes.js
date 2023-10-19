@@ -12,22 +12,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/entity/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/entity/read',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/entity/read/:id',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/entity/read/:id',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
@@ -82,22 +82,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/form/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/form/read',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/form/read/:id',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/form/read/:id',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
@@ -132,12 +132,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/entity-type/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/entity-type/read',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
@@ -316,24 +316,24 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/feedback',
-			type: 'GET',
+			type: 'POST',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/feedback',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/sessions/feedback/:id',
-			type: 'GET',
+			type: 'POST',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/sessions/feedback/:id',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
@@ -762,22 +762,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/mentoring/v1/questionsSet/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/questionsSet/read',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
 			sourceRoute: '/mentoring/v1/questionsSet/read/:id',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/questionsSet/read/:id',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
