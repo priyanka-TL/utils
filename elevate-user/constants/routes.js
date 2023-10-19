@@ -175,12 +175,20 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/form/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/form/read',
-				type: 'GET',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/form/read/:id',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/form/read/:id',
+				type: 'POST',
 			},
 		},
 		{
@@ -323,12 +331,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/entity-type/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/entity-type/read',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
@@ -393,12 +401,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/entity/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/entity/read',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 		{
