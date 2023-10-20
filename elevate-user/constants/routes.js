@@ -124,6 +124,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/user/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/read',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/user/update',
 			type: 'PATCH',
 			inSequence: false,
