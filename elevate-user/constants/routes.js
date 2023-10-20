@@ -34,6 +34,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/v1/entity-type/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/user/v1/entity-type/read',
+				type: 'POST',
+				functionName: 'entityTypeRead',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/account/login',
 			type: 'POST',
 			inSequence: false,

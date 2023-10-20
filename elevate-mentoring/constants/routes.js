@@ -853,6 +853,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/v1/entity-type/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/mentoring/v1/entity-type/read',
+				type: 'POST',
+				functionName: 'entityTypeRead',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/org-admin/inheritEntityType',
 			type: 'POST',
 			targetRoute: {
