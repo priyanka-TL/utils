@@ -15,9 +15,16 @@ const updateUser = async (req, res, responses) => {
 	console.log(req.baseUrl, selectedConfig.targetRoute.path, req.headers, filteredRequestBody, 'mentoring request')
 	return await requesters.patch(req.baseUrl, selectedConfig.targetRoute.path, filteredRequestBody, req.headers)
 }
+
+const entityTypeRead = async (req, res, responses) => {
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body, req.headers)
+}
+
 mentoringController = {
 	createProfile,
 	updateUser,
+	entityTypeRead,
 }
 
 module.exports = mentoringController
