@@ -9,7 +9,7 @@ const createUser = async (req, res, responses) => {
 const updateUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 
-	const filteredRequestBody = requestParser.transformUpdateUserBody(req.body)
+	//const filteredRequestBody = requestParser.transformUpdateUserBody(req.body)
 	return await requesters.patch(req.baseUrl, selectedConfig.targetRoute.path, req.body, req.headers)
 }
 
