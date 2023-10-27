@@ -919,5 +919,21 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/cloud-services/getSignedUrl',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/cloud-services/getSignedUrl',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/cloud-services/getDownloadableUrl',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/cloud-services/getDownloadableUrl',
+				type: 'GET',
+			},
+		},
 	],
 }

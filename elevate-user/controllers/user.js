@@ -10,7 +10,7 @@ const updateUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 
 	const filteredRequestBody = requestParser.transformUpdateUserBody(req.body)
-	return await requesters.patch(req.baseUrl, selectedConfig.targetRoute.path, filteredRequestBody, req.headers)
+	return await requesters.patch(req.baseUrl, selectedConfig.targetRoute.path, req.body, req.headers)
 }
 
 const entityTypeRead = async (req, res, responses) => {

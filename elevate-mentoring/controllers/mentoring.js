@@ -12,7 +12,7 @@ const updateUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 
 	const filteredRequestBody = requestParser.transformUpdateUserBody(req.body)
-	console.log(req.baseUrl, selectedConfig.targetRoute.path, req.headers, filteredRequestBody, 'mentoring request')
+	console.log(req.baseUrl, selectedConfig.targetRoute.path, req.headers, req.body, 'mentoring request')
 	return await requesters.patch(req.baseUrl, selectedConfig.targetRoute.path, filteredRequestBody, req.headers)
 }
 
