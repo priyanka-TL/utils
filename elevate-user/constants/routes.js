@@ -542,6 +542,14 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/notification/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/notification/read',
+				type: 'GET',
+			},
+		},
 	],
 }
 
