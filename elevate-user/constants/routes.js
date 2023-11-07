@@ -518,6 +518,30 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/notification/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/notification/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/notification/update/:id',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/user/v1/notification/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/notification/read/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/notification/read/:id',
+				type: 'GET',
+			},
+		},
 	],
 }
 
