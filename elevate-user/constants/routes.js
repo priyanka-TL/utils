@@ -550,6 +550,23 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/interface/v1/account/deactivate',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/account/deactivate',
+				type: 'POST',
+				functionName: 'deactivate',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/account/generateDisableOtp',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/account/generateDisableOtp',
+				type: 'POST',
+			},
+		},
 	],
 }
 

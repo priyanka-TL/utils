@@ -23,10 +23,19 @@ const entityTypeRead = async (req, res, responses) => {
 	})
 }
 
+const deactivate = async (req, res, responses) => {
+	console.log(responses.user.result.access_token)
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body, {
+		'X-auth-token': `bearer ${responses.user.result.access_token}`,
+	})
+}
+
 mentoringController = {
 	createProfile,
 	updateUser,
 	entityTypeRead,
+	deactivate,
 }
 
 module.exports = mentoringController

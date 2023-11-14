@@ -935,5 +935,14 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/interface/v1/account/deactivate',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/profile/deactivate',
+				type: 'POST',
+				functionName: 'deactivate',
+			},
+		},
 	],
 }
