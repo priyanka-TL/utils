@@ -935,5 +935,93 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/admin/triggerPeriodicViewRefresh',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/admin/triggerPeriodicViewRefresh',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/admin/triggerViewRebuild',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/admin/triggerViewRebuild',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/admin/triggerPeriodicViewRefreshInternal',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/admin/triggerPeriodicViewRefreshInternal',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/admin/triggerViewRebuildInternal',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/admin/triggerViewRebuildInternal',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentors/list',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentors/createdSessions',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/createdSessions',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentors/details',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/details',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentors/details/:id',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/details/:id',
+				type: 'GET',
+			},
+		},
 	],
 }
