@@ -524,24 +524,24 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/mentors/details',
+			sourceRoute: '/mentoring/v1/mentors/profile',
 			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/mentoring/v1/mentors/details',
+				path: '/mentoring/v1/mentors/profile',
 				type: 'GET',
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/mentors/details/:id',
+			sourceRoute: '/mentoring/v1/mentors/profile/:id',
 			type: 'GET',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/mentoring/v1/mentors/details/:id',
+				path: '/mentoring/v1/mentors/profile/:id',
 				type: 'GET',
 			},
 		},
@@ -998,6 +998,28 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/mentoring/v1/mentors/createdSessions',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentors/details',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/details',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentors/details/:id',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/details/:id',
 				type: 'GET',
 			},
 		},
