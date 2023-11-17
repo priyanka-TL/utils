@@ -194,6 +194,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/cloud-services/file/getSampleCSV',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/cloud-services/file/getSampleCSV',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/admin/deleteUser',
 			type: 'DELETE',
 			inSequence: false,
@@ -331,6 +341,116 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/entity/read',
 				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/admin/deactivateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/deactivateUser',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/admin/deactivateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/deactivateUser',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/admin/deactivateOrg',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/deactivateOrg',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/admin/addOrgAdmin',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/addOrgAdmin',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/bulkUserCreate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/bulkUserCreate',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/getBulkInvitesFilesList',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/getBulkInvitesFilesList',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/getRequestDetails',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/getRequestDetails',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/getRequests',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/getRequests',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/updateRequestStatus',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/updateRequestStatus',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/org-admin/deactivateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/deactivateUser',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/notification/template',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/notification/template',
+				type: 'POST',
 			},
 		},
 	],
