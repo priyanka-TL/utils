@@ -1023,5 +1023,49 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template/:id',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/notification/template/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'PATCH',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/updateOrganization',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/updateOrganization',
+				type: 'POST',
+			},
+		},
 	],
 }
