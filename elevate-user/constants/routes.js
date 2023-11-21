@@ -550,6 +550,38 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/cloud-services/file/getSampleCSV',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/cloud-services/file/getSampleCSV',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/notification/template',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/notification/template',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/notification/template/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/notification/template/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/notification/template',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/user/v1/notification/template',
+				type: 'PATCH',
+			},
+		},
 	],
 }
 
