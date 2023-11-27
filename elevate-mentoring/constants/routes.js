@@ -1067,5 +1067,16 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/updateRelatedOrgs',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/updateRelatedOrgs',
+				type: 'POST',
+			},
+		},
 	],
 }
