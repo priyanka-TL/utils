@@ -1078,5 +1078,13 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/organization/update',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/organization/update',
+				type: 'PATCH',
+			},
+		},
 	],
 }
