@@ -381,6 +381,28 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/sessions/completed',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/sessions/completed',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/completed/:id',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/sessions/completed/:id',
+				type: 'PATCH',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/sessions/getRecording',
 			type: 'GET',
 			priority: 'MUST_HAVE',
