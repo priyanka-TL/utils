@@ -584,10 +584,10 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/account/search',
-			type: 'GET',
+			type: 'POST',
 			targetRoute: {
 				path: '/user/v1/account/search',
-				type: 'GET',
+				type: 'POST',
 			},
 		},
 	],
