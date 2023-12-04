@@ -582,6 +582,14 @@ module.exports = {
 				type: 'PATCH',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/account/search',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/account/search',
+				type: 'POST',
+			},
+		},
 	],
 }
 
