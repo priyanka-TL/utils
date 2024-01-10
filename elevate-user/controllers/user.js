@@ -19,18 +19,11 @@ const entityTypeRead = async (req, res, responses) => {
 		'X-auth-token': req.headers['x-auth-token'],
 	})
 }
-const deactivate = async (req, res, responses) => {
-	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
-	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body, headers ={
-		'X-auth-token': req.rawHeaders[3],
-	})
-}
 
 const userController = {
 	createUser,
 	updateUser,
-	entityTypeRead,
-	deactivate,
+	entityTypeRead
 }
 
 module.exports = userController
