@@ -1119,5 +1119,21 @@ module.exports = {
 				type: 'PATCH',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/manage-sessions/createdSessions',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/manage-sessions/createdSessions',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/manage-sessions/downloadSessions',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/manage-sessions/downloadSessions	',
+				type: 'GET',
+			},
+		},
 	],
 }
