@@ -50,60 +50,43 @@ const passThroughRequester = async (req, res) => {
 }
 
 const post = (baseUrl, route, requestBody, headers) => {
-	const url = baseUrl + route
-	return axios
-		.post(url, requestBody, { headers })
-		.then((response) => response.data)
-		.catch((error) => {
-			if (error.response) {
-				return error.response
-			}
-			return error
-		})
+	try {
+		const url = baseUrl + route
+		return axios
+			.post(url, requestBody, { headers })
+			.then((response) => response.data)
+			.catch((error) => {
+				if (error.response) {
+					return error.response
+				}
+				return error
+			})
+	} catch (err) {
+		console.log(err)
+		throw err
+	}
 }
+
 const patch = async (baseUrl, route, requestBody, headers) => {
 	try {
 		const url = baseUrl + route
-
-		const options = {
-			method: 'PATCH',
-			headers: headers,
-			body: JSON.stringify(requestBody),
-		}
-
-		const response = await fetch(url, options)
-
-		const data = await response.json()
-		return data
-	} catch (error) {
-		console.error(error)
-		throw error
-	}
-}
-const axiosPatch = async (baseUrl, route, requestBody, headers) => {
-	try {
-		const url = baseUrl + route
-		console.log(url, requestBody)
-		const config = {
-			headers: headers,
-		}
-		axios
-			.patch(url, requestBody, config)
-			.then((response) => {
-				// Handle the successful response here
-				console.log('PATCH request successful:', response.data)
-				return response.data
+		return axios
+			.patch(url, requestBody, {
+				headers: {
+					'X-auth-token': headers['x-auth-token'],
+					'content-type': 'application/json',
+				},
 			})
+			.then((response) => response.data)
 			.catch((error) => {
-				// Handle any errors that occurred during the PATCH request
-				console.error('Error making PATCH request:', error)
 				if (error.response) {
 					return error.response
 				}
 				return error
 			})
 	} catch (error) {
-		console.error('Error making PATCH request:', error)
+		console.error(error)
+		throw error // Re-throw the error to be caught by the caller
 	}
 }
 
@@ -111,7 +94,6 @@ const requesters = {
 	passThroughRequester,
 	post,
 	patch,
-	axiosPatch,
 }
 
 module.exports = requesters
