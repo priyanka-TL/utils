@@ -23,7 +23,7 @@ const entityTypeRead = async (req, res, responses) => {
 const userController = {
 	createUser,
 	updateUser,
-	entityTypeRead
+	entityTypeRead,
 }
 
 module.exports = userController
