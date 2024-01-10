@@ -1135,5 +1135,21 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/manage-sessions/downloadSessions',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/manage-sessions/downloadSessions	',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/mentees/list',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/mentees/list	',
+				type: 'GET',
+			},
+		},
 	],
 }
