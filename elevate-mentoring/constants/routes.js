@@ -1151,5 +1151,13 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/profile/filterList',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/profile/filterList	',
+				type: 'GET',
+			},
+		}
 	],
 }
