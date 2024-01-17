@@ -1112,6 +1112,114 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/permissions/create',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/permissions/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/permissions/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/permissions/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/permissions/list',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/permissions/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/permissions/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/permissions/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/modules/create',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/modules/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/modules/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/modules/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/modules/list',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/modules/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/modules/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/modules/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/rolePermissionMapping/create/:role_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/rolePermissionMapping/create/:role_id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/rolePermissionMapping/delete/:role_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/rolePermissionMapping/delete/:role_id',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/organization/update',
 			type: 'PATCH',
 			targetRoute: {
