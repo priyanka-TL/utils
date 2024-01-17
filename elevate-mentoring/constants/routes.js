@@ -1158,6 +1158,38 @@ module.exports = {
 				path: '/mentoring/v1/profile/filterList	',
 				type: 'GET',
 			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/addMentees',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/addMentees',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/addMentees/:id',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/addMentees/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/removeMentees',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/removeMentees',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/removeMentees/:id',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/removeMentees/:id',
+				type: 'POST',
+			},
 		}
 	],
 }
