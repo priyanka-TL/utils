@@ -185,6 +185,46 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/userRole/default',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/userRole/default',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/userRole/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/userRole/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/userRole/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/userRole/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/userRole/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/userRole/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/form/create',
 			type: 'POST',
 			inSequence: false,
