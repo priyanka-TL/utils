@@ -1190,6 +1190,22 @@ module.exports = {
 				path: '/mentoring/v1/sessions/removeMentees/:id',
 				type: 'POST',
 			},
-		}
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/enrolledMentees/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/enrolledMentees/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/enrolledMentees',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/enrolledMentees',
+				type: 'GET',
+			},
+		},
 	],
 }
