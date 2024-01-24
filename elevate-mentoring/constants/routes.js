@@ -1323,5 +1323,13 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/bulkUpdateMentorNames',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/bulkUpdateMentorNames',
+				type: 'POST',
+			},
+		},
 	],
 }
