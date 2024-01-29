@@ -1228,6 +1228,14 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/organization/eventListener',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/organization/eventListener',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/manage-sessions/createdSessions',
 			type: 'GET',
 			targetRoute: {
@@ -1313,6 +1321,14 @@ module.exports = {
 			targetRoute: {
 				path: '/mentoring/v1/sessions/enrolledMentees',
 				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/bulkUpdateMentorNames',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/sessions/bulkUpdateMentorNames',
+				type: 'POST',
 			},
 		},
 	],
