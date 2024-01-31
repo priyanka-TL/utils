@@ -45,6 +45,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/v1/account/login',
+			type: 'POST',
+			inSequence: true,
+			orchestrated: true,
+			targetRoute: {
+				path: '/user/v1/account/login',
+				type: 'POST',
+				functionName: 'loginUser',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/account/login',
 			type: 'POST',
 			inSequence: false,

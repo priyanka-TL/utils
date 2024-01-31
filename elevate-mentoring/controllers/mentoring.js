@@ -23,10 +23,18 @@ const entityTypeRead = async (req, res, responses) => {
 	})
 }
 
+const rolePermissions = async (req, res, responses) => {
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path,req.body,{
+		'X-auth-token': `bearer ${responses.user.result.access_token}`,
+	})
+}
+
 mentoringController = {
 	createProfile,
 	updateUser,
 	entityTypeRead,
+	rolePermissions,
 }
 
 module.exports = mentoringController
