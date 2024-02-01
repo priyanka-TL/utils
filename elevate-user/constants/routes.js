@@ -45,6 +45,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/v1/account/login',
+			type: 'POST',
+			inSequence: true,
+			orchestrated: true,
+			targetRoute: {
+				path: '/user/v1/account/login',
+				type: 'POST',
+				functionName: 'loginUser',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/account/login',
 			type: 'POST',
 			inSequence: false,
@@ -627,6 +638,114 @@ module.exports = {
 			type: 'POST',
 			targetRoute: {
 				path: '/user/v1/account/search',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/permissions/create',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/permissions/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/permissions/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/permissions/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/permissions/list',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/permissions/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/permissions/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/permissions/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/modules/create',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/modules/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/modules/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/modules/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/modules/list',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/modules/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/modules/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/modules/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/rolePermissionMapping/create/:role_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/rolePermissionMapping/create/:role_id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/rolePermissionMapping/delete/:role_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/rolePermissionMapping/delete/:role_id',
 				type: 'POST',
 			},
 		},

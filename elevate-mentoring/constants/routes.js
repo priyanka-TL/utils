@@ -886,6 +886,28 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/v1/account/login',
+			type: 'POST',
+			inSequence: true,
+			orchestrated: true,
+			targetRoute: {
+				path: '/mentoring/v1/rolePermissionMapping/list',
+				type: 'POST',
+				functionName: 'rolePermissions',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/rolePermissionMapping/list',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/rolePermissionMapping/list',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/org-admin/inheritEntityType',
 			type: 'POST',
 			targetRoute: {
