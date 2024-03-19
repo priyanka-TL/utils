@@ -262,59 +262,62 @@ module.exports = class GcpFileHelper {
     static async getSignedDownloadableUrl({ destFilePath, bucketName, gcpProjectId, gcpJsonFilePath, expiry }) {
         // Ensure all parameters are provided
         if (!destFilePath) {
-            const error = new Error('destFilePath is not passed in parameter');
-            error.code = 500;
-            throw error;
+            const error = new Error('destFilePath is not passed in parameter')
+            error.code = 500
+            throw error
         }
 
         if (typeof destFilePath !== 'string') {
-            const error = new Error('expected destFilePath as string');
-            error.code = 500;
-            throw error;
+            const error = new Error('expected destFilePath as string')
+            error.code = 500
+            throw error
         }
 
         if (!bucketName) {
-            const error = new Error('bucketName is not passed in parameter');
-            error.code = 500;
-            throw error;
+            const error = new Error('bucketName is not passed in parameter')
+            error.code = 500
+            throw error
         }
 
         if (!gcpProjectId) {
-            const error = new Error('gcpProjectId is not passed in parameter');
-            error.code = 500;
-            throw error;
+            const error = new Error('gcpProjectId is not passed in parameter')
+            error.code = 500
+            throw error
         }
 
         if (!gcpJsonFilePath) {
-            const error = new Error('gcpJsonFilePath is not passed in parameter');
-            error.code = 500;
-            throw error;
+            const error = new Error('gcpJsonFilePath is not passed in parameter')
+            error.code = 500
+            throw error
         }
 
         if (typeof gcpJsonFilePath !== 'string') {
-            const error = new Error('expected gcpJsonFilePath as string');
-            error.code = 500;
-            throw error;
+            const error = new Error('expected gcpJsonFilePath as string')
+            error.code = 500
+            throw error
         }
+		// Set default expiry time to 15 minutes (if expiry is not provided)
+		const defaultExpiry = 15 * 60 * 1000 // 15 minutes in milliseconds
+		const expires = expiry || (Date.now() + defaultExpiry)
     
         // Instantiate the cloud storage client
         const storage = new Storage({
             projectId: gcpProjectId,
             keyFilename: gcpJsonFilePath
-        });
+        })
         
         try {
             // Generate a signed URL for downloading the file
             const options = {
                 version: 'v4',
                 action: 'read',
-                expires: expiry,
-            };
-            const [signedUrl] = await storage.bucket(bucketName).file(destFilePath).getSignedUrl(options);
+                expires: expires,
+            }
+            const [signedUrl] = await storage.bucket(bucketName).file(destFilePath).getSignedUrl(options)
             
             return signedUrl; // Return the signed URL for downloading the file
         } catch (error) {
-            throw error;
+            throw error
         }
     }
 
