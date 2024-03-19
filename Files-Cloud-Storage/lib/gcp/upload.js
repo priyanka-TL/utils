@@ -249,7 +249,7 @@ module.exports = class GcpFileHelper {
 	/**
       * Get downloadable url of uploaded object
       * @method
-      * @name getDynamicDownloadableUrl
+      * @name getSignedDownloadableUrl
       * @param  {destFilePath} destFilePath     - Stored file path - location from bucket - ex - users/profile.png
       * @param  {string} bucketName             - google cloud storage bucket in which action is peformed over file
       * @param  {string} gcpProjectId           - google cloud storage project id
@@ -259,7 +259,7 @@ module.exports = class GcpFileHelper {
       * @see gcpProjectId                       - Get from gcp console
       * @see gcpJsonFilePath -                  - Download file from manage storage api key section
     */
-    static async getDynamicDownloadableUrl({ destFilePath, bucketName, gcpProjectId, gcpJsonFilePath, expiry }) {
+    static async getSignedDownloadableUrl({ destFilePath, bucketName, gcpProjectId, gcpJsonFilePath, expiry }) {
         // Ensure all parameters are provided
         if (!destFilePath) {
             const error = new Error('destFilePath is not passed in parameter');
