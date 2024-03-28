@@ -4,7 +4,9 @@ const requestParser = require('../utils/requestParser')
 
 const createUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
-	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body)
+	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body,{
+		'captcha-token': req.headers['captcha-token'],
+	})
 }
 const updateUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
@@ -23,7 +25,7 @@ const entityTypeRead = async (req, res, responses) => {
 const loginUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body,{
-		'Captcha-Token': req.headers['captcha-token'],
+		'captcha-token': req.headers['captcha-token'],
 	})
 }
 
