@@ -4,7 +4,9 @@ const requestParser = require('../utils/requestParser')
 
 const createUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
-	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body,req.headers)
+	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body,{
+		'device-info': req.headers['device-info'],
+	})
 }
 const updateUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
@@ -24,6 +26,7 @@ const loginUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body,{
 		'captcha-token': req.headers['captcha-token'],
+		'device-info': req.headers['device-info'],
 	})
 }
 

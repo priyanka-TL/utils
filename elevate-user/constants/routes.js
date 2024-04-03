@@ -782,6 +782,39 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/account/changePassword',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/changePassword',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/account/sessions',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/sessions',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/account/validateUserSession',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/validateUserSession',
+				type: 'POST',
+			},
+		},
 	],
 }
 
