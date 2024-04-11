@@ -229,10 +229,23 @@ module.exports = class AwsS3FileHelper {
 		}
 
 		try {
-			const downloadableUrl = `https://${bucketName}.s3.${bucketRegion}.amazonaws.com/${destFilePath}`
-			return downloadableUrl
+			/* Instantiate S3 class with credentials and region */
+			const s3 = new S3({
+				region: bucketRegion,
+			});
+	
+			/* Get the signed URL with the specified expiry */
+			const params = {
+				Bucket: bucketName,
+				Key: destFilePath,
+				Expires: 7 * 24 * 60 * 60, // Expiry in seconds (one week)
+			};
+	
+			const signedUrl = await s3.getSignedUrlPromise('getObject', params);
+	
+			return signedUrl;
 		} catch (error) {
-			throw error
+			throw error;
 		}
 	}
 
