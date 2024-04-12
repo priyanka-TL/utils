@@ -244,7 +244,6 @@ module.exports = class AwsS3FileHelper {
 				Expires: expiry, 
 			}
 
-	
 			const signedUrl = await s3.getSignedUrlPromise('getObject', params)
 	
 			return signedUrl
