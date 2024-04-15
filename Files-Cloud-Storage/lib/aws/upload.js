@@ -235,7 +235,7 @@ module.exports = class AwsS3FileHelper {
 			})
 	
 			// Determine expiry
-			const expiry = expires ? parseInt(expires) : 7 * 24 * 60 * 60;// Default expiry: 1 week (in seconds)
+			const expiry = expires ? parseInt(expires) : 300;// Default expiry: 5 min (in seconds)
 
 			/* Get the signed URL with the specified expiry */
 			const params = {

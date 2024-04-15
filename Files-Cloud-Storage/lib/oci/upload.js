@@ -286,7 +286,7 @@ module.exports = class OCIFileHelper {
 
 			const s3 = new S3(s3Config);
 			
-			const expiry = expires ? parseInt(expires) : 7 * 24 * 60 * 60;// Default expiry: 1 week (in seconds)
+			const expiry = expires ? parseInt(expires) : 300;// Default expiry: 5min (in seconds)
 			/* Get the signed URL with the specified expiry */
 			const params = {
 				Bucket: bucketName,
