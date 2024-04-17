@@ -203,7 +203,7 @@ module.exports = class AzureFileHelper {
 	 * @see accountName - Get from azure storage console
 	 * @see accountKey - Get from azure storage console
 	 */
-	static async getDownloadableUrl({ destFilePath, containerName, expiry = 5, actionType, accountName, accountKey }) {
+	static async getDownloadableUrl({ destFilePath, containerName, expiry = 30, actionType, accountName, accountKey }) {
 		if (!destFilePath) {
 			const error = new Error('destFilePath is not passed in parameter')
 			error.code = 500
