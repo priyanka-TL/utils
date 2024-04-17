@@ -297,7 +297,7 @@ module.exports = class GcpFileHelper {
             throw error
         }
 		// Set default expiry time to 15 minutes (if expiry is not provided)
-		const defaultExpiry = 15 * 60 * 1000 // 15 minutes in milliseconds
+		const defaultExpiry = 30 * 60 * 1000 // 15 minutes in milliseconds
 		const expires = expiry || (Date.now() + defaultExpiry)
     
         // Instantiate the cloud storage client
