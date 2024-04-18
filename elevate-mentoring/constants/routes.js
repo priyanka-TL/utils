@@ -1242,6 +1242,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/org-admin/bulkSessionCreate',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/bulkSessionCreate',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/organization/update',
 			type: 'PATCH',
 			targetRoute: {

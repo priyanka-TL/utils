@@ -792,7 +792,17 @@ module.exports = {
 				path: '/user/v1/account/changePassword',
 				type: 'POST',
 			},
-		}
+		},
+		{
+			sourceRoute: '/user/v1/account/searchByEmailIds',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/searchByEmailIds',
+				type: 'POST',
+			},
+		},
 	],
 }
 
