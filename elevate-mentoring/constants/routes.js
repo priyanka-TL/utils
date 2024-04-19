@@ -1420,7 +1420,6 @@ module.exports = {
 				type: 'GET',
 			},
 		},
-		,
 		{
 			sourceRoute: '/mentoring/v1/availability/isAvailable',
 			type: 'GET',
