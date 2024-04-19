@@ -1364,5 +1364,86 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/availability/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/availability/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/update',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/availability/update',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/update/:id',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/availability/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/delete',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/availability/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/delete/:id',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/availability/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/availability/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/read/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/availability/read/:id',
+				type: 'GET',
+			},
+		},
+		,
+		{
+			sourceRoute: '/mentoring/v1/availability/isAvailable',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/availability/isAvailable',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/isAvailable/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/availability/isAvailable/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/availability/users',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/availability/users',
+				type: 'GET',
+			},
+		},
 	],
 }
