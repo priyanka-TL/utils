@@ -824,7 +824,27 @@ module.exports = {
 				type: 'POST',
       }
     },
-	],
+		{
+			sourceRoute: '/interface/v2/account/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v2/account/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/interface/v2/account/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/update',
+				type: 'POST'
+			},
+		}
+	]
 }
 
 /* const fs = require('fs')
