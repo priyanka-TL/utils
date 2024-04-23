@@ -794,6 +794,15 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/account/searchByEmailIds',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/searchByEmailIds',
+      }
+    },
+     {
 			sourceRoute: '/user/v1/account/sessions',
 			type: 'GET',
 			priority: 'MUST_HAVE',
@@ -802,7 +811,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/sessions',
 				type: 'GET',
-			},
+			}
 		},
 		{
 			sourceRoute: '/user/v1/account/validateUserSession',
@@ -813,8 +822,8 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/validateUserSession',
 				type: 'POST',
-			},
-		},
+      }
+    },
 		{
 			sourceRoute: '/interface/v2/account/create',
 			type: 'POST',
@@ -834,8 +843,8 @@ module.exports = {
 				path: '/user/v1/user/update',
 				type: 'POST'
 			},
-		},
-	],
+		}
+	]
 }
 
 /* const fs = require('fs')
