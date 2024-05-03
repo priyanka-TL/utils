@@ -9,7 +9,7 @@ const getDependencies = () => {
 
 const getPackageMeta = () => {
 	return {
-		basePackageName: 'survey',
+		basePackageName: 'samiksha',
 		packageName: 'elevate-survey',
 	}
 }
