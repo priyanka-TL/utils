@@ -1,12 +1,12 @@
 module.exports = {
 	routes: [
 		{
-			sourceRoute: '/selfcreationportal/v1/permissions/list',
+			sourceRoute: '/scp/v1/permissions/list',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/selfcreationportal/v1/permissions/list',
+				path: '/scp/v1/permissions/list',
 				type: 'GET'
 			},
 		}
