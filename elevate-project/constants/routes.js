@@ -249,6 +249,106 @@ module.exports = {
 				path: '/project/v1/library/categories/list',
 				type: 'GET'
 			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/details',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/details',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/addRolesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/addRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/removeRolesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/removeRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/addEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/addEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/removeEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/removeEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/removeEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/removeEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/list',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/join',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/join',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/create',
+				type: 'POST'
+			},
 		}
 	],
 }
