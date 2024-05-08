@@ -349,7 +349,187 @@ module.exports = {
 				path: '/project/v1/programs/create',
 				type: 'POST'
 			},
-		}
+		},
+		{
+			sourceRoute: "/project/v1/solutions/create",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/create",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/update",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/update",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/list",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/list",
+					type: "POST",
+				}
+			]
+		},	
+		{
+			sourceRoute: "/project/v1/solutions/forUserRoleAndLocation",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/forUserRoleAndLocation",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/detailsBasedOnRoleAndLocation",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/detailsBasedOnRoleAndLocation",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/addRolesInScope",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/addRolesInScope",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/addEntitiesInScope",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/addEntitiesInScope",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/removeRolesInScope",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/removeRolesInScope",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/targetedSolutions",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/targetedSolutions",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/fetchLink",
+			type: "GET",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/fetchLink",
+					type: "GET",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/verifyLink",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/verifyLink",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/verifySolution",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/verifySolution",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/getDetails",
+			type: "GET",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/getDetails",
+					type: "GET",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/solutions/removeEntitiesInScope",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/solutions/removeEntitiesInScope",
+					type: "POST",
+				}
+			]
+		},
+		{
+			sourceRoute: "/project/v1/userProjects/importFromLibrary",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: [
+				{
+					path: "/project/v1/userProjects/importFromLibrary",
+					type: "POST",
+				}
+			]
+		},	
 	],
 }
 
