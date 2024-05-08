@@ -81,12 +81,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/entity-management/v1/entities/create',
+			sourceRoute: '/entity-management/v1/entities/add',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/entity-management/v1/entities/create',
+				path: '/entity-management/v1/entities/add',
 				type: 'POST'
 			},
 		},
@@ -169,7 +169,17 @@ module.exports = {
 				path: '/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation',
 				type: 'GET'
 			},
-		}
+		},
+		{
+			sourceRoute: '/entity-management/v1/entities/listByLocationIds',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/listByLocationIds',
+				type: 'GET'
+			},
+		},
 
 	],
 }
