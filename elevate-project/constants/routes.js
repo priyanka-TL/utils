@@ -358,7 +358,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/create',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -370,7 +370,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/update',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -382,7 +382,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/list',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},	
@@ -394,7 +394,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/forUserRoleAndLocation',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -406,7 +406,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/detailsBasedOnRoleAndLocation',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -418,7 +418,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/addRolesInScope',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -430,7 +430,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/addEntitiesInScope',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -442,7 +442,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/removeRolesInScope',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -454,7 +454,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/targetedSolutions',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -466,7 +466,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/fetchLink',
-					type: 'GET',
+					type: 'GET'
 				}
 			]
 		},
@@ -478,7 +478,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/verifyLink',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -490,7 +490,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/verifySolution',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -502,7 +502,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/getDetails',
-					type: 'GET',
+					type: 'GET'
 				}
 			]
 		},
@@ -514,7 +514,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/solutions/removeEntitiesInScope',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},
@@ -526,7 +526,7 @@ module.exports = {
 			targetRoute: [
 				{
 					path: '/project/v1/userProjects/importFromLibrary',
-					type: 'POST',
+					type: 'POST'
 				}
 			]
 		},	
