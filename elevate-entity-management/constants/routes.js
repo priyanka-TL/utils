@@ -242,12 +242,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/entity-management/v1/entities/listByLocationIds',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/entity-management/v1/entities/listByLocationIds',
-				type: 'GET'
+				type: 'POST'
 			},
 		},
 		{
