@@ -11,6 +11,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/sync/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/sync/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/details',
 			type: 'POST',
 			inSequence: false,
@@ -21,12 +31,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/details/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/details/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/tasksStatus',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/userProjects/tasksStatus',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/tasksStatus/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/tasksStatus/:id',
 				type: 'POST'
 			},
 		},
@@ -61,12 +91,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/share/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/share/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/importedProjects',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/userProjects/importedProjects',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/importedProjects/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/importedProjects/:id',
 				type: 'GET'
 			},
 		},
@@ -111,6 +161,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/dataPipeline/userProject/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/dataPipeline/userProject/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/project/templates/bulkCreate',
 			type: 'POST',
 			inSequence: false,
@@ -141,6 +201,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/project/templates/importProjectTemplate/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/project/templates/importProjectTemplate/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/project/templates/listByIds',
 			type: 'POST',
 			inSequence: false,
@@ -161,12 +231,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/project/templates/details/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/project/templates/details/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/project/templates/update',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/project/templates/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/project/templates/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/project/templates/update/:id',
 				type: 'POST'
 			},
 		},
@@ -211,12 +301,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/project/templateTasks/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/project/templateTasks/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/library/categories/projects',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/library/categories/projects',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/library/categories/projects/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/library/categories/projects/:id',
 				type: 'GET'
 			},
 		},
@@ -241,6 +351,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/library/categories/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/library/categories/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/library/categories/list',
 			type: 'GET',
 			inSequence: false,
@@ -261,12 +381,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/programs/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/programs/details',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/programs/details',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/details/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/details/:id',
 				type: 'GET'
 			},
 		},
@@ -281,12 +421,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/programs/addRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/addRolesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/programs/removeRolesInScope',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/programs/removeRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/removeRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/removeRolesInScope/:id',
 				type: 'POST'
 			},
 		},
@@ -301,12 +461,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/programs/removeEntitiesInScope',
+			sourceRoute: '/project/v1/programs/addEntitiesInScope/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/project/v1/programs/removeEntitiesInScope',
+				path: '/project/v1/programs/addEntitiesInScope/:id',
 				type: 'POST'
 			},
 		},
@@ -317,6 +477,16 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/programs/removeEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/programs/removeEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/removeEntitiesInScope/:id',
 				type: 'POST'
 			},
 		},
@@ -341,6 +511,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/programs/join/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/programs/join/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/programs/create',
 			type: 'POST',
 			inSequence: false,
@@ -355,181 +535,251 @@ module.exports = {
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/create',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/create',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/update',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/update',
-					type: 'POST'
-				}
-			]
+			targetRoute:{
+				path: '/project/v1/solutions/update',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute:{
+				path: '/project/v1/solutions/update/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/list',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/list',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/list',
+				type: 'POST'
+			}
 		},	
 		{
 			sourceRoute: '/project/v1/solutions/forUserRoleAndLocation',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/forUserRoleAndLocation',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/forUserRoleAndLocation',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/detailsBasedOnRoleAndLocation',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/detailsBasedOnRoleAndLocation',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/detailsBasedOnRoleAndLocation',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/detailsBasedOnRoleAndLocation/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/detailsBasedOnRoleAndLocation/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/addRolesInScope',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/addRolesInScope',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/addRolesInScope',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/addRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/addRolesInScope/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/addEntitiesInScope',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/addEntitiesInScope',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/addEntitiesInScope',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/addEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/addEntitiesInScope/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/removeRolesInScope',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/removeRolesInScope',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/removeRolesInScope',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/removeRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/removeRolesInScope/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/targetedSolutions',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/targetedSolutions',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/targetedSolutions',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/fetchLink',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/fetchLink',
-					type: 'GET'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/fetchLink',
+				type: 'GET'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/fetchLink/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/fetchLink/:id',
+				type: 'GET'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/verifyLink',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/verifyLink',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/verifyLink',
+				type: 'POST'
+			}
 		},
 		{
-			sourceRoute: '/project/v1/solutions/verifySolution',
+			sourceRoute: '/project/v1/solutions/verifyLink/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/verifySolution',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/verifyLink/:id',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/verifySolution/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/verifySolution/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/getDetails',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/getDetails',
-					type: 'GET'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/getDetails',
+				type: 'GET'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/getDetails/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/getDetails/:id',
+				type: 'GET'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/solutions/removeEntitiesInScope',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/solutions/removeEntitiesInScope',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/solutions/removeEntitiesInScope',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/solutions/removeEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/removeEntitiesInScope/:id',
+				type: 'POST'
+			}
 		},
 		{
 			sourceRoute: '/project/v1/userProjects/importFromLibrary',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
-			targetRoute: [
-				{
-					path: '/project/v1/userProjects/importFromLibrary',
-					type: 'POST'
-				}
-			]
+			targetRoute: {
+				path: '/project/v1/userProjects/importFromLibrary',
+				type: 'POST'
+			}
 		},	
+		{
+			sourceRoute: '/project/v1/userProjects/importFromLibrary/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/importFromLibrary/:id',
+				type: 'POST'
+			}
+		},
 	],
 }
 
