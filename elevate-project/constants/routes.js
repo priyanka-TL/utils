@@ -780,6 +780,57 @@ module.exports = {
 				type: 'POST'
 			}
 		},
+		{
+			sourceRoute: '/project/v1/forms/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/forms/create',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/forms/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/forms/update',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/forms/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/forms/update/:id',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/forms/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/forms/read',
+				type: 'GET'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/forms/read/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/forms/read/:id',
+				type: 'GET'
+			}
+		}
+		
 	],
 }
 
