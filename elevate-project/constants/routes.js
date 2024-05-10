@@ -812,22 +812,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/project/v1/forms/read',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/forms/read',
-				type: 'GET'
+				type: 'POST'
 			}
 		},
 		{
 			sourceRoute: '/project/v1/forms/read/:id',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/forms/read/:id',
-				type: 'GET'
+				type: 'POST'
 			}
 		}
 		
