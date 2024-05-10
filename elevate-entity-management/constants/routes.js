@@ -61,6 +61,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entityTypes/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entityTypes/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/bulkCreate',
 			type: 'POST',
 			inSequence: false,
@@ -101,12 +111,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entities/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/list',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/entity-management/v1/entities/list',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/entity-management/v1/entities/list/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/list/:id',
 				type: 'GET'
 			},
 		},
@@ -131,6 +161,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entities/details/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/details/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/listByEntityType',
 			type: 'GET',
 			inSequence: false,
@@ -141,12 +181,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entities/listByEntityType/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/listByEntityType/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/subEntityList',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/entity-management/v1/entities/subEntityList',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/entity-management/v1/entities/subEntityList/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/subEntityList/:id',
 				type: 'GET'
 			},
 		},
@@ -171,6 +231,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/listByLocationIds',
 			type: 'GET',
 			inSequence: false,
@@ -180,6 +250,27 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/entity-management/v1/entities/relatedEntities',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/relatedEntities',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/entity-management/v1/entities/relatedEntities/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/relatedEntities/:id',
+				type: 'GET'
+			},
+		},
+
 
 	],
 }
