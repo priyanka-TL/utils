@@ -845,7 +845,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v2/account/create',
+			sourceRoute: '/elevate-user/v2/account/create',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
@@ -855,7 +855,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v2/account/login',
+			sourceRoute: '/elevate-user/v2/account/login',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
@@ -865,7 +865,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v2/account/update',
+			sourceRoute: '/elevate-user/v2/account/update',
 			type: 'PATCH',
 			inSequence: false,
 			orchestrated: false,
