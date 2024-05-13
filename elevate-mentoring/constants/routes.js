@@ -1242,13 +1242,13 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/org-admin/bulkSessionCreate',
+			sourceRoute: '/mentoring/v1/sessions/bulkSessionCreate',
 			type: 'POST',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/mentoring/v1/org-admin/bulkSessionCreate',
+				path: '/mentoring/v1/sessions/bulkSessionCreate',
 				type: 'POST',
 			},
 		},
