@@ -281,12 +281,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/project/templateTasks/bulkCreate/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/project/templateTasks/bulkCreate/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/project/templateTasks/bulkUpdate',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/project/templateTasks/bulkUpdate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/project/templateTasks/bulkUpdate/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/project/templateTasks/bulkUpdate/:id',
 				type: 'POST'
 			},
 		},
