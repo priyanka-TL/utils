@@ -880,7 +880,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v2/account/create',
+				path: '/user/v1/account/create',
 				type: 'POST'
 			},
 		},
@@ -890,7 +890,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v2/account/login',
+				path: '/user/v1/account/login',
 				type: 'POST'
 			},
 		},
