@@ -1253,25 +1253,25 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/org-admin/uploadCustomCSV',
-			type: 'GET',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/mentoring/v1/org-admin/uploadCustomCSV',
-				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/mentoring/v1/sessions/getSampleCSV',
+			sourceRoute: '/mentoring/v1/org-admin/uploadSampleCSV',
 			type: 'POST',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/mentoring/v1/sessions/getSampleCSV',
+				path: '/mentoring/v1/org-admin/uploadSampleCSV',
 				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/sessions/getSampleCSV',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/sessions/getSampleCSV',
+				type: 'GET',
 			},
 		},
 		{
