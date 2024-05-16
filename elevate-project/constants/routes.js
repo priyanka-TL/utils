@@ -141,12 +141,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: 'project/v1/cloud-services/files/getDownloadableUrl',
+			sourceRoute: '/project/v1/cloud-services/files/getDownloadableUrl',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: 'project/v1/cloud-services/files/getDownloadableUrl',
+				path: '/project/v1/cloud-services/files/getDownloadableUrl',
 				type: 'POST'
 			},
 		},
