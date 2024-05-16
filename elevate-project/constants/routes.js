@@ -131,22 +131,22 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/files/preSignedUrls',
+			sourceRoute: '/project/v1/cloud-services/files/preSignedUrls',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/project/v1/files/preSignedUrls',
+				path: '/project/v1/cloud-services/files/preSignedUrls',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/project/v1/files/getDownloadableUrl',
+			sourceRoute: 'project/v1/cloud-services/files/getDownloadableUrl',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/project/v1/files/getDownloadableUrl',
+				path: 'project/v1/cloud-services/files/getDownloadableUrl',
 				type: 'POST'
 			},
 		},
