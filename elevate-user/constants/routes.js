@@ -770,7 +770,151 @@ module.exports = {
 				type: 'POST'
 			},
 		}
-	],
+		{
+			sourceRoute: '/user/v1/organization/addRelatedOrg/:org_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/addRelatedOrg/:org_id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/organization/removeRelatedOrg/:org_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/removeRelatedOrg/:org_id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/account/changePassword',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/changePassword',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/user/v1/account/searchByEmailIds',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/searchByEmailIds',
+			}
+		},
+		{
+			sourceRoute: '/user/v1/account/sessions',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/sessions',
+				type: 'GET',
+			}
+		},
+		{
+			sourceRoute: '/user/v1/account/validateUserSession',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/validateUserSession',
+				type: 'POST',
+			}
+		},
+		{
+			sourceRoute: '/interface/v2/account/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v2/account/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/interface/v2/account/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v2/account/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v2/account/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v2/account/login',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v2/account/login',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v2/account/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-interface/v2/account/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-interface/v2/account/login',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/login',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-interface/v2/account/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/update',
+				type: 'POST'
+			},
+		}
+	]
 }
 
 /* const fs = require('fs')
