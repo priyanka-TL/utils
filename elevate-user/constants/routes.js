@@ -760,6 +760,16 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/user/v1/org-admin/updateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/updateUser',
+				type: 'POST'
+			},
+		}
 	],
 }
 
