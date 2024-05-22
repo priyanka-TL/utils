@@ -761,6 +761,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/org-admin/updateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/updateUser',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/user/v1/organization/addRelatedOrg/:org_id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
