@@ -769,7 +769,7 @@ module.exports = {
 				path: '/user/v1/org-admin/updateUser',
 				type: 'POST'
 			},
-		}
+		},
 		{
 			sourceRoute: '/user/v1/organization/addRelatedOrg/:org_id',
 			type: 'POST',
