@@ -1,6 +1,6 @@
 {
   "name": "elevate-project",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Npm package for Elevate-Project service integration with Interface service",
   "main": "index.js",
   "scripts": {
