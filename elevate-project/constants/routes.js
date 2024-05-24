@@ -849,8 +849,67 @@ module.exports = {
 				path: '/project/v1/forms/read/:id',
 				type: 'POST'
 			}
-		}
-		
+		},
+		{
+			sourceRoute: '/project/v1/admin/dbFind',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/admin/dbFind',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/admin/dbFind/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/admin/dbFind/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/reports/entity/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/reports/entity/:id',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/reports/entity',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/reports/entity',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/reports/detailView',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/reports/detailView',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/reports/detailView/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/reports/detailView/:id',
+				type: 'GET'
+			},
+		},
 	],
 }
 
