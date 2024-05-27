@@ -913,7 +913,47 @@ module.exports = {
 				path: '/user/v1/user/update',
 				type: 'POST'
 			},
-		}
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/generateOtp',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/generateOtp',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/resetPassword',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/resetPassword',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/acceptTermsAndCondition',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/acceptTermsAndCondition',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/logout',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/logout',
+				type: 'POST',
+			},
+		},
 	]
 }
 
