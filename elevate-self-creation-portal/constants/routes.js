@@ -129,6 +129,76 @@ module.exports = {
 				path: '/scp/v1/entity-types/delete/:id',
 				type: 'DELETE',
 			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/read',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/read/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/read/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/update',
+			type: 'PUT',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/update',
+				type: 'PUT',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/update/:id',
+			type: 'PUT',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/update/:id',
+				type: 'PUT',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/delete',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/entities/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/entities/delete/:id',
+				type: 'DELETE',
+			},
 		}
 	],
 }
