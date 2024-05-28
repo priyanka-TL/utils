@@ -199,6 +199,36 @@ module.exports = {
 				path: '/scp/v1/entities/delete/:id',
 				type: 'DELETE',
 			},
-		}
+		},
+		{
+			sourceRoute: '/scp/v1/projects/details/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/details/:id',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/cloud-services/file/fetchJsonFromCloud',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/cloud-services/file/fetchJsonFromCloud',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/projects/reviewerList',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/reviewerList',
+				type: 'GET'
+			},
+		},
 	],
 }
