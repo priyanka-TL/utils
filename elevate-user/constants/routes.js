@@ -761,6 +761,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/org-admin/updateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/updateUser',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/user/v1/organization/addRelatedOrg/:org_id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
@@ -845,7 +855,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v2/account/create',
+			sourceRoute: '/elevate-user/v2/account/create',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
@@ -855,7 +865,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v2/account/login',
+			sourceRoute: '/elevate-user/v2/account/login',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
@@ -865,7 +875,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v2/account/update',
+			sourceRoute: '/elevate-user/v2/account/update',
 			type: 'PATCH',
 			inSequence: false,
 			orchestrated: false,
@@ -880,7 +890,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v2/account/create',
+				path: '/user/v1/account/create',
 				type: 'POST'
 			},
 		},
@@ -890,7 +900,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v2/account/login',
+				path: '/user/v1/account/login',
 				type: 'POST'
 			},
 		},
@@ -1207,7 +1217,47 @@ module.exports = {
 				path: '/elevate-user/v1/org-admin/updateUser',
 				type: 'POST'
 			}
-		}
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/generateOtp',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/generateOtp',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/resetPassword',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/resetPassword',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/acceptTermsAndCondition',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/acceptTermsAndCondition',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/logout',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/logout',
+				type: 'POST',
+			},
+		},
 	]
 }
 
