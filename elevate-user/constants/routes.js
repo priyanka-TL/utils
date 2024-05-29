@@ -954,6 +954,16 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/elevate-user/v1/account/registrationOtp',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/registrationOtp',
+				type: 'POST',
+			},
+		},
 	]
 }
 
