@@ -995,16 +995,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/elevate-user/v1/account/registrationOtp',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/elevate-user/v1/account/registrationOtp',
-				type: 'POST',
-			},
-		},
-		{
 			sourceRoute: '/elevate-user/v1/user/read/:id',
 			type: 'GET',
 			inSequence: false,
