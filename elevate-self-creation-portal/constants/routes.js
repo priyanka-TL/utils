@@ -230,5 +230,25 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/projects/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/projects/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/update/:id',
+				type: 'POST'
+			},
+		},
 	],
 }
