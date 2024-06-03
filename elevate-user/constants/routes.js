@@ -794,12 +794,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/account/searchByEmailIds',
+			sourceRoute: '/user/v1/account/validatingEmailIds',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/account/searchByEmailIds',
+				path: '/user/v1/account/validatingEmailIds',
       }
     },
      {
