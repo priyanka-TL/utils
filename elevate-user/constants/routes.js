@@ -964,6 +964,250 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/elevate-user/v1/org-admin/updateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/updateUser',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v2/account/logout',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/logout',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user/read/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/read/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/update',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user/share',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/share',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user-role/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user-role/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user-role/default',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user-role/default',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user-role/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user-role/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user-role/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user-role/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/user-role/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user-role/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/admin/deleteUser',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/deleteUser',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/admin/deleteUser/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/deleteUser/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/admin/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/admin/login',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/login',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/organization/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/organization/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/update',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/organization/update/:id',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/organization/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/organization/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/organization/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/organization/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/admin/addOrgAdmin',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/admin/addOrgAdmin',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/search',
+			type: 'POST',
+			targetRoute: {
+				path: '/user/v1/account/search',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/account/searchByEmailIds',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/searchByEmailIds',
+				type: 'POST',
+			}
+		},
+		{
+			sourceRoute: '/elevate-user/v1/org-admin/updateUser',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/org-admin/updateUser',
+				type: 'POST'
+			}
+		}
 	]
 }
 
