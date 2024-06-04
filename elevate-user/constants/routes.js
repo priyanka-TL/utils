@@ -975,16 +975,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/elevate-user/v2/account/logout',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/account/logout',
-				type: 'POST',
-			},
-		},
-		{
 			sourceRoute: '/elevate-user/v1/account/list',
 			type: 'GET',
 			inSequence: false,
