@@ -250,5 +250,101 @@ module.exports = {
 				type: 'POST'
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/permissions/create',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/permissions/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/permissions/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/permissions/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/permissions/getPermissions',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/permissions/getPermissions',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/permissions/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/permissions/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/modules/create',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/modules/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/modules/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/modules/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/modules/list',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/modules/list',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/modules/delete/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/modules/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/certificate/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/certificate/list',
+				type: 'GET'
+			},
+		},
 	],
 }
