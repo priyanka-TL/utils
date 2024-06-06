@@ -346,5 +346,15 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/resource/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/resource/list',
+				type: 'GET'
+			},
+		},
 	],
 }
