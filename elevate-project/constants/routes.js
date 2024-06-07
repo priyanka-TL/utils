@@ -910,6 +910,26 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/project/v1/admin/createIndex',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/admin/createIndex',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/admin/createIndex/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/admin/createIndex/:id',
+				type: 'POST'
+			},
+		},
 	],
 }
 
