@@ -31,26 +31,25 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/polls/getPollQuestions',
+			sourceRoute: '/samiksha/v1/polls/getPollQuestions/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/polls/getPollQuestions',
+				path: '/samiksha/v1/polls/getPollQuestions/:id',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/pollSubmissions/make',
+			sourceRoute: '/samiksha/v1/pollSubmissions/make/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/pollSubmissions/make',
+				path: '/samiksha/v1/pollSubmissions/make/:id',
 				type: 'POST'
 			},
 		},
-	
 	],
 }
 
