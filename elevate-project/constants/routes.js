@@ -941,12 +941,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/solutions/details/:_id',
+			sourceRoute: '/project/v1/solutions/details/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/project/v1/solutions/details/:_id',
+				path: '/project/v1/solutions/details/:id',
 				type: 'POST'
 			},
 		},
