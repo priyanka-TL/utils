@@ -930,6 +930,26 @@ module.exports = {
 				type: 'POST'
 			},
 		},
+		{
+			sourceRoute: '/project/v1/solutions/details',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/details',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/solutions/details/:_id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/solutions/details/:_id',
+				type: 'GET'
+			},
+		},
 	],
 }
 
