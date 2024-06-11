@@ -932,22 +932,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/project/v1/solutions/details',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/solutions/details',
-				type: 'GET'
+				type: 'POST'
 			},
 		},
 		{
 			sourceRoute: '/project/v1/solutions/details/:_id',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/solutions/details/:_id',
-				type: 'GET'
+				type: 'POST'
 			},
 		},
 	],
