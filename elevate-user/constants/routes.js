@@ -975,16 +975,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/elevate-user/v2/account/logout',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/account/logout',
-				type: 'POST',
-			},
-		},
-		{
 			sourceRoute: '/elevate-user/v1/account/list',
 			type: 'GET',
 			inSequence: false,
@@ -1207,7 +1197,48 @@ module.exports = {
 				path: '/user/v1/org-admin/updateUser',
 				type: 'POST'
 			}
-		}
+		},
+		{
+			sourceRoute: '/elevate-user/v1/entity-type/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity-type/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/entity-type/update',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity-type/update',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/entity-type/update/:id',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity-type/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/entity-type/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity-type/read',
+				type: 'POST',
+			},
+		},
+		
 	]
 }
 
