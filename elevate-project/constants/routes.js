@@ -121,6 +121,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/profile/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/profile/read',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/list',
 			type: 'POST',
 			inSequence: false,
