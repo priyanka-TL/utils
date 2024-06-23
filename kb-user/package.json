@@ -1,7 +1,7 @@
 {
-	"name": "kb-user",
+	"name": "elevate-user",
 	"version": "1.1.57",
-	"description": "Npm package for KB-User service integration with Interface service. ",
+	"description": "Npm package for Elevate-User service integration with Interface service. ",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
