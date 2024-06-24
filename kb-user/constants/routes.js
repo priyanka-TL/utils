@@ -915,56 +915,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/elevate-user/v1/user-role/list',
-			type: 'GET',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/user-role/list',
-				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/elevate-user/v1/user-role/create',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/user-role/create',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/elevate-user/v1/user-role/update/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/user-role/update/:id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/elevate-user/v1/user-role/delete/:id',
-			type: 'DELETE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/user-role/delete/:id',
-				type: 'DELETE',
-			},
-		},
-		{
-			sourceRoute: '/elevate-user/v1/org-admin/updateUser/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/org-admin/updateUser/:id',
-				type: 'POST',
-			},
-		},
-		{
 			sourceRoute: '/elevate-user/v1/account/generateOtp',
 			type: 'POST',
 			inSequence: false,
