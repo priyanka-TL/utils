@@ -141,7 +141,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/user/read/:id',
+				path: '/api/user/private/v1/read/:id',
 				type: 'GET',
 			},
 		},
@@ -493,8 +493,9 @@ module.exports = {
 			sourceRoute: '/user/v1/organization/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/user/v1/organization/read',
-				type: 'GET',
+				path: '/api/org/v1/read',
+				type: 'POST',
+				functionName: 'readOrganization',
 			},
 		},
 		{
@@ -767,7 +768,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/org-admin/updateUser',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -810,8 +811,8 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/account/validatingEmailIds',
-      }
-    },
+			},
+		},
 		{
 			sourceRoute: '/user/v1/account/sessions',
 			type: 'GET',
@@ -821,7 +822,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/sessions',
 				type: 'GET',
-			}
+			},
 		},
 		{
 			sourceRoute: '/user/v1/account/validateUserSession',
@@ -832,7 +833,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/validateUserSession',
 				type: 'POST',
-			}
+			},
 		},
 		{
 			sourceRoute: '/interface/v2/account/create',
@@ -841,7 +842,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v2/account/create',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -851,7 +852,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/user/update',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -861,7 +862,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v2/account/create',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -871,7 +872,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v2/account/login',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -881,7 +882,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/user/update',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -891,7 +892,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/account/create',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -901,7 +902,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/account/login',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -911,7 +912,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/user/update',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -971,7 +972,7 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/org-admin/updateUser',
-				type: 'POST'
+				type: 'POST',
 			},
 		},
 		{
@@ -1186,7 +1187,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/searchByEmailIds',
 				type: 'POST',
-			}
+			},
 		},
 		{
 			sourceRoute: '/elevate-user/v1/org-admin/updateUser',
@@ -1195,8 +1196,8 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/org-admin/updateUser',
-				type: 'POST'
-			}
+				type: 'POST',
+			},
 		},
 		{
 			sourceRoute: '/elevate-user/v1/entity-type/create',
@@ -1238,8 +1239,7 @@ module.exports = {
 				type: 'POST',
 			},
 		},
-		
-	]
+	],
 }
 
 /* const fs = require('fs')

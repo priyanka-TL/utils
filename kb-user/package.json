@@ -1,6 +1,6 @@
 {
-	"name": "elevate-user",
-	"version": "1.1.57",
+	"name": "kb-user",
+	"version": "1.1.64",
 	"description": "Npm package for Elevate-User service integration with Interface service. ",
 	"main": "index.js",
 	"scripts": {

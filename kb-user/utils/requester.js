@@ -54,7 +54,10 @@ const post = (baseUrl, route, requestBody, headers) => {
 		const url = baseUrl + route
 		return axios
 			.post(url, requestBody, { headers })
-			.then((response) => response.data)
+			.then((response) => {
+				console.log(response.data)
+				response.data
+			})
 			.catch((error) => {
 				if (error.response) {
 					return error.response
