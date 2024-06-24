@@ -1466,5 +1466,45 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/read/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/read/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/update/:id',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/delete/:id',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/delete/:id',
+				type: 'DELETE',
+			},
+		},
 	],
 }
