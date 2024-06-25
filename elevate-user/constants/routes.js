@@ -1288,6 +1288,26 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: 'elevate-user/v1/admin/triggerViewRebuild',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/triggerViewRebuild',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: 'elevate-user/v1/admin/triggerPeriodicViewRefresh',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/triggerPeriodicViewRefresh',
+				type: 'GET',
+			},
+		},
 		
 	]
 }
