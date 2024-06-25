@@ -81,6 +81,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entities/entityListBasedOnEntityType',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/entityListBasedOnEntityType',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/mappingUpload',
 			type: 'POST',
 			inSequence: false,
