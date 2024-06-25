@@ -1308,6 +1308,26 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: 'elevate-user/v1/admin/triggerPeriodicViewRefreshInternal',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/triggerPeriodicViewRefreshInternal',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: 'elevate-user/v1/admin/triggerViewRebuildInternal',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/admin/triggerViewRebuildInternal',
+				type: 'GET',
+			},
+		},
 		
 	]
 }
