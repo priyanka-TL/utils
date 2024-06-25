@@ -27,15 +27,6 @@ const passThroughRequester = async (req, res) => {
 			port: parsedUrl.port,
 			path: parsedUrl.pathname + sourceUrl.search,
 		}
-		console.log({
-			sourceBaseUrl,
-			sourceUrl,
-			route,
-			params,
-			targetRoute,
-			parsedUrl,
-			options,
-		})
 		const proxyReq = (parsedUrl.protocol === 'https:' ? https : http).request(options, (proxyRes) => {
 			res.writeHead(proxyRes.statusCode, proxyRes.headers)
 			proxyRes.pipe(res, { end: true })
@@ -49,24 +40,16 @@ const passThroughRequester = async (req, res) => {
 	}
 }
 
-const post = (baseUrl, route, requestBody, headers) => {
+const post = async (baseUrl, route, requestBody, headers) => {
 	try {
-		const url = baseUrl + route
-		return axios
-			.post(url, requestBody, { headers })
-			.then((response) => {
-				console.log(response.data)
-				response.data
-			})
-			.catch((error) => {
-				if (error.response) {
-					return error.response
-				}
-				return error
-			})
-	} catch (err) {
-		console.log(err)
-		throw err
+		console.log({ baseUrl, route, requestBody, headers })
+		const url = `${baseUrl}${route}`
+		const response = await axios.post(url, requestBody, { headers })
+		return response.data
+	} catch (error) {
+		console.error('Error making POST request:', error)
+		if (error.response) return error.response.data
+		throw error
 	}
 }
 
@@ -93,10 +76,30 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 	}
 }
 
+const get = async (baseUrl, route, headers, pathParams = {}) => {
+	try {
+		for (const [key, value] of Object.entries(pathParams)) route = route.replace(`:${key}`, value)
+		const url = baseUrl + route
+		return axios
+			.get(url, { headers })
+			.then((response) => response.data)
+			.catch((error) => {
+				if (error.response) {
+					return error.response
+				}
+				return error
+			})
+	} catch (error) {
+		console.error(error)
+		throw error
+	}
+}
+
 const requesters = {
 	passThroughRequester,
 	post,
 	patch,
+	get,
 }
 
 module.exports = requesters

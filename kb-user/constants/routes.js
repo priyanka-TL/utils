@@ -143,6 +143,7 @@ module.exports = {
 			targetRoute: {
 				path: '/api/user/private/v1/read/:id',
 				type: 'GET',
+                functionName: 'readUserById'
 			},
 		},
 		{
@@ -151,8 +152,9 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/user/read',
+				path: '/api/user/private/v1/read/:id',
 				type: 'GET',
+                functionName: 'readUserWithToken'
 			},
 		},
 		{
