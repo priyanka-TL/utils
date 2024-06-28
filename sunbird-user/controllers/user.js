@@ -34,13 +34,13 @@ const readOrganization = async (req, res, selectedConfig) => {
 		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
 			'device-info': req.headers['device-info'],
 		})
-        const responseData = {
-            result:{
-                id: response.result.result.id,
-                name: response.result.result.orgName,
-                related_orgs: []
-            }
-        }
+		const responseData = {
+			result: {
+				id: response.result.result.id,
+				name: response.result.result.orgName,
+				related_orgs: [],
+			},
+		}
 		return res.json(responseData)
 	} catch (error) {
 		console.error('Error fetching organization details:', error)
@@ -49,50 +49,52 @@ const readOrganization = async (req, res, selectedConfig) => {
 }
 
 const processUserResponse = (userResponse) => {
-    return {
-        result: {
-            name: userResponse.result.response.profileDetails.personalDetails.firstname,
-            email: userResponse.result.response.profileDetails.personalDetails.primaryEmail,
-            user_roles: userResponse.result.response.mentoring.roles.map(role => ({
-                title: role
-            })),
-            id: userResponse.result.response.identifier,
-            organization_id: userResponse.result.response.rootOrg.id,
-        }
-    };
-};
+	return {
+		result: {
+			name: userResponse.result.response.profileDetails.personalDetails.firstname,
+			email: userResponse.result.response.profileDetails.personalDetails.primaryEmail,
+			user_roles: userResponse.result.response.mentoring?.roles?.map((role) => ({
+				title: role,
+			})),
+			id: userResponse.result.response.identifier,
+			organization_id: userResponse.result.response.rootOrg.id,
+			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
+		},
+	}
+}
 
 const readUserById = async (req, res, selectedConfig) => {
-    const userId = req.params.id;
-    try {
-        const userResponse = await requesters.get(req.baseUrl, selectedConfig.targetRoute.path, req.headers, { id: userId });
-        const responseData = processUserResponse(userResponse);
-        return res.json(responseData);
-    } catch (error) {
-        console.error('Error fetching user details:', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
+	const userId = req.params.id
+	try {
+		const userResponse = await requesters.get(req.baseUrl, selectedConfig.targetRoute.path, req.headers, {
+			id: userId,
+		})
+		const responseData = processUserResponse(userResponse)
+		return res.json(responseData)
+	} catch (error) {
+		console.error('Error fetching user details:', error)
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
 
 const readUserWithToken = async (req, res, selectedConfig) => {
-    try {
-        let token = req.headers['x-auth-token'];
-        if (token && token.toLowerCase().startsWith('bearer ')) 
-            token = token.slice(7);
-        
-        const tokenClaims = jwt.decode(token);
-        const userId = tokenClaims.sub.split(':').pop();
+	try {
+		let token = req.headers['x-auth-token']
+		if (token && token.toLowerCase().startsWith('bearer ')) token = token.slice(7)
 
-        const userResponse = await requesters.get(req.baseUrl, selectedConfig.targetRoute.path, req.headers, { id: userId });
-        const responseData = processUserResponse(userResponse);
-        return res.json(responseData);
-    } catch (error) {
-        console.error('Error fetching user details:', error);
-        return res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
+		const tokenClaims = jwt.decode(token)
+		const userId = tokenClaims.sub.split(':').pop()
 
-
+		const userResponse = await requesters.get(req.baseUrl, selectedConfig.targetRoute.path, req.headers, {
+			id: userId,
+		})
+		const responseData = processUserResponse(userResponse)
+		return res.json(responseData)
+	} catch (error) {
+		console.error('Error fetching user details:', error)
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
 
 const userController = {
 	createUser,
@@ -100,8 +102,8 @@ const userController = {
 	entityTypeRead,
 	loginUser,
 	readOrganization,
-    readUserById,
-    readUserWithToken
+	readUserById,
+	readUserWithToken,
 }
 
 module.exports = userController
