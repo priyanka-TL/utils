@@ -897,6 +897,20 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/interface/v1/profile/read',
+			type: 'POST',
+			inSequence: true,
+			orchestrated: true,
+			targetRoute: {
+				paths: [
+					{ path: '/mentoring/v1/external/create', type: 'POST' },
+					{ path: '/mentoring/v1/profile/read', type: 'GET' },
+				],
+				type: 'POST',
+				functionName: 'profileRead',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/role-permission-mapping/list',
 			type: 'POST',
 			priority: 'MUST_HAVE',
