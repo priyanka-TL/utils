@@ -251,6 +251,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/projects/update/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/permissions/create',
 			type: 'POST',
 			priority: 'MUST_HAVE',
@@ -354,6 +364,39 @@ module.exports = {
 			targetRoute: {
 				path: '/scp/v1/resource/list',
 				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/role-permission-mapping/delete/:role_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/role-permission-mapping/delete/:role_id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/role-permission-mapping/create/:role_id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/role-permission-mapping/create/:role_id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/role-permission-mapping/list',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/role-permission-mapping/list',
+				type: 'POST',
 			},
 		},
 	],
