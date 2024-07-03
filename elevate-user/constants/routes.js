@@ -482,6 +482,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/entity/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/entity/list',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/org-admin/inheritEntityType',
 			type: 'POST',
 			targetRoute: {
