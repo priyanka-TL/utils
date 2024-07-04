@@ -166,6 +166,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/user/updateLanguage',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/updateLanguage',
+				type: 'PATCH',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/user/share',
 			type: 'GET',
 			inSequence: false,
