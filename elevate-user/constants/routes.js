@@ -166,12 +166,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/user/updateLanguage',
+			sourceRoute: '/user/v1/user/setLanguagePreference',
 			type: 'PATCH',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/user/updateLanguage',
+				path: '/user/v1/user/setLanguagePreference',
 				type: 'PATCH',
 			},
 		},
