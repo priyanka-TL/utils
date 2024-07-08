@@ -399,5 +399,16 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/projects/submitForReview',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/submitForReview',
+				type: 'POST',
+			},
+		},
 	],
 }
