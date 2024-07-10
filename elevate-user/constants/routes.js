@@ -1348,6 +1348,24 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/elevate-user/v1/cloud-services/file/getSignedUrl',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/cloud-services/file/getSignedUrl',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/elevate-user/v1/cloud-services/file/getDownloadableUrl',
+			type: 'GET',
+			targetRoute: {
+				path: '/user/v1/cloud-services/file/getDownloadableUrl',
+				type: 'GET',
+			},
+		},
 		
 	]
 }
