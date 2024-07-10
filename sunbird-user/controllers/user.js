@@ -34,10 +34,13 @@ const readOrganization = async (req, res, selectedConfig) => {
 		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
 			'device-info': req.headers['device-info'],
 		})
+		console.log('RESPONSE:', response)
+		console.log('RESPONSE.RESULT:', response?.result)
+		console.log('RESPONSE.RESULT.RESULT:', response?.result?.result)
 		const responseData = {
 			result: {
-				id: response.result.result.id,
-				name: response.result.result.orgName,
+				id: response.result.response.id,
+				name: response.result.response.orgName,
 				related_orgs: [],
 			},
 		}
@@ -53,7 +56,7 @@ const processUserResponse = (userResponse) => {
 		result: {
 			name: userResponse.result.response.profileDetails.personalDetails.firstname,
 			email: userResponse.result.response.profileDetails.personalDetails.primaryEmail,
-			user_roles: userResponse.result.response.mentoring?.roles?.map((role) => ({
+			user_roles: userResponse.result.response.profileDetails.mentoring?.roles?.map((role) => ({
 				title: role,
 			})),
 			id: userResponse.result.response.identifier,

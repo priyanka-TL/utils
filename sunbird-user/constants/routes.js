@@ -495,7 +495,7 @@ module.exports = {
 			sourceRoute: '/user/v1/organization/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/api/org/v1/read',
+				path: '/v1/org/read',
 				type: 'POST',
 				functionName: 'readOrganization',
 			},
