@@ -19,7 +19,7 @@ npm install elevate-kafka
 To use the `ElevateKafka` package, import it into your project:
 
 ```javascript
-const ElevateKafka = require('elevate-kafka')
+const { ElevateKafka } = require('elevate-kafka')
 ```
 
 ### Creating an Instance
@@ -102,6 +102,8 @@ createAndRunConsumer()
 The package includes custom error handling through the `ElevateKafkaException` class. Errors thrown by the package will include this custom exception.
 
 ```javascript
+const { ElevateKafka, ElevateKafkaException } = require('elevate-kafka')
+
 try {
 	// Code that might throw an error
 } catch (error) {
@@ -164,7 +166,7 @@ Custom error class for handling Kafka-related exceptions in the package.
 Here's a complete example of using the `ElevateKafka` package:
 
 ```javascript
-const ElevateKafka = require('elevate-kafka')
+const { ElevateKafka } = require('elevate-kafka')
 
 const kafka = new ElevateKafka('my-client-id', 'broker1,broker2', {
 	connectionTimeout: 60000,

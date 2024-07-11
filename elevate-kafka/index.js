@@ -150,4 +150,4 @@ class ElevateKafka {
 	}
 }
 
-module.exports = ElevateKafka
+module.exports = { ElevateKafka, ElevateKafkaException }
