@@ -1,15 +1,29 @@
 const { Kafka } = require('kafkajs')
 
+class ElevateKafkaException extends Error {
+	constructor(message) {
+		super(message)
+		this.name = 'ElevateKafkaException'
+	}
+}
+
 class ElevateKafka {
+	static consumers = new Map()
+	static kafkaClients = new Map()
+
 	constructor(clientId, brokers, { connectionTimeout, initialRetryTime, retries, packageName } = {}) {
-		if (!clientId) throw new Error('clientId is required')
-		if (!brokers) throw new Error('brokers are required')
+		if (!clientId) throw new ElevateKafkaException('clientId is required')
+		if (!brokers) throw new ElevateKafkaException('brokers are required')
+		if (!packageName) throw new ElevateKafkaException('packageName is required')
 
 		this.clientId = clientId
 		this.brokers = brokers.split(',')
-		this.packageName = packageName || 'Unnamed Package'
+		this.packageName = packageName
 
 		try {
+			if (ElevateKafka.kafkaClients.has(packageName))
+				throw new ElevateKafkaException('A package can only initialize one ElevateKafka Client')
+
 			this.kafkaClient = new Kafka({
 				clientId: this.clientId,
 				brokers: this.brokers,
@@ -19,13 +33,16 @@ class ElevateKafka {
 					retries: retries || 8,
 				},
 			})
+
+			ElevateKafka.kafkaClients.set(packageName, this.kafkaClients)
+			console.log(`[${this.packageName}] Kafka client created successfully`)
 		} catch (error) {
-			console.error(`Failed to create Kafka client: ${error.message}`)
-			throw error
+			const errMsg = `Failed to create Kafka client: ${error.message}`
+			console.error(`[${this.packageName}] ${errMsg}`)
+			throw new ElevateKafkaException(errMsg)
 		}
 
 		this.producer = null
-		this.consumers = new Map()
 	}
 
 	async #createProducer() {
@@ -34,22 +51,25 @@ class ElevateKafka {
 				this.producer = this.kafkaClient.producer()
 				await this.producer.connect()
 				this.producer.on('producer.connect', () =>
-					console.log(`Kafka Producer Connected - ${this.packageName}`)
+					console.log(`[${this.packageName}] Kafka Producer Connected`)
 				)
 				this.producer.on('producer.disconnect', () => {
-					console.log(`Kafka Producer Disconnected - ${this.packageName}`)
+					console.log(`[${this.packageName}] Kafka Producer Disconnected`)
 					this.producer = null
 				})
 			} catch (error) {
-				console.error(`Failed to connect producer: ${error.message}`)
-				throw error
+				const errMsg = `Failed to connect producer: ${error.message}`
+				console.error(`[${this.packageName}] ${errMsg}`)
+				throw new ElevateKafkaException(errMsg)
 			}
 		}
 	}
 
 	async #sendMessage(topic, key, value) {
 		if (!topic || !key || !value) {
-			throw new Error('Topic, key, and value are required to send a message')
+			const errMsg = 'Topic, key, and value are required to send a message'
+			console.error(`[${this.packageName}] ${errMsg}`)
+			throw new ElevateKafkaException(errMsg)
 		}
 		try {
 			const res = await this.producer.send({
@@ -61,11 +81,12 @@ class ElevateKafka {
 					},
 				],
 			})
-			console.log(`${topic.toUpperCase()} Enqueued`)
+			console.log(`[${this.packageName}] Message enqueued to topic ${topic.toUpperCase()}`)
 			return res
 		} catch (error) {
-			console.error(`Failed to send message: ${error.message}`)
-			throw error
+			const errMsg = `Failed to send message: ${error.message}`
+			console.error(`[${this.packageName}] ${errMsg}`)
+			throw new ElevateKafkaException(errMsg)
 		}
 	}
 
@@ -82,31 +103,49 @@ class ElevateKafka {
 	}
 
 	async createConsumer(groupId, topics) {
-		if (this.consumers.has(groupId)) throw new Error('Consumer With Specified GroupId Exist For This Instance')
-		const consumer = this.kafkaClient.consumer({ groupId })
-		this.consumers.set(groupId, consumer)
-		consumer.on('consumer.connect', () => console.log('Kafka Consumer Connected'))
-		consumer.on('consumer.disconnect', () => {
-			console.log('Kafka Consumer Disconnected')
-			this.consumers.delete(groupId)
-		})
-		await consumer.connect()
-		await consumer.subscribe({ topics })
-		return consumer
+		if (ElevateKafka.consumers.has(groupId)) {
+			const errMsg = 'Consumer with specified groupId exists for this instance'
+			console.error(`[${this.packageName}] ${errMsg}`)
+			throw new ElevateKafkaException(errMsg)
+		}
+		try {
+			const consumer = this.kafkaClient.consumer({ groupId })
+			ElevateKafka.consumers.set(groupId, consumer)
+			consumer.on('consumer.connect', () => console.log(`[${this.packageName}] Kafka Consumer Connected`))
+			consumer.on('consumer.disconnect', () => {
+				console.log(`[${this.packageName}] Kafka Consumer Disconnected`)
+				ElevateKafka.consumers.delete(groupId)
+			})
+			await consumer.connect()
+			await consumer.subscribe({ topics })
+			return consumer
+		} catch (error) {
+			const errMsg = `Failed to create consumer: ${error.message}`
+			console.error(`[${this.packageName}] ${errMsg}`)
+			throw new ElevateKafkaException(errMsg)
+		}
 	}
 
 	async runConsumer(
 		consumer,
-		messageProcessorFn = (topic, message) => {
+		messageProcessorFn = async (topic, message) => {
 			console.log({ topic, message })
 		}
 	) {
 		try {
 			await consumer.run({
-				eachMessage: async ({ topic, message }) => messageProcessorFn(topic, message),
+				eachMessage: async ({ topic, message }) => {
+					try {
+						await messageProcessorFn(topic, message)
+					} catch (error) {
+						console.error(`Error in message processor: ${error.message}`)
+					}
+				},
 			})
-		} catch (err) {
-			console.log(err)
+		} catch (error) {
+			const errMsg = `Error running consumer: ${error.message}`
+			console.error(`[${this.packageName}] ${errMsg}`)
+			throw new ElevateKafkaException(errMsg)
 		}
 	}
 }
