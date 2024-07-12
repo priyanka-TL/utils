@@ -3,7 +3,8 @@ const { Kafka } = require('kafkajs')
 class ElevateKafkaException extends Error {
 	constructor(message) {
 		super(message)
-		this.name = 'ElevateKafkaException'
+		this.name = this.constructor.name
+		Error.captureStackTrace(this, this.constructor)
 	}
 }
 
