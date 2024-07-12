@@ -117,7 +117,7 @@ class ElevateKafka {
 				ElevateKafka.consumers.delete(groupId)
 			})
 			await consumer.connect()
-			await consumer.subscribe({ topics: topics.split(',') })
+			await consumer.subscribe({ topics })
 			return consumer
 		} catch (error) {
 			const errMsg = `Failed to create consumer: ${error.message}`

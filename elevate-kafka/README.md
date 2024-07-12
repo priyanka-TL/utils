@@ -79,7 +79,7 @@ To create a Kafka consumer, use the `createConsumer` method. This method require
 
 ```javascript
 const groupId = 'my-group-id'
-const topics = 'topic1,topic2'
+const topics = ['topic1', 'topic2']
 
 async function createAndRunConsumer() {
 	try {
