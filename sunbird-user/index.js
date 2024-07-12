@@ -1,37 +1,48 @@
-const express = require('express')
-const router = express.Router()
 const routes = require('./constants/routes')
 const packageRouter = require('./router')
-
-const getDependencies = () => {
-	return ['kafka', 'kafka-connect', 'redis']
-}
+const dependencyManager = require('./helpers/dependencyManager')
 
 const getPackageMeta = () => {
 	return {
 		basePackageName: 'user',
-		packageName: 'elevate-user',
+		packageName: 'sunbird-user',
 	}
 }
 
-const createPackage = (options) => {
-	return {
-		router: () => {
-			console.log('router')
-		},
-		endpoints: [],
-		dependencies: [],
-	}
-}
+const packageName = 'sunbird-user';
+const environmentVariablePrefix = packageName.toUpperCase().replace('-','_')
 
-router.get('/', (req, res) => {
-	res.send('Hello, world! From package2')
-})
+const requiredEnvs = {
+    [`${environmentVariablePrefix}_KAFKA_CLIENT_ID`]: {
+        "message": `[${packageName}] Required Kafka Brokers Hosts`,
+        "optional": false,
+    },
+    [`${environmentVariablePrefix}_KAFKA_BROKERS`]: {
+        "message": `[${packageName}] Required Kafka Brokers Hosts`,
+        "optional": false,
+    },
+    [`${environmentVariablePrefix}_KAFKA_GROUP_ID`]: {
+        "message": `[${packageName}] Required Kafka Group ID`,
+        "optional": false,
+    },
+    [`${environmentVariablePrefix}_USER_UPDATE_KAFKA_TOPIC`]: {
+        "message": `[${packageName}] Required Kafka Topics`,
+        "optional": false,
+    },
+    MENTORING_SERVICE_BASE_URL: {
+        "message": `[${packageName}] Required Base URL for the Mentoring Service`,
+        "optional": false,
+    },
+    MENTORING_SERVICE_USER_UPDATE_ROUTE: {
+        "message": `[${packageName}] Required Route for User Update in the Mentoring Service`,
+        "optional": false,
+    }
+};
 
 module.exports = {
-	dependencies: getDependencies(),
 	routes,
-	createPackage,
 	packageMeta: getPackageMeta(),
 	packageRouter,
+    dependencyManager,
+    requiredEnvs
 }
