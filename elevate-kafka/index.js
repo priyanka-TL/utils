@@ -37,7 +37,7 @@ class ElevateKafka {
 			ElevateKafka.kafkaClients.set(packageName, this.kafkaClients)
 			console.log(`[${this.packageName}] Kafka client created successfully`)
 		} catch (error) {
-			const errMsg = `Failed to create Kafka client: ${error.message}`
+			const errMsg = `Failed to create Kafka client: ${error.message}` //Maybe add the time and date for better logging
 			console.error(`[${this.packageName}] ${errMsg}`)
 			throw new ElevateKafkaException(errMsg)
 		}
@@ -117,7 +117,7 @@ class ElevateKafka {
 				ElevateKafka.consumers.delete(groupId)
 			})
 			await consumer.connect()
-			await consumer.subscribe({ topics })
+			await consumer.subscribe({ topics: topics.split(',') })
 			return consumer
 		} catch (error) {
 			const errMsg = `Failed to create consumer: ${error.message}`
