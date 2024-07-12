@@ -49,6 +49,26 @@ module.exports = {
 				path: '/samiksha/v1/pollSubmissions/make/:id',
 				type: 'POST'
 			},
+		},	
+		{
+			sourceRoute: '/samiksha/v1/files/preSignedUrls',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/files/preSignedUrls',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/files/getDownloadableUrl',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/files/getDownloadableUrl',
+				type: 'GET'
+			},
 		},
 	],
 }
