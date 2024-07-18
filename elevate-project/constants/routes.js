@@ -871,6 +871,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/reports/getProgramsByEntity/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/reports/getProgramsByEntity/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/reports/entity/:id',
 			type: 'GET',
 			inSequence: false,
