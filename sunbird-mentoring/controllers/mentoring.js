@@ -21,23 +21,20 @@ const rolePermissions = async (req, res, responses, selectedConfig) =>
 	})
 
 const profileRead = async (req, res, selectedConfig) => {
-    try {
-        const targetRoute1 = selectedConfig.targetRoute.paths[0].path;
-        const targetRoute2 = selectedConfig.targetRoute.paths[1].path;
+	try {
+		const targetRoute1 = selectedConfig.targetRoute.paths[0].path
+		const targetRoute2 = selectedConfig.targetRoute.paths[1].path
 
-        const userCreateResponse = await requesters.post(req.baseUrl, targetRoute1, {}, req.headers);
-        if (userCreateResponse.responseCode == 'OK') {
-            const mentoringResponse = await requesters.get(req.baseUrl, targetRoute2, req.headers);
-            res.json(mentoringResponse);
-        } else 
-            res.json(userCreateResponse);
-    } catch (error) {
-        console.error('Error fetching organization details:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
-    
-    
+		const userCreateResponse = await requesters.post(req.baseUrl, targetRoute1, {}, req.headers)
+		if (userCreateResponse.responseCode == 'OK') {
+			const mentoringResponse = await requesters.get(req.baseUrl, targetRoute2, req.headers)
+			res.json(mentoringResponse)
+		} else res.json(userCreateResponse)
+	} catch (error) {
+		console.error('Error fetching organization details:', error)
+		res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
 
 mentoringController = {
 	createProfile,
