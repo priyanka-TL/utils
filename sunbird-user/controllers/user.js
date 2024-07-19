@@ -62,6 +62,7 @@ const processUserResponse = (userResponse) => {
 			id: userResponse.result.response.identifier,
 			organization_id: userResponse.result.response.rootOrg.id,
 			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
+			related_orgs: [],
 		},
 	}
 }
