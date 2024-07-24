@@ -400,13 +400,13 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/scp/v1/projects/submitForReview',
+			sourceRoute: '/scp/v1/projects/submitForReview/:resource_id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/scp/v1/projects/submitForReview',
+				path: '/scp/v1/projects/submitForReview/:resource_id',
 				type: 'POST',
 			},
 		},
