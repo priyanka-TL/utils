@@ -53,6 +53,10 @@ const post = async (baseUrl, route, requestBody, headers) => {
 	try {
 		console.log({ baseUrl, route, requestBody, headers })
 		const url = `${baseUrl}${route}`
+		console.log('__POST REQUEST__')
+		console.log('REQUEST URL: ', url)
+		console.log('REQUEST BODY: ', requestBody)
+		console.log('REQUEST HEADERS: ', headers)
 		const response = await axios.post(url, requestBody, { headers })
 		return response.data
 	} catch (error) {
@@ -65,6 +69,10 @@ const post = async (baseUrl, route, requestBody, headers) => {
 const patch = async (baseUrl, route, requestBody, headers) => {
 	try {
 		const url = baseUrl + route
+		console.log('__PATCH REQUEST__')
+		console.log('REQUEST URL: ', url)
+		console.log('REQUEST BODY: ', requestBody)
+		console.log('REQUEST HEADERS: ', headers)
 		return axios
 			.patch(url, requestBody, {
 				headers: {
@@ -75,7 +83,7 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 			.then((response) => response.data)
 			.catch((error) => {
 				if (error.response) {
-					return error.response
+					return error.response.data
 				}
 				return error
 			})
@@ -87,33 +95,33 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 
 const get = async (baseUrl, route, headers, pathParams = {}) => {
 	try {
-        console.log(pathParams)
-        console.log(route)
-		for (const [key, value] of Object.entries(pathParams)) 
-			route = route.replace(`:${key}`, value);
+		for (const [key, value] of Object.entries(pathParams)) route = route.replace(`:${key}`, value)
 
-		const url = baseUrl + route;
-        console.log("READ URL: ",url)
+		const url = baseUrl + route
+		console.log('__GET REQUEST__')
+		console.log('REQUEST URL: ', url)
+		console.log('REQUEST PATH PARAMS: ', pathParams)
+		console.log('REQUEST HEADERS: ', headers)
 		return axios
 			.get(url, { headers })
-			.then(response => response.data)
-			.catch(error => {
+			.then((response) => response.data)
+			.catch((error) => {
 				if (error.response) {
-					return error.response;
+					return error.response.data
 				}
-				return error;
-			});
+				return error
+			})
 	} catch (error) {
-		console.error(error);
-		throw error;
+		console.error(error)
+		throw error
 	}
-};
+}
 
 const requesters = {
 	passThroughRequester,
 	post,
 	patch,
-    get
+	get,
 }
 
 module.exports = requesters
