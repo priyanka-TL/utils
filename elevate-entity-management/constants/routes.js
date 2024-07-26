@@ -141,6 +141,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/entity-management/v1/entities/targetedRoles/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/entity-management/v1/entities/targetedRoles/:id',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/entity-management/v1/entities/list',
 			type: 'GET',
 			inSequence: false,

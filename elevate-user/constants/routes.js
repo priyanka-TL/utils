@@ -196,6 +196,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/user/v1/user-role/readUserRolesBasedOnEntityType',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user-role/readUserRolesBasedOnEntityType',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/user/v1/user-role/default',
 			type: 'GET',
 			inSequence: false,
