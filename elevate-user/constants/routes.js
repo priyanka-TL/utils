@@ -123,6 +123,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/list',
 				type: 'GET',
+				functionName: 'accountsList'
 			},
 		},
 		{
@@ -143,6 +144,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/user/read/:id',
 				type: 'GET',
+				functionName: 'readUser',
 			},
 		},
 		{
@@ -153,6 +155,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/user/read',
 				type: 'GET',
+				functionName: 'readUser',
 			},
 		},
 		{
@@ -515,6 +518,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/organization/read',
 				type: 'GET',
+				functionName: 'readOrganization',
 			},
 		},
 		{
@@ -830,6 +834,8 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/user/v1/account/validatingEmailIds',
+                type: 'POST',
+				functionName:'listUserDetailsByEmail'
       }
     },
 		{
