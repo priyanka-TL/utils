@@ -28,32 +28,32 @@ const passThroughRequester = async (req, res) => {
 			path: parsedUrl.pathname + sourceUrl.search,
 		}
 		console.log({
-            sourceBaseUrl,
-            sourceUrl: {
-                href: sourceUrl.href,
-                origin: sourceUrl.origin,
-                pathname: sourceUrl.pathname,
-            },
-            route: {
-                sourceRoute: route.sourceRoute,
-                type: route.type,
-            },
-            params,
-            targetRoute,
-            parsedUrl: {
-                href: parsedUrl.href,
-                origin: parsedUrl.origin,
-                pathname: parsedUrl.pathname,
-            },
-            options: {
-                method: options.method,
-                headers: {
-                    'content-type': options.headers['content-type'],
-                    internal_access_token: options.headers.internal_access_token,
-                },
-            }
-        });
-        
+			sourceBaseUrl,
+			sourceUrl: {
+				href: sourceUrl.href,
+				origin: sourceUrl.origin,
+				pathname: sourceUrl.pathname,
+			},
+			route: {
+				sourceRoute: route.sourceRoute,
+				type: route.type,
+			},
+			params,
+			targetRoute,
+			parsedUrl: {
+				href: parsedUrl.href,
+				origin: parsedUrl.origin,
+				pathname: parsedUrl.pathname,
+			},
+			options: {
+				method: options.method,
+				headers: {
+					'content-type': options.headers['content-type'],
+					internal_access_token: options.headers.internal_access_token,
+				},
+			},
+		})
+
 		const proxyReq = (parsedUrl.protocol === 'https:' ? https : http).request(options, (proxyRes) => {
 			res.writeHead(proxyRes.statusCode, proxyRes.headers)
 			proxyRes.pipe(res, { end: true })
@@ -70,12 +70,16 @@ const passThroughRequester = async (req, res) => {
 const post = (baseUrl, route, requestBody, headers) => {
 	try {
 		const url = baseUrl + route
+		console.log('__POST REQUEST__')
+		console.log('REQUEST URL: ', url)
+		console.log('REQUEST BODY: ', requestBody)
+		console.log('REQUEST HEADERS: ', headers)
 		return axios
 			.post(url, requestBody, { headers })
 			.then((response) => response.data)
 			.catch((error) => {
 				if (error.response) {
-					return error.response
+					return error.response.data
 				}
 				return error
 			})
@@ -88,6 +92,10 @@ const post = (baseUrl, route, requestBody, headers) => {
 const patch = async (baseUrl, route, requestBody, headers) => {
 	try {
 		const url = baseUrl + route
+		console.log('__PATCH REQUEST__')
+		console.log('REQUEST URL: ', url)
+		console.log('REQUEST BODY: ', requestBody)
+		console.log('REQUEST HEADERS: ', headers)
 		return axios
 			.patch(url, requestBody, {
 				headers: {
@@ -98,7 +106,7 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 			.then((response) => response.data)
 			.catch((error) => {
 				if (error.response) {
-					return error.response
+					return error.response.data
 				}
 				return error
 			})
@@ -111,12 +119,15 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 const get = async (baseUrl, route, headers) => {
 	try {
 		const url = baseUrl + route
+		console.log('__GET REQUEST__')
+		console.log('REQUEST URL: ', url)
+		console.log('REQUEST HEADERS: ', headers)
 		return axios
 			.get(url, { headers })
 			.then((response) => response.data)
 			.catch((error) => {
 				if (error.response) {
-					return error.response
+					return error.response.data
 				}
 				return error
 			})

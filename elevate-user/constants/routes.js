@@ -1372,7 +1372,17 @@ module.exports = {
 				type: 'GET',
 			},
 		},
-		
+		{
+			sourceRoute: '/elevate-user/v1/account/validateUserSession',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/validateUserSession',
+				type: 'POST',
+			}
+		},
 	]
 }
 

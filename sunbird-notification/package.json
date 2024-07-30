@@ -1,12 +1,12 @@
 {
-	"name": "sunbird-user",
-	"version": "1.1.81",
-	"description": "Npm package for Elevate-User service integration with Interface service. ",
+	"name": "kb-mentoring-notification",
+	"version": "1.1.0",
+	"description": "Npm package for kb-mentoring-notification service integration with Interface service. ",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
-	"author": "Joffin Joy",
+	"author": "Rakesh Kumar",
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^1.4.0",
