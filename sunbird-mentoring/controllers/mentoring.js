@@ -27,7 +27,9 @@ const profileRead = async (req, res, selectedConfig) => {
 
 		const userCreateResponse = await requesters.post(req.baseUrl, targetRoute1, {}, req.headers)
 		if (userCreateResponse.responseCode == 'OK') {
-			const mentoringResponse = await requesters.get(req.baseUrl, targetRoute2, req.headers)
+			const mentoringResponse = await requesters.get(req.baseUrl, targetRoute2, {
+				'x-authenticated-user-token': req.headers['x-authenticated-user-token'],
+			})
 			res.json(mentoringResponse)
 		} else res.json(userCreateResponse)
 	} catch (error) {
