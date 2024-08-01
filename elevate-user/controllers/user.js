@@ -102,7 +102,7 @@ const readUser = async (req, res, selectedConfig) => {
 }
 
 
-const listUserDetailsByEmail = async (req, res , selectedConfig) => {
+const validateEmails = async (req, res , selectedConfig) => {
 	try{
 		const emailIds = req.body.emailIds 
 		
@@ -130,7 +130,7 @@ const userController = {
 	readOrganization,
 	readUser,
 	accountsList,
-	listUserDetailsByEmail
+	validateEmails
 }
 
 module.exports = userController

@@ -835,7 +835,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/account/validatingEmailIds',
                 type: 'POST',
-				functionName:'listUserDetailsByEmail'
+				functionName:'validateEmails'
       }
     },
 		{
