@@ -62,6 +62,8 @@ const processUserResponse = (userResponse) => {
 			id: userResponse.result.response.identifier,
 			organization_id: userResponse.result.response.rootOrg.id,
 			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
+			competency:
+				userResponse.result.response.profileDetails?.competencies?.map((competency) => competency.id) || [],
 		},
 	}
 }
@@ -99,6 +101,38 @@ const readUserWithToken = async (req, res, selectedConfig) => {
 	}
 }
 
+const processUserSearchResponse = (content) => {
+	return {
+		result: content.map((user) => {
+			console.log(user)
+			return {
+				id: user.id,
+				image: user?.profileDetails?.profileImageUrl,
+			}
+		}),
+	}
+}
+
+const accountList = async (req, res, selectedConfig) => {
+	const body = {
+		request: {
+			filters: {
+				userId: [],
+			},
+		},
+	}
+	try {
+		const userIds = req.body.userIds
+		if (!Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
+		body.request.filters.userId = userIds
+		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
+		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
+	} catch (error) {
+		console.error('Error fetching user details:', error)
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
 const userController = {
 	createUser,
 	updateUser,
@@ -107,6 +141,7 @@ const userController = {
 	readOrganization,
 	readUserById,
 	readUserWithToken,
+	accountList,
 }
 
 module.exports = userController
