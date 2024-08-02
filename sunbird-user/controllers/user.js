@@ -56,7 +56,7 @@ const processUserResponse = (userResponse) => {
 		result: {
 			name: userResponse.result.response.profileDetails.personalDetails.firstname,
 			email: userResponse.result.response.profileDetails.personalDetails.primaryEmail,
-			user_roles: userResponse.result.response.profileDetails.mentoring?.roles?.map((role) => ({
+			user_roles: userResponse.result.response.mentoring?.roles?.map((role) => ({
 				title: role,
 			})),
 			id: userResponse.result.response.identifier,
