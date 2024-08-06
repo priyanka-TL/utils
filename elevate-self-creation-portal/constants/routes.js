@@ -367,6 +367,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/resource/upForReview',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/resource/upForReview',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/role-permission-mapping/delete/:role_id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
