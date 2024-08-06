@@ -27,6 +27,10 @@ const kafkaManager = async (kafkaPackage, environmentVariables) => {
 					const to = emailContent.to.split(',')
 
 
+					const headers ={
+						'Authorization': environmentVariables.SUNBIRD_AUTHORIZATION_TOKEN
+					}
+					console.log("---------- API request header",JSON.stringify(headers));
 					const requestBody = {
 						request:{
 							"notifications": [{
@@ -45,11 +49,14 @@ const kafkaManager = async (kafkaPackage, environmentVariables) => {
 						}
 					}
 
+
 					console.log("---------- API request",JSON.stringify(requestBody));
 					post(
 						environmentVariables.SUNBIRD_NOTIFICAION_SERVICE_BASE_URL,
 						environmentVariables.SUNBIRD_NOTIFICAION_SEND_EMAIL_ROUTE,
-						requestBody
+						requestBody,
+						headers
+
 					)
 
 				}
