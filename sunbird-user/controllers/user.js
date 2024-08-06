@@ -27,7 +27,7 @@ const loginUser = async (req, res, responses, selectedConfig) => {
 const readOrganization = async (req, res, selectedConfig) => {
 	const body = {
 		request: {
-			organisationId: req.query.external_org_id,
+			organisationId: req.query.organisation_id || req.query.organisation_code,
 		},
 	}
 	try {
@@ -62,8 +62,7 @@ const processUserResponse = (userResponse) => {
 			id: userResponse.result.response.identifier,
 			organization_id: userResponse.result.response.rootOrg.id,
 			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
-			competency:
-				userResponse.result.response.profileDetails?.competencies?.map((competency) => competency.id) || [],
+			competency: [],
 		},
 	}
 }
