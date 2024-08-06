@@ -40,6 +40,10 @@ const requiredEnvs = {
 	SUNBIRD_NOTIFICATION_SENDER_EMAIL : {
 		message: `[${packageName}] Required sender email address in the Interface Service`,
 		optional: false,
+	},
+	SUNBIRD_AUTHORIZATION_TOKEN : {
+		message: `[${packageName}] Required authorization token with bearer`,
+		optional: false,
 	}
 }
 
