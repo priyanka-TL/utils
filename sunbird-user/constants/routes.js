@@ -121,8 +121,9 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/account/list',
-				type: 'GET',
+				path: '/private/user/v1/search',
+				type: 'POST',
+				functionName: 'accountList',
 			},
 		},
 		{
