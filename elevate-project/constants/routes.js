@@ -41,6 +41,36 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/verifyCertificate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/verifyCertificate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/verifyCertificate/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/verifyCertificate/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/certificates',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/certificates',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/tasksStatus',
 			type: 'POST',
 			inSequence: false,
