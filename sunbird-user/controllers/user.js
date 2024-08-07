@@ -67,14 +67,34 @@ const processUserResponse = (userResponse) => {
 	}
 }
 
+const getCompetencyIds = (courses) => {
+	return courses.reduce((competencyIds, course) => {
+		if (course.status == 1 && course.content?.competencies_v5) {
+			course.content.competencies_v5.forEach((competency) => {
+				competencyIds.push(`${competency.competencySubThemeId}`)
+			})
+		}
+		return competencyIds
+	}, [])
+}
+
 const readUserById = async (req, res, selectedConfig) => {
 	const userId = req.params.id
 	try {
-		const userResponse = await requesters.get(req.baseUrl, selectedConfig.targetRoute.path, req.headers, {
+		const targetRoute1 = selectedConfig.targetRoute.paths[0].path
+		const targetRoute2 = selectedConfig.targetRoute.paths[1]
+
+		const userResponse = await requesters.get(req.baseUrl, targetRoute1, req.headers, {
 			id: userId,
 		})
+		if (userResponse.params.status == 'FAILED') return res.send(userResponse)
+		const enrollmentResponse = await requesters.get(targetRoute2.baseUrl, targetRoute2.path, req.headers, {
+			id: userId,
+		})
+		const competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
 		const responseData = processUserResponse(userResponse)
-		return res.json(responseData)
+		responseData.result.competency = competencyIds
+		return res.send(responseData)
 	} catch (error) {
 		console.error('Error fetching user details:', error)
 		return res.status(500).json({ error: 'Internal Server Error' })
