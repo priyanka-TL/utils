@@ -432,6 +432,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/comments/update',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/comments/update',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/comments/update/:id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
