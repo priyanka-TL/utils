@@ -51,6 +51,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/certificateCallback',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/certificateCallback',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/certificateCallbackError',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/certificateCallbackError',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/verifyCertificate/:id',
 			type: 'POST',
 			inSequence: false,
