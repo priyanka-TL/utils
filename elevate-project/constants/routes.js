@@ -61,6 +61,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/certificateReIssue',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/certificateReIssue',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/certificateReIssue/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/certificateReIssue/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/certificateBaseTemplates/createOrUpdate',
 			type: 'POST',
 			inSequence: false,
