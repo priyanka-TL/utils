@@ -453,6 +453,39 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/reviews/update/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/reviews/update/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/reviews/approve/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/reviews/approve/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/reviews/rejectOrReport/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/reviews/rejectOrReport/:id',
+				type: 'POST',
+			},
+		}
 		
 	],
 }
