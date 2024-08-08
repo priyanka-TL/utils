@@ -121,6 +121,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/certificateTemplates/createSvg',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateTemplates/createSvg',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/certificates',
 			type: 'GET',
 			inSequence: false,
