@@ -61,6 +61,66 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/certificateBaseTemplates/createOrUpdate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateBaseTemplates/createOrUpdate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/certificateBaseTemplates/createOrUpdate/:id',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateBaseTemplates/createOrUpdate/:id',
+				type: 'PATCH'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/certificateTemplates/createOrUpdate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateTemplates/createOrUpdate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/certificateTemplates/createOrUpdate/:id',
+			type: 'PATCH',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateTemplates/createOrUpdate/:id',
+				type: 'PATCH'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/certificateTemplates/uploadTemplate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateTemplates/uploadTemplate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/certificateTemplates/uploadTemplate/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/certificateTemplates/uploadTemplate/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/certificates',
 			type: 'GET',
 			inSequence: false,
