@@ -201,6 +201,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/projects/details/',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/details/',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/projects/details/:id',
 			type: 'GET',
 			inSequence: false,
@@ -406,6 +416,17 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/scp/v1/role-permission-mapping/list',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/projects/submitForReview/',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/projects/submitForReview/',
 				type: 'POST',
 			},
 		},
