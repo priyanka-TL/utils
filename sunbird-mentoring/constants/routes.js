@@ -21,6 +21,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/entity/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/entity/list',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/entity/read/:id',
 			type: 'POST',
 			inSequence: false,

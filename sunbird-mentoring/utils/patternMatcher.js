@@ -3,7 +3,7 @@ exports.matchPathsAndExtractParams = (pattern, url) => {
 	const regexPattern = new RegExp(
 		pattern.replace(/:(\w+)/g, (_, paramName) => {
 			paramNames.push(paramName)
-			return '([a-zA-Z0-9]+)'
+			return '([a-zA-Z0-9-]+)'
 		})
 	)
 	const matchResult = url.match(regexPattern)
