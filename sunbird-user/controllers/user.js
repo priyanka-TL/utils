@@ -63,6 +63,10 @@ const processUserResponse = (userResponse) => {
 			organization_id: userResponse.result.response.rootOrg.id,
 			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
 			competency: [],
+			language: userResponse.result.response.profileDetails.personalDetails?.domicileMedium,
+			designation: Array.isArray(userResponse.result.response.profileDetails?.professionalDetails)
+				? userResponse.result.response.profileDetails.professionalDetails[0]?.designation
+				: undefined,
 		},
 	}
 }
@@ -94,6 +98,7 @@ const readUserById = async (req, res, selectedConfig) => {
 		const competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
 		const responseData = processUserResponse(userResponse)
 		responseData.result.competency = competencyIds
+		console.log('RESPONSE DATA: ', JSON.stringify(responseData, null, 3))
 		return res.send(responseData)
 	} catch (error) {
 		console.error('Error fetching user details:', error)
