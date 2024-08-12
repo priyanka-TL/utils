@@ -490,6 +490,176 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/importSurveryTemplateToSolution/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/importSurveryTemplateToSolution/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/importSurveryTemplateToSolution',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/importSurveryTemplateToSolution',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/getLink/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/getLink/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/getLink/',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/getLink/',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/createSolutionTemplate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/createSolutionTemplate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/mapSurverySolutionToProgram/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/mapSurverySolutionToProgram/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/mapSurverySolutionToProgram',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/mapSurverySolutionToProgram',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/userAssigned',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/userAssigned',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/details/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/details/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveys/details/',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveys/details/',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/getStatus/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/getStatus/:id',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/getStatus',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/getStatus',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/list',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/isAllowed/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/isAllowed/:id',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/surveySubmissions/isAllowed',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/surveySubmissions/isAllowed',
+				type: 'GET'
+			},
+		},
 	],
 }
 
