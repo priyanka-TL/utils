@@ -486,6 +486,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/reviews/start/:id',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/reviews/start/:id',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/reviews/approve/:id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
