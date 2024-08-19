@@ -331,6 +331,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/samiksha/v1/solutions/targetedSolutions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/solutions/targetedSolutions',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/samiksha/v1/programs/addEntitiesInScope',
 			type: 'POST',
 			inSequence: false,
