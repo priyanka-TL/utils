@@ -1359,7 +1359,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: 'elevate-user/v1/admin/triggerViewRebuild',
+			sourceRoute: 'user/v1/admin/triggerViewRebuild',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
@@ -1369,7 +1369,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: 'elevate-user/v1/admin/triggerPeriodicViewRefresh',
+			sourceRoute: 'user/v1/admin/triggerPeriodicViewRefresh',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
@@ -1379,7 +1379,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: 'elevate-user/v1/admin/triggerPeriodicViewRefreshInternal',
+			sourceRoute: 'user/v1/admin/triggerPeriodicViewRefreshInternal',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
@@ -1389,7 +1389,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: 'elevate-user/v1/admin/triggerViewRebuildInternal',
+			sourceRoute: 'user/v1/admin/triggerViewRebuildInternal',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
