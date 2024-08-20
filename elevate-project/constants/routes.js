@@ -1119,6 +1119,17 @@ module.exports = {
 				type: 'POST'
 			},
 		},
+		{
+			sourceRoute: '/interface/v1/internal/fetchResources',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/admin/dbFind/projectTemplates',
+				type: 'POST',
+				functionName: 'fetchProjectTemplates',
+			},
+		},
 	],
 }
 
