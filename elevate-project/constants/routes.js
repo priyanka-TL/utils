@@ -290,6 +290,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/cloud-services/files/download',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/cloud-services/files/download',
+				type: 'GET'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/cloud-services/files/preSignedUrls',
 			type: 'POST',
 			inSequence: false,
