@@ -670,6 +670,17 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/samiksha/v1/admin/dbFind/solutions',
+				type: 'POST',
+				functionName: 'fetchSamikshaTemplates',
+			},
+		},
 	],
 }
 

@@ -1,5 +1,5 @@
 const routesConfig = require('../constants/routes')
-const samikshaController = require('./project')
+const samikshaController = require('./samiksha')
 const orchestrationHandler = async (req, res, responses) => {
 	console.log(req.targetPackages, req.inSequence, req.orchestrated, req.sourceRoute, responses)
 	console.log(req.body)

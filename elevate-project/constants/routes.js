@@ -1130,7 +1130,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/interface/v1/internal/fetchResources',
+			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: true,
