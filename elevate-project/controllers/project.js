@@ -27,7 +27,7 @@ const fetchProjectTemplates = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 
 	let response = { result: { data: [], count: 0 } }
-	let proceedToCallProjectService = true
+	let proceedToCallProjectService = false
 	let resp = {}
 
 	// fetch the max limit from the env file for the DB Find API
@@ -41,7 +41,7 @@ const fetchProjectTemplates = async (req, res, responses) => {
 		}
 	}
 
-	if (proceedToCallProjectService) {
+	if (proceedToCallProjectService && req.headers['x-auth-token']) {
 		let body = {
 			"query": {
 				"status": common.PROJECT_STATUS_PUBLISHED
@@ -49,9 +49,11 @@ const fetchProjectTemplates = async (req, res, responses) => {
 			"projection": common.PROJECT_PROJECTION_FIELDS,
 			"limit": max_limit
 		}
+		const x_auth_token = req.headers['x-auth-token'].startsWith("Bearer ") || req.headers['x-auth-token'].startsWith("bearer ") ? req.headers['x-auth-token'].split(' ')[1] : req.headers['x-auth-token']
 		// custom header 
 		const header = {
-			'internal-access-token': req.headers['internal_access_token'],
+			'internal-access-token' : req.headers['internal_access_token'],
+			'X-auth-token': x_auth_token,
 			'Content-Type': 'application/json'
 		}
 		if (req.body.search) body.query.title = {

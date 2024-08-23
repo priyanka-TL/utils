@@ -25,11 +25,11 @@ const common = require('../constants/common')
  */
 
 
-const fetchSamikshaTemplates = async (req, res, responses) => {
+const fetchObserbationAndSurvey = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 
 	let response = {result: {data: [],count: 0}}
-	let proceedToCallProjectService = true
+	let proceedToCallProjectService = false
 	let resp = {}
 	const max_limit = process.env.RESOURCE_MAX_FETCH_LIMIT ? parseInt(process.env.RESOURCE_MAX_FETCH_LIMIT, 10) : 1000
 	// request body for samiksha service
@@ -56,7 +56,7 @@ const fetchSamikshaTemplates = async (req, res, responses) => {
 		}
 
 	}
-	if(proceedToCallProjectService){
+	if(proceedToCallProjectService && req.headers['x-auth-token']){
 		// body queries for samiksha service - generic
 		body.query.isReusable = true
 		body.query.isDeleted = false
@@ -64,11 +64,12 @@ const fetchSamikshaTemplates = async (req, res, responses) => {
 		body.query.status = common.RESOURCE_STATUS_ACTIVE
 		body.projection= common.RESOURCE_PROJECTION_FIELDS
 		body.limit = max_limit
+		const x_auth_token = req.headers['x-auth-token'].startsWith("Bearer ") || req.headers['x-auth-token'].startsWith("bearer ") ? req.headers['x-auth-token'].split(' ')[1] : req.headers['x-auth-token']
 
 		let header = {
 			'internal-access-token' : req.headers['internal_access_token'],
 			'Content-Type' : 'application/json',
-			'X-auth-token' : req.headers['x-auth-token']
+			'X-auth-token' : x_auth_token
 		}
 
 		if(req?.body && req?.body?.search) body.query.name = {
@@ -103,15 +104,8 @@ const fetchSamikshaTemplates = async (req, res, responses) => {
 	return response
 }
 
-// configuration for body transformation 
-const samikshaTemplateBodyTransform = {
-	_id : "id",
-	createdAt : "created_at",
-	author : "created_by"
-}
-
 const samikshaController = {
-	fetchSamikshaTemplates
+	fetchObserbationAndSurvey
 }
 
 module.exports = samikshaController

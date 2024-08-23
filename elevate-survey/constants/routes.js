@@ -678,7 +678,7 @@ module.exports = {
 			targetRoute: {
 				path: '/samiksha/v1/admin/dbFind/solutions',
 				type: 'POST',
-				functionName: 'fetchSamikshaTemplates',
+				functionName: 'fetchObserbationAndSurvey',
 			},
 		},
 	],
