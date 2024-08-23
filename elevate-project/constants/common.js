@@ -13,5 +13,7 @@ module.exports = {
         _id : "id",
         createdAt : "created_at",
         createdBy : "created_by"
-    }
+    },
+    AUTH_TOKEN_KEY : 'x-auth-token'
+
 }

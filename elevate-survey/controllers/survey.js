@@ -33,15 +33,15 @@ const fetchObserbationAndSurvey = async (req, res, responses) => {
 	let resp = {}
 	const max_limit = process.env.RESOURCE_MAX_FETCH_LIMIT ? parseInt(process.env.RESOURCE_MAX_FETCH_LIMIT, 10) : 1000
 	// request body for samiksha service
-	let body = { query : { } }
+	let reqBody = { query : { } }
 
 	
 	if(req.body){
-		
+		// check if body has key resourceType else assign []
 		const resourceType = req?.body?.resourceType || [];
-		if (Array.isArray(resourceType) || resourceType.length > 0) {
-		    const hasProjectType = resourceType.includes(common.RESOURCE_TYPE_OBSERVATION) || resourceType.includes(common.RESOURCE_TYPE_OBSERVATION_WITH_RUBRICS) || resourceType.includes(common.RESOURCE_TYPE_SURVEY);
-		    proceedToCallProjectService = hasProjectType || resourceType.length === 0;
+		if (Array.isArray(resourceType) && resourceType.length > 0) {
+			// if resource type have type = survey , observations or observation_with_rubrics proceed to call api 
+		    proceedToCallProjectService = resourceType.includes(common.RESOURCE_TYPE_OBSERVATION) || resourceType.includes(common.RESOURCE_TYPE_OBSERVATION_WITH_RUBRICS) || resourceType.includes(common.RESOURCE_TYPE_SURVEY);
 			
 			// body queries for samiksha service - based on specific resource type
 			if(req?.body?.resourceType.includes(common.RESOURCE_TYPE_OBSERVATION)){
@@ -53,49 +53,54 @@ const fetchObserbationAndSurvey = async (req, res, responses) => {
 			}else if(req?.body?.resourceType.includes(common.RESOURCE_TYPE_SURVEY)){
 				body.query.type = common.RESOURCE_TYPE_SURVEY
 			}
+		}else if(Array.isArray(resourceType) || resourceType.length == 0){
+			// if resource type have type = empty call API because the client is expecting all type of resources 
+			proceedToCallProjectService = true	
 		}
 
 	}
-	if(proceedToCallProjectService && req.headers['x-auth-token']){
+	if(proceedToCallProjectService && req.headers[common.AUTH_TOKEN_KEY]){
 		// body queries for samiksha service - generic
-		body.query.isReusable = true
-		body.query.isDeleted = false
-		body.query.isAPrivateProgram = false
-		body.query.status = common.RESOURCE_STATUS_ACTIVE
-		body.projection= common.RESOURCE_PROJECTION_FIELDS
-		body.limit = max_limit
-		const x_auth_token = req.headers['x-auth-token'].startsWith("Bearer ") || req.headers['x-auth-token'].startsWith("bearer ") ? req.headers['x-auth-token'].split(' ')[1] : req.headers['x-auth-token']
-
+		reqBody.query.isReusable = true
+		reqBody.query.isDeleted = false
+		reqBody.query.isAPrivateProgram = false
+		reqBody.query.status = common.RESOURCE_STATUS_ACTIVE
+		reqBody.projection= common.RESOURCE_PROJECTION_FIELDS
+		reqBody.limit = max_limit
+		// replace the word bearer if token has it 
+		const x_auth_token = req.headers[common.AUTH_TOKEN_KEY].replace(/^(Bearer|bearer)\s*/, '');
 		let header = {
 			'internal-access-token' : req.headers['internal_access_token'],
 			'Content-Type' : 'application/json',
 			'X-auth-token' : x_auth_token
 		}
 
-		if(req?.body && req?.body?.search) body.query.name = {
-			"$regex" : req.body.search,
-			"$options" : 'i'
+		if (req?.body && req.body?.search) {
+			reqBody.query.name = {
+				"$regex": req.body.search,
+				"$options": 'i'
+			}
 		}
 
 		// fetch data from the service 
-		resp = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, header)
+		resp = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, reqBody , header)
 	}
 	
 	if (resp?.result?.length > 0) {
 		let data = []
 		// transform the result to fit in the service 
-		resp.result.reduce((acc,item) => {
-			acc = {}
-			for(let key in item){
-				let newKey = common.RESOURCE_TRANSFORM_KEYS[key] || key
-				acc[newKey] = item[key]
+		resp.result.reduce((accumulateResource,resources) => {
+			accumulateResource = {}
+			for(let resource in resources){
+				let newKey = common.RESOURCE_TRANSFORM_KEYS[resource] || resource
+				accumulateResource[newKey] = resources[resource]
 			}
 			// check if resource is an observation with rubrics 
 			// if it is observation with rubrics update the type value 
-			if(item[common.RESOURCE_TYPE_KEY] == common.RESOURCE_TYPE_OBSERVATION && item[common.RESOURCE_IS_RUBRIC_DRIVEN_KEY] == true) {
-				acc[common.RESOURCE_TYPE_KEY] = common.RESOURCE_TYPE_OBSERVATION_WITH_RUBRICS
+			if(resources[common.RESOURCE_TYPE_KEY] == common.RESOURCE_TYPE_OBSERVATION && resources[common.RESOURCE_IS_RUBRIC_DRIVEN_KEY] == true) {
+				accumulateResource[common.RESOURCE_TYPE_KEY] = common.RESOURCE_TYPE_OBSERVATION_WITH_RUBRICS
 			}
-			data.push(acc)
+			data.push(accumulateResource)
 		},null)	
 
 		response.result.data = data
@@ -104,8 +109,8 @@ const fetchObserbationAndSurvey = async (req, res, responses) => {
 	return response
 }
 
-const samikshaController = {
+const surveyController = {
 	fetchObserbationAndSurvey
 }
 
-module.exports = samikshaController
+module.exports = surveyController
