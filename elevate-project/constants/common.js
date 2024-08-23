@@ -11,7 +11,6 @@ module.exports = {
     RESOURCE_TYPE_PTOJECT : 'projects',
     PROJECT_TRANSFORM_KEYS : {
         _id : "id",
-        title : "name",
         createdAt : "created_at",
         createdBy : "created_by"
     }

@@ -15,6 +15,7 @@ module.exports = {
     RESOURCE_TYPE_OBSERVATION_WITH_RUBRICS : 'observation_with_rubrics',
     RESOURCE_TRANSFORM_KEYS : {
         _id : "id",
+        name : 'title',
         createdAt : "created_at",
         author : "created_by"
     }
