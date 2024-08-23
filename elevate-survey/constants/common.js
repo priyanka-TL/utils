@@ -7,7 +7,7 @@
 
 module.exports = {
     RESOURCE_STATUS_ACTIVE : 'active',
-    RESOURCE_PROJECTION_FIELDS : ["_id" ,'type' , "name","author","createdAt","description","isRubricDriven"],
+    RESOURCE_PROJECTION_FIELDS : ["_id" ,'type' , "name","author","createdAt","isRubricDriven"],
     RESOURCE_TYPE_OBSERVATION : 'observation',
     RESOURCE_TYPE_SURVEY : 'survey',
     RESOURCE_TYPE_KEY : 'type',
