@@ -875,6 +875,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/elevate-interface/v2/account/login',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/account/login',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/elevate-user/v2/account/update',
 			type: 'PATCH',
 			inSequence: false,
@@ -885,7 +895,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/elevate-interface/v1/account/create',
+			sourceRoute: '/user/v1/account/create',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
