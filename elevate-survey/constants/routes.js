@@ -62,12 +62,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/samiksha/v1/files/getDownloadableUrl',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/samiksha/v1/files/getDownloadableUrl',
-				type: 'GET'
+				type: 'POST'
 			},
 		},
 	],
