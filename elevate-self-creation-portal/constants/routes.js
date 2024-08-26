@@ -517,7 +517,19 @@ module.exports = {
 				path: '/scp/v1/reviews/rejectOrReport/:id',
 				type: 'POST',
 			},
+		},
+		{
+			sourceRoute: "/scp/v1/resource/browseExisting",
+			type: 'GET',
+			priority: "MUST_HAVE",
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/resource/browseExisting',
+				type: 'GET',
+			},
 		}
+		
 		
 	],
 }
