@@ -357,12 +357,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/scp/v1/certificate/list',
+			sourceRoute: '/scp/v1/certificates/list',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/scp/v1/certificate/list',
+				path: '/scp/v1/certificates/list',
 				type: 'GET'
 			},
 		},
