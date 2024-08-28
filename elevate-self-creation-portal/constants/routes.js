@@ -530,22 +530,22 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/scp/v1/cloud-services/files/getSignedUrl',
+			sourceRoute: '/scp/v1/cloud-services/file/getSignedUrl',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/scp/v1/cloud-services/files/getSignedUrl',
+				path: '/scp/v1/cloud-services/file/getSignedUrl',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/scp/v1/cloud-services/files/getDownloadableUrl',
+			sourceRoute: '/scp/v1/cloud-services/file/getDownloadableUrl',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/scp/v1/cloud-services/files/getDownloadableUrl',
+				path: '/scp/v1/cloud-services/file/getDownloadableUrl',
 				type: 'POST'
 			},
 		},
