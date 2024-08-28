@@ -70,6 +70,16 @@ module.exports = {
 				type: 'POST'
 			},
 		},
+		{
+			sourceRoute: '/samiksha/v1/reports/submissionReport',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/reports/submissionReport',
+				type: 'POST'
+			},
+		},
 	],
 }
 
