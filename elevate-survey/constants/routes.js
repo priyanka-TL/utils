@@ -701,6 +701,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/samiksha/v1/observations/updateEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/samiksha/v1/observations/updateEntities/:id',
 			type: 'POST',
 			inSequence: false,
@@ -711,12 +721,32 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/samiksha/v1/observations/assessment',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/assessment',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/samiksha/v1/observations/assessment/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/samiksha/v1/observations/assessment/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observationSubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observationSubmissions/update',
 				type: 'POST'
 			},
 		},
@@ -747,6 +777,16 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/samiksha/v1/frameworks/upload',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/frameworks/uploadThemes',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/frameworks/uploadThemes',
 				type: 'POST'
 			},
 		},
