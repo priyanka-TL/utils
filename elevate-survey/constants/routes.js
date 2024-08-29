@@ -841,6 +841,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/samiksha/v1/programs/targetedPrograms',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/programs/targetedPrograms',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
