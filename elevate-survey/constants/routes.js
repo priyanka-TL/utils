@@ -726,7 +726,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/observations/update/:id',
+				path: '/samiksha/v1/observationSubmissions/update/:id',
 				type: 'POST'
 			},
 		},
