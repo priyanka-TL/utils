@@ -690,6 +690,156 @@ module.exports = {
 				type: 'POST'
 			},
 		},
+		{
+			sourceRoute: '/samiksha/v1/observations/entities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/entities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observations/updateEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observations/updateEntities/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/updateEntities/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observations/assessment',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/assessment',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observations/assessment/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/assessment/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observationSubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observationSubmissions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observationSubmissions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observationSubmissions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/criteria/upload',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/criteria/upload',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/frameworks/upload',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/frameworks/upload',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/frameworks/uploadThemes',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/frameworks/uploadThemes',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/frameworks/uploadThemes/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/frameworks/uploadThemes/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/observations/importFromFramework',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/observations/importFromFramework',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/solutions/uploadCriteriaRubricExpressions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/solutions/uploadCriteriaRubricExpressions',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/solutions/uploadCriteriaRubricExpressions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/solutions/uploadCriteriaRubricExpressions/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/samiksha/v1/solutions/importFromSolution',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/samiksha/v1/solutions/importFromSolution',
+				type: 'POST'
+			},
+		},
 	],
 }
 
