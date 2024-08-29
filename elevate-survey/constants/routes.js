@@ -771,12 +771,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/frameworks/upload',
+			sourceRoute: '/samiksha/v1/frameworks/create',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/frameworks/upload',
+				path: '/samiksha/v1/frameworks/create',
 				type: 'POST'
 			},
 		},
