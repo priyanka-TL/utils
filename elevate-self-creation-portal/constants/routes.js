@@ -377,6 +377,28 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/resource/browseExisting',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			requiresCustomHandling: true,
+			targetRoute: {
+				paths: [
+					{
+						baseUrl: process.env.PROJECT_SERVICE_BASE_URL,
+						path: '/project/v1/admin/dbFind/projectTemplates',
+						type: 'POST'
+					},
+					{
+						baseUrl: process.env.SURVEY_SERVICE_BASE_URL,
+						path: '/samiksha/v1/admin/dbFind/solutions',
+						type: 'POST'
+						}
+			],
+				functionName: 'fetchResources',
+			}
+		},
+		{
 			sourceRoute: '/scp/v1/resource/upForReview',
 			type: 'GET',
 			inSequence: false,
@@ -519,17 +541,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: "/scp/v1/resource/browseExisting",
-			type: 'GET',
-			priority: "MUST_HAVE",
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/scp/v1/resource/browseExisting',
-				type: 'GET',
-			},
-		},
-		{
 			sourceRoute: '/scp/v1/cloud-services/file/getSignedUrl',
 			type: 'POST',
 			inSequence: false,
@@ -548,8 +559,6 @@ module.exports = {
 				path: '/scp/v1/cloud-services/file/getDownloadableUrl',
 				type: 'POST'
 			},
-		},
-		
-		
+		},		
 	],
 }
