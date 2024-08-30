@@ -559,6 +559,17 @@ module.exports = {
 				path: '/scp/v1/cloud-services/file/getDownloadableUrl',
 				type: 'POST'
 			},
-		},		
+		},	
+		,
+        {
+            sourceRoute: "/scp/v1/resource/getPublishedResources",
+            type: "GET",
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/resource/getPublishedResources',
+				type: 'POST'
+			}
+        }	
 	],
 }
