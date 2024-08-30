@@ -18,7 +18,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 			}
 			if(targetRoute.path == common.SURVEY_END_POINT){
 				surveyPath = targetRoute.path
-				surveyBaseUrl =targetRoute.baseUrl
+				surveyBaseUrl = targetRoute.baseUrl
 			}
 		})
 
@@ -40,13 +40,9 @@ const fetchResources = async (req, res, selectedConfig) => {
 			query: {}
 		}
 
-		let projectHeader = {}
-		let surveyHeader = {}
-		projectHeader[common.AUTH_TOKEN_KEY] = req.headers[common.AUTH_TOKEN_KEY].replace(/^(Bearer|bearer)\s*/, '')
-		projectHeader[common.HEADER_CONTENT_TYPE] = req.headers[common.HEADER_CONTENT_TYPE] ? req.headers[common.HEADER_CONTENT_TYPE] : 'application/json'
-
-		surveyHeader[common.AUTH_TOKEN_KEY] = req.headers[common.AUTH_TOKEN_KEY].replace(/^(Bearer|bearer)\s*/, '')
-		surveyHeader[common.HEADER_CONTENT_TYPE] = req.headers[common.HEADER_CONTENT_TYPE] ? req.headers[common.HEADER_CONTENT_TYPE] : 'application/json'
+		let apiHeader = {}
+		apiHeader[common.AUTH_TOKEN_KEY] = req.headers[common.AUTH_TOKEN_KEY].replace(/^(Bearer|bearer)\s*/, '')
+		apiHeader[common.HEADER_CONTENT_TYPE] = req.headers[common.HEADER_CONTENT_TYPE] ? req.headers[common.HEADER_CONTENT_TYPE] : 'application/json'
 
 		if (req.body) {
 			// check if body has key resourceType else assign []
@@ -80,7 +76,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 			}
 		}
 
-		if (proceedToCallProjectService && req.headers[common.AUTH_TOKEN_KEY] && projectPath && projectBaseUrl) {
+		if (proceedToCallProjectService && apiHeader[common.AUTH_TOKEN_KEY] && projectPath && projectBaseUrl) {
 			projectReqBody = {
 				"query": {
 					"status": common.PROJECT_STATUS_PUBLISHED
@@ -94,7 +90,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 					"$options": 'i'
 				}
 			}
-			projectResponse = proceedToCallProjectService ? await requesters.post(projectBaseUrl, projectPath, projectReqBody, projectHeader) : {}
+			projectResponse = proceedToCallProjectService ? await requesters.post(projectBaseUrl, projectPath, projectReqBody, apiHeader) : {}
 
 			if (projectResponse?.result?.length > 0) {
 				let data = []
@@ -108,14 +104,11 @@ const fetchResources = async (req, res, selectedConfig) => {
 					accumulateResource['type'] = common.RESOURCE_TYPE_PTOJECT
 					data.push(accumulateResource)
 				}, null)
-
 				response.result.data = [...response.result.data, ...data]
 			}
-
-
 		}
 		
-		if (proceedToCallSurveyService && req.headers[common.AUTH_TOKEN_KEY] && surveyPath && surveyBaseUrl) {
+		if (proceedToCallSurveyService && apiHeader[common.AUTH_TOKEN_KEY] && surveyPath && surveyBaseUrl) {
 			// body queries for samiksha service - generic
 			surveyReqBody.query.isReusable = true
 			surveyReqBody.query.isDeleted = false
@@ -132,7 +125,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 			}
 
 			// fetch data from the service 
-			surveyResponse = await requesters.post(surveyBaseUrl, surveyPath, surveyReqBody, surveyHeader)
+			surveyResponse = await requesters.post(surveyBaseUrl, surveyPath, surveyReqBody, apiHeader)
 			if (surveyResponse?.result?.length > 0) {
 				let data = []
 				// transform the result to fit in the service 
