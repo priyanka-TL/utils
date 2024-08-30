@@ -6,14 +6,21 @@ const fetchResources = async (req, res, selectedConfig) => {
 	try {
 
 		const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+		let projectPath = null
+		let projectBaseUrl = null
+		let surveyPath = null
+		let surveyBaseUrl = null
 
-		// project base path and url
-		const projectPath = selectedConfig.targetRoute.paths[0].path
-		const projectBaseUrl = selectedConfig.targetRoute.paths[0].baseUrl
-
-		// survey base path and url
-		const surveyPath = selectedConfig.targetRoute.paths[1].path
-		const surveyBaseUrl = selectedConfig.targetRoute.paths[1].baseUrl
+		selectedConfig?.targetRoute?.paths.map((targetRoute) => {
+			if(targetRoute.path == common.PROJECT_END_POINT){
+				projectPath = targetRoute.path
+				projectBaseUrl = targetRoute.baseUrl
+			}
+			if(targetRoute.path == common.SURVEY_END_POINT){
+				surveyPath = targetRoute.path
+				surveyBaseUrl =targetRoute.baseUrl
+			}
+		})
 
 		// fetch the max limit from the env file for the DB Find API
 		const max_limit = process.env.RESOURCE_MAX_FETCH_LIMIT ? parseInt(process.env.RESOURCE_MAX_FETCH_LIMIT, 10) : 1000
@@ -73,7 +80,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 			}
 		}
 
-		if (proceedToCallProjectService && req.headers[common.AUTH_TOKEN_KEY]) {
+		if (proceedToCallProjectService && req.headers[common.AUTH_TOKEN_KEY] && projectPath && projectBaseUrl) {
 			projectReqBody = {
 				"query": {
 					"status": common.PROJECT_STATUS_PUBLISHED
@@ -107,8 +114,8 @@ const fetchResources = async (req, res, selectedConfig) => {
 
 
 		}
-
-		if (proceedToCallSurveyService && req.headers[common.AUTH_TOKEN_KEY]) {
+		
+		if (proceedToCallSurveyService && req.headers[common.AUTH_TOKEN_KEY] && surveyPath && surveyBaseUrl) {
 			// body queries for samiksha service - generic
 			surveyReqBody.query.isReusable = true
 			surveyReqBody.query.isDeleted = false
