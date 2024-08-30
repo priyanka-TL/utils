@@ -528,7 +528,27 @@ module.exports = {
 				path: '/scp/v1/resource/browseExisting',
 				type: 'GET',
 			},
-		}
+		},
+		{
+			sourceRoute: '/scp/v1/cloud-services/file/getSignedUrl',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/cloud-services/file/getSignedUrl',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/cloud-services/file/getDownloadableUrl',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/cloud-services/file/getDownloadableUrl',
+				type: 'POST'
+			},
+		},
 		
 		
 	],
