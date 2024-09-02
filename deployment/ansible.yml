@@ -67,19 +67,22 @@
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
     
-    - name: Get the latest version of the npm package
+    - name: Get the current version of the npm package
       shell: |
-        latest_version=$(npm show {{ folderPath }} version)
-        echo "Latest version is: $latest_version"
+        current_version=$(npm show {{ package_name }} version)
+        echo "Current version is: $current_version"
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
-      register: latest_version_output
+      register: current_version_output
 
     - name: Increment npm version (patch)
       shell: |
-        cd {{current_path}}/{{ folderPath }} && npm version patch
+        cd {{ current_path }}/{{ folderPath }}
+        new_version=$(npm version patch --no-git-tag-version | awk '{print $1}')
+        echo "New version is: $new_version"
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
+      register: version_output
 
     - name: Publish the npm package
       shell: |
@@ -87,6 +90,13 @@
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
       register: npm_publish_output
+    - name: Display current npm version
+      debug:
+        msg: "{{ current_version_output.stdout }}"
+
+    - name: Display new npm version
+      debug:
+        msg: "{{ version_output.stdout }}"
 
     - name: Display NPM publish output
       debug:
