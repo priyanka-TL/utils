@@ -65,7 +65,7 @@ const processUserResponse = (userResponse) => {
 			competency: [],
 			language: userResponse.result.response.profileDetails.personalDetails?.domicileMedium,
 			designation: Array.isArray(userResponse.result.response.profileDetails?.professionalDetails)
-				? userResponse.result.response.profileDetails.professionalDetails[0]?.designation
+				? [userResponse.result.response.profileDetails.professionalDetails[0]?.designation]
 				: undefined,
 		},
 	}
@@ -99,6 +99,7 @@ const readUserById = async (req, res, selectedConfig) => {
 		const responseData = processUserResponse(userResponse)
 		responseData.result.competency = competencyIds
 		console.log('RESPONSE DATA: ', JSON.stringify(responseData, null, 3))
+		responseData.responseCode = 'OK'
 		return res.send(responseData)
 	} catch (error) {
 		console.error('Error fetching user details:', error)
