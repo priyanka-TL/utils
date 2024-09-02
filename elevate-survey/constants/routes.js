@@ -601,12 +601,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/survey/v1/surveys/details/',
+			sourceRoute: '/survey/v1/surveys/details',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/survey/v1/surveys/details/',
+				path: '/survey/v1/surveys/details',
 				type: 'POST'
 			},
 		},
