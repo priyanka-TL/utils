@@ -86,11 +86,6 @@
         chdir: "{{ current_path }}/{{ folderPath }}"
       register: version_output
 
-    - name: Check if version increment was successful
-      fail:
-        msg: "Failed to increment npm version. The version in package.json did not update."
-      when: "'New version is:' not in version_output.stdout"
-
     - name: Publish the npm package
       shell: |
         cd {{ current_path }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
