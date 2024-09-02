@@ -8,6 +8,17 @@
       slurp:
         src: "{{ project_path }}/.token"
       register: slurpfile
+    
+    - name: Print project path
+      debug:
+        msg: "Project path is: {{ project_path }}"
+    - name: Print release path
+      debug:
+        msg: "Release path is: {{ release_path }}"
+    - name: Print full folder path
+      debug:
+        msg: "Full folder path is: {{ release_path }}/{{ folder_path }}"
+
 
     - name: Create release folder
       set_fact:
@@ -39,8 +50,11 @@
     - name: Delete Old Folder & create folder
       shell: rm -rf {{ current_path }} &&  cd {{ project_path }} && mkdir {{ directoryName }}
 
-    - name: Update npm
-      shell: cd {{release_path}}/{{ directoryName }}/{{folderPath}} && npm i 
+    - name: Update npm if directory exists
+      shell: npm i
+      args:
+        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
+      when: folder_stat.stat.exists
 
     - name: Move code from release  to service folder
       shell: mv "{{ release_path }}"/* {{ current_path }}/
