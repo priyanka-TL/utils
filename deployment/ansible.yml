@@ -84,12 +84,6 @@
         chdir: "{{ current_path }}/{{ folderPath }}"
       register: version_output
 
-    - name: Publish the npm package
-      shell: |
-        cd {{ current_path }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
-      args:
-        chdir: "{{ current_path }}/{{ folderPath }}"
-      register: npm_publish_output
     - name: Display current npm version
       debug:
         msg: "{{ current_version_output.stdout }}"
@@ -97,6 +91,14 @@
     - name: Display new npm version
       debug:
         msg: "{{ version_output.stdout }}"
+
+    - name: Publish the npm package
+      shell: |
+        cd {{ current_path }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
+      args:
+        chdir: "{{ current_path }}/{{ folderPath }}"
+      register: npm_publish_output
+    
 
     - name: Display NPM publish output
       debug:
