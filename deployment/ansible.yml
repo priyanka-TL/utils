@@ -8,6 +8,11 @@
       slurp:
         src: "{{ project_path }}/.token"
       register: slurpfile
+
+    - name: Create release folder
+      set_fact:
+        release_path: "{{ project_path }}/releases/{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
+        current_path: "{{ project_path }}/{{ directoryName }}"
     
     - name: Print project path
       debug:
@@ -15,16 +20,13 @@
     - name: Print release path
       debug:
         msg: "Release path is: {{ release_path }}"
+    - name: Print current path
+      debug:
+        msg: "Project path is: {{ current_path }}"
     - name: Print full folder path
       debug:
         msg: "Full folder path is: {{ release_path }}/{{ folder_path }}"
 
-
-    - name: Create release folder
-      set_fact:
-        release_path: "{{ project_path }}/releases/{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
-        current_path: "{{ project_path }}/{{ directoryName }}"
-    
     - name: Retrieve current release folder
       command: readlink -f {{ directoryName }}
       register: current_release_path
