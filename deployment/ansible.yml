@@ -55,10 +55,10 @@
     - name: Update npm if directory exists
       shell: npm i
       args:
-        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
+        chdir: "{{ release_path }}/{{ folderPath }}"
       when: folder_stat.stat.exists
 
-    - name: Move code from release  to service folder
+    - name: Move code from release to service folder
       shell: mv "{{ release_path }}"/* {{ current_path }}/
 
     - name: Delete release folder
@@ -68,22 +68,24 @@
       shell: |
         echo "//registry.npmjs.org/:_authToken={{npmToken}}" > .npmrc
       args:
-        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
+        chdir: "{{ current_path }}/{{ folderPath }}"
 
     - name: Increment npm version (patch)
       shell: |
-        cd {{ release_path }}/{{ directoryName }}/{{ folderPath }} && npm version patch
+        cd {{current_path}}/{{ folderPath }} && npm version patch
       args:
         chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
 
     - name: Publish the npm package
       shell: |
-        cd {{ release_path }}/{{ directoryName }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
+        cd {{ current_path }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
       args:
-        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
+        chdir: "{{ current_path }}/{{ folderPath }}"
       register: npm_publish_output
 
     - name: Display NPM publish output
       debug:
         msg: "{{ npm_publish_output.stdout }}"
+
+    
     
