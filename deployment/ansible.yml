@@ -25,7 +25,7 @@
         msg: "Project path is: {{ current_path }}"
     - name: Print full folder path
       debug:
-        msg: "Full folder path is: {{ release_path }}/{{ folder_path }}"
+        msg: "Full folder path is: {{ release_path }}/{{ folderPath }}"
 
     - name: Retrieve current release folder
       command: readlink -f {{ directoryName }}
@@ -68,19 +68,19 @@
       shell: |
         echo "//registry.npmjs.org/:_authToken={{npmToken}}" > .npmrc
       args:
-        chdir: "{{ release_path }}/{{ folderPath }}"
+        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
 
     - name: Increment npm version (patch)
       shell: |
-        cd {{ release_path }}/{{ folderPath }} && npm version patch
+        cd {{ release_path }}/{{ directoryName }}/{{ folderPath }} && npm version patch
       args:
-        chdir: "{{ release_path }}/{{ folderPath }}"
+        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
 
     - name: Publish the npm package
       shell: |
-        cd {{ release_path }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
+        cd {{ release_path }}/{{ directoryName }}/{{ folderPath }} && npm publish --registry {{ npm_registry }}
       args:
-        chdir: "{{ release_path }}/{{ folderPath }}"
+        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
       register: npm_publish_output
 
     - name: Display NPM publish output
