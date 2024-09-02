@@ -52,11 +52,8 @@
     - name: Delete Old Folder & create folder
       shell: rm -rf {{ current_path }} &&  cd {{ project_path }} && mkdir {{ directoryName }}
 
-    - name: Update npm if directory exists
-      shell: npm i
-      args:
-        chdir: "{{ release_path }}/{{ folderPath }}"
-      when: folder_stat.stat.exists
+    - name: Update npm
+      shell: cd {{release_path}}/{{ directoryName }}/{{ folderPath }} && npm i
 
     - name: Move code from release to service folder
       shell: mv "{{ release_path }}"/* {{ current_path }}/
