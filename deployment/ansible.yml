@@ -53,7 +53,7 @@
       shell: rm -rf {{ current_path }} &&  cd {{ project_path }} && mkdir {{ directoryName }}
 
     - name: Update npm
-      shell: cd {{release_path}}/{{ directoryName }}/{{ folderPath }} && npm i
+      shell: cd {{release_path}}/{{ folderPath }} && npm i
 
     - name: Move code from release to service folder
       shell: mv "{{ release_path }}"/* {{ current_path }}/
@@ -71,7 +71,7 @@
       shell: |
         cd {{current_path}}/{{ folderPath }} && npm version patch
       args:
-        chdir: "{{ release_path }}/{{ directoryName }}/{{ folderPath }}"
+        chdir: "{{ current_path }}/{{ folderPath }}"
 
     - name: Publish the npm package
       shell: |
