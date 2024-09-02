@@ -69,7 +69,7 @@
     
     - name: Get the current version of the npm package
       shell: |
-        current_version=$(npm show {{ package_name }} version)
+        current_version=$(npm show {{ folderPath }} version)
         echo "Current version is: $current_version"
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
