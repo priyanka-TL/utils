@@ -1,5 +1,5 @@
 const routesConfig = require('../constants/routes')
-const entityController = require('../controllers/entity')
+const entityController = require('../controllers/selfcreationportal')
 const orchestrationHandler = async (req, res, responses) => {
 	console.log(req.targetPackages, req.inSequence, req.orchestrated, req.sourceRoute, responses)
 	console.log(req.body)
