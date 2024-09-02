@@ -78,7 +78,9 @@
     - name: Increment npm version (patch)
       shell: |
         cd {{ current_path }}/{{ folderPath }}
-        new_version=$(npm version patch --no-git-tag-version | awk '{print $1}')
+        npm version patch --no-git-tag-version
+        # Capture the updated version from package.json
+        new_version=$(node -p "require('./package.json').version")
         echo "New version is: $new_version"
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
