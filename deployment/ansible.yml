@@ -66,6 +66,14 @@
         echo "//registry.npmjs.org/:_authToken={{npmToken}}" > .npmrc
       args:
         chdir: "{{ current_path }}/{{ folderPath }}"
+    
+    - name: Get the latest version of the npm package
+      shell: |
+        latest_version=$(npm show {{ folderPath }} version)
+        echo "Latest version is: $latest_version"
+      args:
+        chdir: "{{ current_path }}/{{ folderPath }}"
+      register: latest_version_output
 
     - name: Increment npm version (patch)
       shell: |
