@@ -84,7 +84,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 				"projection": common.PROJECT_PROJECTION_FIELDS,
 				"limit": max_limit
 			}
-			if (req?.body && req.bod?.search) {
+			if (req?.body && req.body?.search) {
 				projectReqBody.query.title = {
 					"$regex": req.body.search,
 					"$options": 'i'
