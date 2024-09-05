@@ -52,6 +52,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 }
 
 const processUserResponse = (userResponse) => {
+
 	return {
 		result: {
 			name: userResponse.result.response.profileDetails.personalDetails.firstname,
@@ -61,6 +62,11 @@ const processUserResponse = (userResponse) => {
 			})),
 			id: userResponse.result.response.identifier,
 			organization_id: userResponse.result.response.rootOrg.id,
+			organization:{
+				id: userResponse.result.response.rootOrg.id,
+				name: userResponse.result.response.rootOrg.orgName
+				// code: "sl"
+			},
 			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
 			competency: [],
 			language: userResponse.result.response.profileDetails.personalDetails?.domicileMedium,
@@ -137,8 +143,11 @@ const processUserSearchResponse = (content) => {
 				id: user.id,
 				image: user?.profileDetails?.profileImageUrl,
 				name: user?.profileDetails?.personalDetails?.firstname,
-				organization: user?.rootOrgName,
-				email: ser?.profileDetails?.personalDetails?.primaryEmail
+				organization: {
+					id: user?.rootOrgId,
+					name:user?.rootOrgName
+				},
+				email: user?.profileDetails?.personalDetails?.primaryEmail
 			}
 		}),
 	}
