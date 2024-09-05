@@ -36,7 +36,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 		})
 		console.log('RESPONSE:', response)
 		console.log('RESPONSE.RESULT:', response?.result)
-		console.log('RESPONSE.RESULT.RESULT:', response?.result?.result)
+		// console.log('RESPONSE.RESULT.RESULT:', response?.result?.result)
 		const responseData = {
 			result: {
 				id: response.result.response.id,
@@ -67,6 +67,7 @@ const processUserResponse = (userResponse) => {
 			designation: Array.isArray(userResponse.result.response.profileDetails?.professionalDetails)
 				? [userResponse.result.response.profileDetails.professionalDetails[0]?.designation]
 				: undefined,
+			image: userResponse.result.response.profileDetails.profileImageUrl ? userResponse.result.response.profileDetails.profileImageUrl : undefined
 		},
 	}
 }
@@ -127,12 +128,17 @@ const readUserWithToken = async (req, res, selectedConfig) => {
 }
 
 const processUserSearchResponse = (content) => {
+
+	console.log("============ user Details  ====================",content)
 	return {
 		result: content.map((user) => {
 			console.log(user)
 			return {
 				id: user.id,
 				image: user?.profileDetails?.profileImageUrl,
+				name: user?.profileDetails?.personalDetails?.firstname,
+				organization: user?.rootOrgName,
+				email: ser?.profileDetails?.personalDetails?.primaryEmail
 			}
 		}),
 	}
@@ -158,6 +164,53 @@ const accountList = async (req, res, selectedConfig) => {
 	}
 }
 
+const listOrganisation = async (req, res, selectedConfig) => {
+
+	console.log("req.body list org =========",req.body)
+	const body = {
+		request: {
+			filters: {
+				id: req.body.organizationIds,
+			},
+			sortBy: {
+				orgName: "asc"
+			},
+		},
+	}
+	try {
+
+		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'],
+		})
+
+		
+		console.log('RESPONSE:', response)
+		console.log('RESPONSE.RESULT:', response?.result)
+		console.log('RESPONSE.RESULT.response.:', response?.result?.response)
+		console.log('RESPONSE.RESULT.response.content:', response?.result?.response?.content)
+		console.log('RESPONSE.RESULT.content count:', response?.result.response.count)
+
+		let orgInfo = [];
+		response.result.response.content.map(async function(orgDetails){
+
+			orgInfo.push({
+				code : orgDetails.orgCode,
+				name: orgDetails.orgName,
+				id : orgDetails.id
+			})
+		});
+		const responseData = {
+			"responseCode": "OK",
+			"message": "Organization fetched successfully.",
+			result: orgInfo
+		}
+		return res.json(responseData);
+	} catch (error) {
+		console.error('Error fetching user details:', error)
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
 const userController = {
 	createUser,
 	updateUser,
@@ -167,6 +220,7 @@ const userController = {
 	readUserById,
 	readUserWithToken,
 	accountList,
+	listOrganisation
 }
 
 module.exports = userController

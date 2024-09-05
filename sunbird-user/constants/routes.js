@@ -376,8 +376,9 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/user/v1/organization/list',
+				path: '/v1/org/search',
 				type: 'GET',
+				functionName: 'listOrganisation'
 			},
 		},
 		{
