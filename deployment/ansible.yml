@@ -30,7 +30,7 @@
 
     - name: Clone the repository
       git:
-        repo: https://github.com/priyanka-TL/utils.git
+        repo: https://github.com/ELEVATE-Project/utils.git
         dest: "{{ release_path }}"
         clone: yes
         update: yes
