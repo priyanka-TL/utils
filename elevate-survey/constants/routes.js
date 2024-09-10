@@ -881,6 +881,96 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/observations/entities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/entities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/searchEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/searchEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/assessment',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/assessment',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/assessment/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/assessment/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/updateEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/list',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/list/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/list/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
