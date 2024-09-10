@@ -861,6 +861,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/solutions/uploadThemesRubricExpressions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/uploadThemesRubricExpressions',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/uploadThemesRubricExpressions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/uploadThemesRubricExpressions/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
