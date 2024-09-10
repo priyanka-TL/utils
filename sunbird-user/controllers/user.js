@@ -163,7 +163,10 @@ const accountList = async (req, res, selectedConfig) => {
 	}
 	try {
 		const userIds = req.body.userIds
-		if (!Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
+
+		console.log("------- ================ -------",req.body);
+
+		// if (Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
 		body.request.filters.userId = userIds
 		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
 		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
