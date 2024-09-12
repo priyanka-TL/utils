@@ -9,7 +9,7 @@ const getDependencies = () => {
 
 const getPackageMeta = () => {
 	return {
-		basePackageName: 'entity_management',
+		basePackageName: 'entity-management',
 		packageName: 'elevate-entity-management',
 	}
 }
