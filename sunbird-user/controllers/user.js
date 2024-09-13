@@ -69,7 +69,8 @@ const processUserResponse = (userResponse) => {
 			},
 			phone: userResponse.result.response.profileDetails.personalDetails.mobile,
 			competency: [],
-			language: userResponse.result.response.profileDetails.personalDetails?.domicileMedium,
+			language: userResponse.result.response.profileDetails.personalDetails.domicileMedium ?
+			 userResponse.result.response.profileDetails.personalDetails?.domicileMedium : undefined,
 			designation: Array.isArray(userResponse.result.response.profileDetails?.professionalDetails)
 				? [userResponse.result.response.profileDetails.professionalDetails[0]?.designation]
 				: undefined,
@@ -116,16 +117,36 @@ const readUserById = async (req, res, selectedConfig) => {
 
 const readUserWithToken = async (req, res, selectedConfig) => {
 	try {
+
+		console.log("================== readUserWithToken =======")
+
+		const targetRoute1 = selectedConfig.targetRoute.paths[0].path
+		const targetRoute2 = selectedConfig.targetRoute.paths[1]
+
 		let token = req.headers['x-auth-token']
 		if (token && token.toLowerCase().startsWith('bearer ')) token = token.slice(7)
 
 		const tokenClaims = jwt.decode(token)
 		const userId = tokenClaims.sub.split(':').pop()
 
-		const userResponse = await requesters.get(req.baseUrl, selectedConfig.targetRoute.path, req.headers, {
+		const userResponse = await requesters.get(req.baseUrl,targetRoute1.path, req.headers, {
 			id: userId,
 		})
-		const responseData = processUserResponse(userResponse)
+
+		if (userResponse.params.status == 'FAILED') return res.send(userResponse)
+		const enrollmentResponse = await requesters.get(targetRoute2.baseUrl, targetRoute2.path, req.headers, {
+			id: userId,
+		})
+		const competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
+		
+
+		console.log("================== competencyIds =======",competencyIds)
+
+		let responseData = processUserResponse(userResponse)
+		responseData.result.competency = competencyIds
+
+
+
 		return res.json(responseData)
 	} catch (error) {
 		console.error('Error fetching user details:', error)
