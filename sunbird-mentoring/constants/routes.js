@@ -1103,6 +1103,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'GET',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/notification/template/:id',
 			type: 'GET',
 			priority: 'MUST_HAVE',
@@ -1111,6 +1122,17 @@ module.exports = {
 			targetRoute: {
 				path: '/mentoring/v1/notification/template/:id',
 				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template/:id',
+			type: 'PATCH',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/notification/template/:id',
+				type: 'PATCH',
 			},
 		},
 		{
