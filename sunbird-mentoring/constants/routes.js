@@ -1523,5 +1523,16 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/org-admin/setDefaultQuestionSets',
+			type: 'POST',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/org-admin/setDefaultQuestionSets',
+				type: 'POST',
+			},
+		}
 	],
 }
