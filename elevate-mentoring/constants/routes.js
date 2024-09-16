@@ -1516,5 +1516,45 @@ module.exports = {
 				type: 'DELETE',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template/:id',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template/:id',
+				type: 'PATCH',
+			},
+		},
 	],
 }
