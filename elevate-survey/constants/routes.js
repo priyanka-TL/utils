@@ -976,7 +976,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: true,
 			targetRoute: {
-				path: '/survey/v1/admin/dbFind/solutions',
+				path: '/samiksha/v1/admin/dbFind/solutions',
 				type: 'POST',
 				functionName: 'fetchObserbationAndSurvey',
 			},
