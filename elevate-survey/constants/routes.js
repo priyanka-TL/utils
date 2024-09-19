@@ -971,6 +971,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/admin/dbFind/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/admin/dbFind/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
