@@ -981,6 +981,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/solutionDetails/criteria/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutionDetails/criteria/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutionDetails/criteria',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutionDetails/criteria',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
