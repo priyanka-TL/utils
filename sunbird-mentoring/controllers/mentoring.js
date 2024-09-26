@@ -26,12 +26,17 @@ const profileRead = async (req, res, selectedConfig) => {
 		const targetRoute2 = selectedConfig.targetRoute.paths[1].path
 
 		const userCreateResponse = await requesters.post(req.baseUrl, targetRoute1, {}, req.headers)
+		console.log("userCreateResponse api respo",userCreateResponse);
+		console.log("profileRead create json",JSON.stringify(userCreateResponse));
 		if (userCreateResponse.responseCode == 'OK') {
 			const mentoringResponse = await requesters.get(req.baseUrl, targetRoute2, {
 				'x-authenticated-user-token': req.headers['x-authenticated-user-token'],
 			})
 			res.json(mentoringResponse)
-		} else res.json(userCreateResponse)
+		} else {
+			console.log("profileRead error create",JSON.stringify(userCreateResponse));
+			res.json(userCreateResponse)
+		}
 	} catch (error) {
 		console.error('Error fetching organization details:', error)
 		res.status(500).json({ error: 'Internal Server Error' })

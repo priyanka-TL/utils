@@ -84,7 +84,7 @@ const post = (baseUrl, route, requestBody, headers) => {
 				return error
 			})
 	} catch (err) {
-		console.log(err)
+		console.log("error post request ",err)
 		throw err
 	}
 }

@@ -107,12 +107,15 @@ const get = async (baseUrl, route, headers, pathParams = {}) => {
 			.then((response) => response.data)
 			.catch((error) => {
 				if (error.response) {
+					console.log("error.response in complete error",error)
+					console.log("error.response in requestes url",url)
+					console.log("error.response in requestes",error.response)
 					return error.response.data
 				}
 				return error
 			})
 	} catch (error) {
-		console.error(error)
+		console.error("ERROR IN get call ",error)
 		throw error
 	}
 }
