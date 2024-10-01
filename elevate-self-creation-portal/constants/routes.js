@@ -391,7 +391,7 @@ module.exports = {
 					},
 					{
 						baseUrl: process.env.SURVEY_SERVICE_BASE_URL,
-						path: '/samiksha/v1/admin/dbFind/solutions',
+						path: '/survey/v1/admin/dbFind/solutions',
 						type: 'POST'
 						}
 			],
@@ -497,6 +497,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/comments/update/:id',
+			type: 'DELETE',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/comments/update/:id',
+				type: 'DELETE',
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/reviews/update/:id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
@@ -559,16 +570,15 @@ module.exports = {
 				path: '/scp/v1/cloud-services/file/getDownloadableUrl',
 				type: 'POST'
 			},
-		},	
-		,
+		},
         {
-            sourceRoute: "/scp/v1/resource/getPublishedResources",
-            type: "GET",
+            sourceRoute: '/scp/v1/resource/getPublishedResources',
+            type: 'GET',
             inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/scp/v1/resource/getPublishedResources',
-				type: 'POST'
+				type: 'GET'
 			}
         }	
 	],
