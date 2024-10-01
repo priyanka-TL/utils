@@ -9,7 +9,7 @@ const getDependencies = () => {
 
 const getPackageMeta = () => {
 	return {
-		basePackageName: 'self_creation_portal',
+		basePackageName: 'self-creation-portal',
 		packageName: 'elevate-self-creation-portal',
 	}
 }

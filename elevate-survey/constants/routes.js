@@ -1,673 +1,1003 @@
 module.exports = {
 	routes: [
 		{
-			sourceRoute: '/samiksha/v1/admin/createIndex/solutions',
+			sourceRoute: '/survey/v1/admin/createIndex/solutions',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/admin/createIndex/solutions',
+				path: '/survey/v1/admin/createIndex/solutions',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/admin/createIndex/:id',
+			sourceRoute: '/survey/v1/admin/createIndex/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/admin/createIndex/:id',
+				path: '/survey/v1/admin/createIndex/:id',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/polls/create',
+			sourceRoute: '/survey/v1/polls/create',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/polls/create',
+				path: '/survey/v1/polls/create',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/polls/list',
+			sourceRoute: '/survey/v1/polls/list',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/polls/list',
+				path: '/survey/v1/polls/list',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/polls/getPollQuestions/:id',
+			sourceRoute: '/survey/v1/polls/getPollQuestions/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/polls/getPollQuestions/:id',
+				path: '/survey/v1/polls/getPollQuestions/:id',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/pollSubmissions/make/:id',
+			sourceRoute: '/survey/v1/pollSubmissions/make/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/pollSubmissions/make/:id',
+				path: '/survey/v1/pollSubmissions/make/:id',
 				type: 'POST'
 			},
 		},	
 		{
-			sourceRoute: '/samiksha/v1/files/preSignedUrls',
+			sourceRoute: '/survey/v1/files/preSignedUrls',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/files/preSignedUrls',
+				path: '/survey/v1/files/preSignedUrls',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/files/getDownloadableUrl',
+			sourceRoute: '/survey/v1/files/getDownloadableUrl',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/files/getDownloadableUrl',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/reports/submissionReport',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/reports/submissionReport',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/reports/fetch',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/reports/fetch',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/details/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/details/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/details',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/details',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/verifyLink',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/verifyLink',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/verifyLink/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/verifyLink/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/fetchLink',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/files/getDownloadableUrl',
+				path: '/survey/v1/solutions/fetchLink',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/create',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/create',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/details/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/details/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/details',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/details',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/verifyLink',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/verifyLink',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/verifyLink/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/verifyLink/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/fetchLink',
+			sourceRoute: '/survey/v1/solutions/fetchLink/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/fetchLink',
+				path: '/survey/v1/solutions/fetchLink/:id',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/fetchLink/:id',
+			sourceRoute: '/survey/v1/solutions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/getDetails',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/getDetails',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/getDetails/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/getDetails/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/list',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/fetchLink/:id',
+				path: '/survey/v1/solutions/list',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/update',
+			sourceRoute: '/survey/v1/solutions/isTargetedBasedOnUserProfile',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/update',
+				path: '/survey/v1/solutions/isTargetedBasedOnUserProfile',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/update/:id',
+			sourceRoute: '/survey/v1/solutions/isTargetedBasedOnUserProfile/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/update/:id',
+				path: '/survey/v1/solutions/isTargetedBasedOnUserProfile/:id',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/getDetails',
+			sourceRoute: '/survey/v1/solutions/detailsBasedOnRoleAndLocation/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/getDetails',
+				path: '/survey/v1/solutions/detailsBasedOnRoleAndLocation/:id',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/getDetails/:id',
+			sourceRoute: '/survey/v1/solutions/detailsBasedOnRoleAndLocation/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/getDetails/:id',
+				path: '/survey/v1/solutions/detailsBasedOnRoleAndLocation/:id',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/list',
+			sourceRoute: '/survey/v1/solutions/forUserRoleAndLocation',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/forUserRoleAndLocation',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/addEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/addEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/addEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/addEntitiesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/addRolesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/addRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/addRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/addRolesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/removeEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/removeEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/removeEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/removeEntitiesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/removeRolesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/removeRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/removeRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/removeRolesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/targetedSolutions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/targetedSolutions',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/addEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/addEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/addEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/addEntitiesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/addRolesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/addRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/addRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/addRolesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/removeEntitiesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/removeEntitiesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/removeEntitiesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/removeEntitiesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/removeRolesInScope',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/removeRolesInScope',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/removeRolesInScope/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/removeRolesInScope/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/join',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/join',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/join/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/join/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/details',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/solutions/list',
+				path: '/survey/v1/programs/details',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/solutions/isTargetedBasedOnUserProfile',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/isTargetedBasedOnUserProfile',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/isTargetedBasedOnUserProfile/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/isTargetedBasedOnUserProfile/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/detailsBasedOnRoleAndLocation/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/detailsBasedOnRoleAndLocation/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/detailsBasedOnRoleAndLocation/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/detailsBasedOnRoleAndLocation/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/forUserRoleAndLocation',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/forUserRoleAndLocation',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/addEntitiesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/addEntitiesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/addEntitiesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/addEntitiesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/addRolesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/addRolesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/addRolesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/addRolesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/removeEntitiesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/removeEntitiesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/removeEntitiesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/removeEntitiesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/removeRolesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/removeRolesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/removeRolesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/removeRolesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/solutions/targetedSolutions',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/solutions/targetedSolutions',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/addEntitiesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/addEntitiesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/addEntitiesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/addEntitiesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/addRolesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/addRolesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/addRolesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/addRolesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/removeEntitiesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/removeEntitiesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/removeEntitiesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/removeEntitiesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/removeRolesInScope',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/removeRolesInScope',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/removeRolesInScope/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/removeRolesInScope/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/join',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/join',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/join/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/join/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/create',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/create',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/update',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/update',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/update/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/programs/update/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/programs/details',
+			sourceRoute: '/survey/v1/programs/details/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/programs/details',
+				path: '/survey/v1/programs/details/:id',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/programs/details/:id',
+			sourceRoute: '/survey/v1/programs/list',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/programs/details/:id',
+				path: '/survey/v1/programs/list',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/programs/list',
+			sourceRoute: '/survey/v1/surveys/importSurveryTemplateToSolution/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/importSurveryTemplateToSolution/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/importSurveryTemplateToSolution',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/importSurveryTemplateToSolution',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/getLink/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/getLink/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/getLink/',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/getLink/',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/createSolutionTemplate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/createSolutionTemplate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/mapSurverySolutionToProgram/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/mapSurverySolutionToProgram/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/mapSurverySolutionToProgram',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/mapSurverySolutionToProgram',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/userAssigned',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/userAssigned',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/details/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/details/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveys/details',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveys/details',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveySubmissions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveySubmissions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveySubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveySubmissions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/surveySubmissions/getStatus/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/programs/list',
+				path: '/survey/v1/surveySubmissions/getStatus/:id',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/surveys/importSurveryTemplateToSolution/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/importSurveryTemplateToSolution/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/importSurveryTemplateToSolution',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/importSurveryTemplateToSolution',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/getLink/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/getLink/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/getLink/',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/getLink/',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/createSolutionTemplate',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/createSolutionTemplate',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/mapSurverySolutionToProgram/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/mapSurverySolutionToProgram/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/mapSurverySolutionToProgram',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/mapSurverySolutionToProgram',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/userAssigned',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/userAssigned',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/details/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/details/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveys/details/',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveys/details/',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/update/:id',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/update/:id',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/update',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/update',
-				type: 'POST'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/getStatus/:id',
+			sourceRoute: '/survey/v1/surveySubmissions/getStatus',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/getStatus/:id',
+				path: '/survey/v1/surveySubmissions/getStatus',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/getStatus',
-			type: 'GET',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/getStatus',
-				type: 'GET'
-			},
-		},
-		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/list',
+			sourceRoute: '/survey/v1/surveySubmissions/list',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/list',
+				path: '/survey/v1/surveySubmissions/list',
 				type: 'POST'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/isAllowed/:id',
+			sourceRoute: '/survey/v1/surveySubmissions/isAllowed/:id',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/isAllowed/:id',
+				path: '/survey/v1/surveySubmissions/isAllowed/:id',
 				type: 'GET'
 			},
 		},
 		{
-			sourceRoute: '/samiksha/v1/surveySubmissions/isAllowed',
+			sourceRoute: '/survey/v1/surveySubmissions/isAllowed',
 			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/samiksha/v1/surveySubmissions/isAllowed',
+				path: '/survey/v1/surveySubmissions/isAllowed',
 				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/questions/bulkCreate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/questions/bulkCreate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/entities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/entities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/updateEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/updateEntities/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/updateEntities/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/assessment',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/assessment',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/assessment/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/assessment/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/criteria/upload',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/criteria/upload',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/frameworks/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/frameworks/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/frameworks/uploadThemes',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/frameworks/uploadThemes',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/frameworks/uploadThemes/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/frameworks/uploadThemes/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/importFromFramework',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/importFromFramework',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/uploadCriteriaRubricExpressions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/uploadCriteriaRubricExpressions',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/uploadCriteriaRubricExpressions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/uploadCriteriaRubricExpressions/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/importFromSolution',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/importFromSolution',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/programs/targetedPrograms',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/programs/targetedPrograms',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/uploadThemesRubricExpressions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/uploadThemesRubricExpressions',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutions/uploadThemesRubricExpressions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutions/uploadThemesRubricExpressions/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/entities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/entities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/searchEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/searchEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/assessment',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/assessment',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/assessment/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/assessment/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/updateEntities',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/list',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/list/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/list/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/admin/dbFind/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/admin/dbFind/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutionDetails/criteria/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutionDetails/criteria/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutionDetails/criteria',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutionDetails/criteria',
+				type: 'POST'
 			},
 		},
 		{

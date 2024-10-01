@@ -31,6 +31,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/entity/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/entity/list',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/mentoring/v1/entity/update',
 			type: 'PUT',
 			inSequence: false,
@@ -1464,6 +1474,86 @@ module.exports = {
 			targetRoute: {
 				path: '/mentoring/v1/availability/users',
 				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/read/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/read/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/update/:id',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/update/:id',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/default-rule/delete/:id',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/default-rule/delete/:id',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template/:id',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template/:id',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template',
+				type: 'PATCH',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/notification/template/:id',
+			type: 'PATCH',
+			targetRoute: {
+				path: '/mentoring/v1/notification/template/:id',
+				type: 'PATCH',
 			},
 		},
 	],

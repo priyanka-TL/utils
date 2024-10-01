@@ -8,7 +8,7 @@
 module.exports = {
     PROJECT_STATUS_PUBLISHED : 'published',
     PROJECT_PROJECTION_FIELDS : ["_id" , "title","createdBy","createdAt","description"],
-    RESOURCE_TYPE_PROJECT : 'project',
+    RESOURCE_TYPE_PROJECT : 'projects',
     PROJECT_TRANSFORM_KEYS : {
         _id : "id",
         createdAt : "created_at",

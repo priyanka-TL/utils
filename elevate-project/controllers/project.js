@@ -38,7 +38,7 @@ const fetchProjectTemplates = async (req, res, responses) => {
 		const resourceType = req?.body?.resourceType || [];
 		if (Array.isArray(resourceType) && resourceType.length > 0) {
 			// if resource type have type = projects proceed to call api 
-			proceedToCallProjectService = resourceType.includes(common.RESOURCE_TYPE_PTOJECT);
+			proceedToCallProjectService = resourceType.includes(common.RESOURCE_TYPE_PROJECT);
 		}else if(resourceType.length == 0){
 			// if resource type have type = empty call API because the client is expecting all type of resources 
 			proceedToCallProjectService = true	
@@ -53,15 +53,14 @@ const fetchProjectTemplates = async (req, res, responses) => {
 			"projection": common.PROJECT_PROJECTION_FIELDS,
 			"limit": max_limit
 		}
-		
-		// replace the word bearer if token has it 
-		const x_auth_token = req.headers[common.AUTH_TOKEN_KEY].replace(/^(Bearer|bearer)\s*/, '');
+
 		// custom header 
-		const header = {
-			'internal-access-token' : req.headers['internal_access_token'],
-			'X-auth-token': x_auth_token,
-			'Content-Type': 'application/json'
-		}
+		const header = {}
+		// replace the word bearer if token has it 
+		header[common.AUTH_TOKEN_KEY] = req.headers[common.AUTH_TOKEN_KEY].replace(/^(Bearer|bearer)\s*/, '')
+		header[common.INTERNAL_ACCESS_TOKEN] = req.headers['internal_access_token']
+		header[common.HEADER_CONTENT_TYPE] = 'application/json'
+
 		if (req?.body && req.bod?.search) {
 			reqBody.query.title = {
 				"$regex": req.body.search,
@@ -80,7 +79,7 @@ const fetchProjectTemplates = async (req, res, responses) => {
 				let newKey = common.PROJECT_TRANSFORM_KEYS[project] || project
 				accumulateResource[newKey] = projects[project]
 			}
-			accumulateResource['type'] = common.RESOURCE_TYPE_PTOJECT
+			accumulateResource['type'] = common.RESOURCE_TYPE_PROJECT
 			data.push(accumulateResource)
 		}, null)
 
