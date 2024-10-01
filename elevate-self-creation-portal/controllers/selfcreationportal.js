@@ -50,7 +50,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 			if (Array.isArray(resourceType) && resourceType.length > 0) {
 
 				// if resource type have type = projects proceed to call api 
-				proceedToCallProjectService = resourceType.includes(common.RESOURCE_TYPE_PTOJECT);
+				proceedToCallProjectService = resourceType.includes(common.RESOURCE_TYPE_PROJECT);
 
 				// if resource type have type = survey , observations or observation_with_rubrics proceed to call api 
 				proceedToCallSurveyService = resourceType.includes(common.RESOURCE_TYPE_OBSERVATION) || resourceType.includes(common.RESOURCE_TYPE_OBSERVATION_WITH_RUBRICS) || resourceType.includes(common.RESOURCE_TYPE_SURVEY);
@@ -101,7 +101,7 @@ const fetchResources = async (req, res, selectedConfig) => {
 						let newKey = common.PROJECT_TRANSFORM_KEYS[project] || project
 						accumulateResource[newKey] = projects[project]
 					}
-					accumulateResource['type'] = common.RESOURCE_TYPE_PTOJECT
+					accumulateResource['type'] = common.RESOURCE_TYPE_PROJECT
 					data.push(accumulateResource)
 				}, null)
 				response.result.data = [...response.result.data, ...data]
