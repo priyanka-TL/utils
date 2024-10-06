@@ -1141,7 +1141,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/users/solutions/:id',
+			sourceRoute: '/project/v1/users/solutions',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
@@ -1150,6 +1150,16 @@ module.exports = {
 				type: 'POST'
 			},
 		},
+		{
+			sourceRoute: '/project/v1/users/solutions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/users/solutions/:id',
+				type: 'POST'
+			},
+		}
 	],
 }
 
