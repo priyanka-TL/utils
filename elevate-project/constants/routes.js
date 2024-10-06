@@ -1141,7 +1141,7 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/users/solutions',
+			sourceRoute: '/project/v1/users/solutions/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
