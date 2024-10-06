@@ -1139,7 +1139,17 @@ module.exports = {
 				type: 'POST',
 				functionName: 'fetchProjectTemplates',
 			},
-		}
+		},
+		{
+			sourceRoute: '/project/v1/users/solutions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/users/solutions',
+				type: 'POST'
+			},
+		},
 	],
 }
 
