@@ -1031,6 +1031,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/forms/read/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/read/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/forms/update',
 			type: 'POST',
 			inSequence: false,
