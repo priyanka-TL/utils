@@ -1001,6 +1001,56 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/forms/find',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/find',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/read',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
