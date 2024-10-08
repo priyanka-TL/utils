@@ -1001,6 +1001,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/forms/find',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/find',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/forms/create',
 			type: 'POST',
 			inSequence: false,
