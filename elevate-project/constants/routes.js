@@ -1159,6 +1159,16 @@ module.exports = {
 				path: '/project/v1/users/solutions/:id',
 				type: 'POST'
 			},
+		},
+		{
+			sourceRoute: '/project/v1/users/programs',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/users/programs',
+				type: 'GET'
+			},
 		}
 	],
 }
