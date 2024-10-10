@@ -1162,12 +1162,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/project/v1/users/programs',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/users/programs',
-				type: 'GET'
+				type: 'POST'
 			},
 		}
 	],
