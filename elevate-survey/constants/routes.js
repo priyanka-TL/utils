@@ -931,6 +931,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/observations/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/list',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/observationSubmissions/update',
 			type: 'POST',
 			inSequence: false,
