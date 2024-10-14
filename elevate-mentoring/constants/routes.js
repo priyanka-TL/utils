@@ -1588,5 +1588,13 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/connections/getInfo',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/getInfo',
+				type: 'POST',
+			},
+		},
 	],
 }
