@@ -159,9 +159,18 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
+			paths: [
+				{
 				path: '/private/user/v1/read/:id',
-				type: 'GET',
-				functionName: 'readUserWithToken',
+				type: 'GET'
+				},
+				{
+					baseUrl: 'http://lms-service:9000',
+					path: '/private/v3/user/courses/list/:id',
+					type: 'GET'
+				}
+				],
+				functionName: 'readUserWithToken'
 			},
 		},
 		{

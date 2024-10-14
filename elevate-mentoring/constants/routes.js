@@ -1556,5 +1556,37 @@ module.exports = {
 				type: 'PATCH',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/connections/initiate',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/initiate',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/pending',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/connections/pending',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/accept',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/accept',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/reject',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/reject',
+				type: 'POST',
+			},
+		},
 	],
 }

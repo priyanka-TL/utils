@@ -1522,6 +1522,6 @@ module.exports = {
 				path: '/mentoring/v1/availability/users',
 				type: 'GET',
 			},
-		},
+		}
 	],
 }
