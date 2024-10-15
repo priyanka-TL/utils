@@ -1076,7 +1076,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/survey/v1/forms/profile/read',
+				path: '/survey/v1/profile/read',
 				type: 'POST'
 			},
 		},
@@ -1086,7 +1086,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/survey/v1/forms/configurations/read',
+				path: '/survey/v1/configurations/read',
 				type: 'POST'
 			},
 		},
@@ -1096,7 +1096,7 @@ module.exports = {
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/survey/v1/forms/configurations/createOrUpdate',
+				path: '/survey/v1/configurations/createOrUpdate',
 				type: 'POST'
 			},
 		},
