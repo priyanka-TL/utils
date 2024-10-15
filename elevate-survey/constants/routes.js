@@ -1081,6 +1081,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/configurations/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/configurations/read',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/configurations/createOrUpdate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/configurations/createOrUpdate',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
