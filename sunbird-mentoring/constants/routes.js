@@ -940,14 +940,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/org-admin/roleChange',
-			type: 'POST',
-			targetRoute: {
-				path: '/mentoring/v1/org-admin/roleChange',
-				type: 'POST',
-			},
-		},
-		{
 			sourceRoute: '/mentoring/v1/org-admin/setOrgPolicies',
 			type: 'POST',
 			targetRoute: {
@@ -2065,78 +2057,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/org-admin/getRequestDetails/:id',
-			type: 'GET',
-			targetRoute: {
-				path: '/user/v1/org-admin/getRequestDetails/:id',
-				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/org-admin/deactivateUser',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/org-admin/deactivateUser',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/org-admin/getRequests',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/org-admin/getRequests',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/org-admin/updateRequestStatus',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/org-admin/updateRequestStatus',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/organization/requestOrgRole',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/organization/requestOrgRole',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/admin/deactivateOrg/:id',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/admin/deactivateOrg/:id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/notification/create',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/notification/create',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/notification/update/:id',
-			type: 'PATCH',
-			targetRoute: {
-				path: '/user/v1/notification/update/:id',
-				type: 'PATCH',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/notification/read/:id',
-			type: 'GET',
-			targetRoute: {
-				path: '/user/v1/notification/read/:id',
-				type: 'GET',
-			},
-		},
-		{
 			sourceRoute: '/user/v1/notification/read',
 			type: 'GET',
 			targetRoute: {
@@ -2145,64 +2065,10 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/cloud-services/file/getSampleCSV',
-			type: 'GET',
-			targetRoute: {
-				path: '/user/v1/cloud-services/file/getSampleCSV',
-				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/notification/template',
-			type: 'POST',
-			targetRoute: {
-				path: '/user/v1/notification/template',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/notification/template/:id',
-			type: 'GET',
-			targetRoute: {
-				path: '/user/v1/notification/template/:id',
-				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/notification/template',
-			type: 'PATCH',
-			targetRoute: {
-				path: '/user/v1/notification/template',
-				type: 'PATCH',
-			},
-		},
-		{
 			sourceRoute: '/user/v1/account/search',
 			type: 'POST',
 			targetRoute: {
 				path: '/user/v1/account/search',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/permissions/create',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/permissions/create',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/permissions/update/:id',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/permissions/update/:id',
 				type: 'POST',
 			},
 		},
@@ -2215,135 +2081,6 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/permissions/list',
 				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/permissions/delete/:id',
-			type: 'DELETE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/permissions/delete/:id',
-				type: 'DELETE',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/modules/create',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/modules/create',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/modules/update/:id',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/modules/update/:id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/modules/list',
-			type: 'GET',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/modules/list',
-				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/modules/delete/:id',
-			type: 'DELETE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/modules/delete/:id',
-				type: 'DELETE',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/role-permission-mapping/delete/:role_id',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/role-permission-mapping/delete/:role_id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/role-permission-mapping/create/:role_id',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/role-permission-mapping/create/:role_id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/role-permission-mapping/list',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/role-permission-mapping/list',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/org-admin/updateUser',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/org-admin/updateUser',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/organization/addRelatedOrg/:org_id',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/organization/addRelatedOrg/:org_id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/organization/removeRelatedOrg/:org_id',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/organization/removeRelatedOrg/:org_id',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/account/changePassword',
-			type: 'POST',
-			priority: 'MUST_HAVE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/account/changePassword',
-				type: 'POST',
 			},
 		},
 		{

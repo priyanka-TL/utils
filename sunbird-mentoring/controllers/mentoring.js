@@ -26,19 +26,30 @@ const profileRead = async (req, res, selectedConfig) => {
 		const targetRoute2 = selectedConfig.targetRoute.paths[1].path
 
 		const userCreateResponse = await requesters.post(req.baseUrl, targetRoute1, {}, req.headers)
-		console.log("userCreateResponse api respo",userCreateResponse);
-		console.log("profileRead create json",JSON.stringify(userCreateResponse));
+	
+		if(process.env.DEBUG_MODE == "true"){
+			
+			console.log("userCreateResponse api respo",userCreateResponse);
+			console.log("profileRead create json",JSON.stringify(userCreateResponse));
+		}
 		if (userCreateResponse.responseCode == 'OK') {
 			const mentoringResponse = await requesters.get(req.baseUrl, targetRoute2, {
 				'x-authenticated-user-token': req.headers['x-authenticated-user-token'],
 			})
 			res.json(mentoringResponse)
 		} else {
-			console.log("profileRead error create",JSON.stringify(userCreateResponse));
+
+			if(process.env.DEBUG_MODE == "true"){
+				console.log("profileRead error create",JSON.stringify(userCreateResponse));
+			}
 			res.json(userCreateResponse)
+		
 		}
 	} catch (error) {
-		console.error('Error fetching organization details:', error)
+
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching organization details:', error)
+		}
 		res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
@@ -75,9 +86,13 @@ const readOrganization = async (req, res, selectedConfig) => {
 		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
 			'device-info': req.headers['device-info'],
 		})
-		console.log('RESPONSE:', response)
-		console.log('RESPONSE.RESULT:', response?.result)
-		// console.log('RESPONSE.RESULT.RESULT:', response?.result?.result)
+
+		if(process.env.DEBUG_MODE == "true"){
+			console.log('RESPONSE:', response)
+			console.log('RESPONSE.RESULT:', response?.result)
+			// console.log('RESPONSE.RESULT.RESULT:', response?.result?.result)
+
+		}
 		const responseData = {
 			result: {
 				id: response.result.response.id,
@@ -87,14 +102,19 @@ const readOrganization = async (req, res, selectedConfig) => {
 		}
 		return res.json(responseData)
 	} catch (error) {
-		console.error('Error fetching organization details:', error)
+
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching organization details:', error)
+		}
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
 
 const processUserResponse = (userResponse) => {
 
-	console.log("userResponse.result.response.rootOrg.id",userResponse.result.response.rootOrg.id);
+	if(process.env.DEBUG_MODE == "true"){
+		console.log("userResponse.result.response.rootOrg.id",userResponse.result.response.rootOrg.id);
+	}
 	return {
 		result: {
 			name: userResponse.result.response.profileDetails.personalDetails.firstname,
@@ -143,35 +163,49 @@ const readUserById = async (req, res, selectedConfig) => {
 			id: userId,
 		})
 
-		console.log("READ API response status:",userResponse.params.status);
-		console.log(" user read API resp ==  ",JSON.stringify(userResponse));
-		console.log(" API Response",JSON.stringify(userResponse));
+		if(process.env.DEBUG_MODE == "true"){
+			console.log("READ API response status:",userResponse.params.status);
+			console.log(" user read API resp ==  ",JSON.stringify(userResponse));
+			console.log(" API Response",JSON.stringify(userResponse));
+		}
 		if (userResponse.params.status == 'FAILED') {
-			console.log("userResponse.params.status ",userResponse.params.status);	
-			console.log("userResponse.params.status ",JSON.stringify(userResponse));	
+
+			if(process.env.DEBUG_MODE == "true"){
+				console.log("userResponse.params.status ",userResponse.params.status);	
+				console.log("userResponse.params.status ",JSON.stringify(userResponse));
+			}	
 			return res.send(userResponse) 
 		}
 		const enrollmentResponse = await requesters.get(targetRoute2.baseUrl, targetRoute2.path, req.headers, {
 			id: userId,
 		})
-		console.log('CALLING COMPETENCY ')
+
+		if(process.env.DEBUG_MODE == "true"){
+			console.log('CALLING COMPETENCY ')
+		}
 
 		let competencyIds = []
 		if(enrollmentResponse.result && enrollmentResponse.result.courses){
 			competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
 
 		}
-		  
-		console.log('competencyIds ==',competencyIds)
-		console.log("userResponse profile response ",userResponse);
+		 
+		if(process.env.DEBUG_MODE == "true"){
+			console.log('competencyIds ==',competencyIds)
+			console.log("userResponse profile response ",userResponse);
+		}
 		const responseData = processUserResponse(userResponse)
 		responseData.result.competency = competencyIds
 
-		console.log('RESPONSE DATA: ', JSON.stringify(responseData, null, 3))
+		if(process.env.DEBUG_MODE == "true"){
+			console.log('RESPONSE DATA: ', JSON.stringify(responseData, null, 3))
+		}
 		responseData.responseCode = 'OK'
 		return res.send(responseData)
 	} catch (error) {
-		console.error('Error fetching user details:', error)
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching user details:', error)
+		}
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
@@ -179,8 +213,9 @@ const readUserById = async (req, res, selectedConfig) => {
 const readUserWithToken = async (req, res, selectedConfig) => {
 	try {
 
-		console.log("================== readUserWithToken =======")
-
+		if(process.env.DEBUG_MODE == "true"){
+			console.log("================== readUserWithToken =======")
+		}
 		const targetRoute1 = selectedConfig.targetRoute.paths[0].path
 		const targetRoute2 = selectedConfig.targetRoute.paths[1]
 
@@ -201,8 +236,9 @@ const readUserWithToken = async (req, res, selectedConfig) => {
 		const competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
 		
 
-		console.log("================== competencyIds =======",competencyIds)
-
+		if(process.env.DEBUG_MODE == "true"){
+			console.log("================== competencyIds =======",competencyIds)
+		}
 		let responseData = processUserResponse(userResponse)
 		responseData.result.competency = competencyIds
 
@@ -210,14 +246,18 @@ const readUserWithToken = async (req, res, selectedConfig) => {
 
 		return res.json(responseData)
 	} catch (error) {
-		console.error('Error fetching user details:', error)
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching user details:', error)
+		}
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
 
 const processUserSearchResponse = (content) => {
 
-	console.log("============ user Details  ====================",content)
+	if(process.env.DEBUG_MODE == "true"){
+		console.log("============ user Details  ====================",content)
+	}
 	return {
 		result: content.map((user) => {
 			console.log(user)
@@ -245,22 +285,26 @@ const accountList = async (req, res, selectedConfig) => {
 	}
 	try {
 		const userIds = req.body.userIds
-
-		console.log("------- ================ -------",req.body);
-
+		if(process.env.DEBUG_MODE == "true"){
+			console.log("------- ================ -------",req.body);
+		}
 		// if (Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
 		body.request.filters.userId = userIds
 		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
 		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
 	} catch (error) {
-		console.error('Error fetching user details:', error)
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching user details:', error)
+		}
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
 
 const listOrganisation = async (req, res, selectedConfig) => {
 
-	console.log("req.body list org =========",req.body)
+	if(process.env.DEBUG_MODE == "true"){
+		console.log("req.body list org =========",req.body)
+	}
 	const body = {
 		request: {
 			filters: {
@@ -277,13 +321,13 @@ const listOrganisation = async (req, res, selectedConfig) => {
 			'device-info': req.headers['device-info'],
 		})
 
-		
-		console.log('RESPONSE:', response)
-		console.log('RESPONSE.RESULT:', response?.result)
-		console.log('RESPONSE.RESULT.response.:', response?.result?.response)
-		console.log('RESPONSE.RESULT.response.content:', response?.result?.response?.content)
-		console.log('RESPONSE.RESULT.content count:', response?.result.response.count)
-
+		if(process.env.DEBUG_MODE == "true"){		
+			console.log('RESPONSE:', response)
+			console.log('RESPONSE.RESULT:', response?.result)
+			console.log('RESPONSE.RESULT.response.:', response?.result?.response)
+			console.log('RESPONSE.RESULT.response.content:', response?.result?.response?.content)
+			console.log('RESPONSE.RESULT.content count:', response?.result.response.count)
+		}
 		let orgInfo = [];
 		response.result.response.content.map(async function(orgDetails){
 
@@ -300,7 +344,9 @@ const listOrganisation = async (req, res, selectedConfig) => {
 		}
 		return res.json(responseData);
 	} catch (error) {
-		console.error('Error fetching user details:', error)
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching user details:', error)
+		}
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }

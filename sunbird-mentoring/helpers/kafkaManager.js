@@ -17,10 +17,13 @@ const kafkaManager = async (kafkaPackage, environmentVariables) => {
 		await kafka.runConsumer(consumer, async (topic, message) => {
 			if (topic == environmentVariables.KB_MENTORING_NOTIFICATION_KAFKA_TOPIC) {
 				
-				console.log("-------------------- message",message.value);
+				if(process.env.DEBUG_MODE == "true"){
+					console.log("-------------------- message",message.value);
+				}
 				const body = (JSON.parse(message.value));
-
-				console.log("-------------------- body ",body);
+				if(process.env.DEBUG_MODE == "true"){
+					console.log("-------------------- body ",body);
+				}
 				if(body && body.type=="email"){
 			
 					const emailContent = body.email;
@@ -30,7 +33,9 @@ const kafkaManager = async (kafkaPackage, environmentVariables) => {
 					const headers ={
 						'Authorization': environmentVariables.SUNBIRD_AUTHORIZATION_TOKEN
 					}
-					console.log("---------- API request header",JSON.stringify(headers));
+					if(process.env.DEBUG_MODE == "true"){
+						console.log("---------- API request header",JSON.stringify(headers));
+					}
 					const requestBody = {
 						request:{
 							"notifications": [{
@@ -49,8 +54,9 @@ const kafkaManager = async (kafkaPackage, environmentVariables) => {
 						}
 					}
 
-
-					console.log("---------- API request",JSON.stringify(requestBody));
+					if(process.env.DEBUG_MODE == "true"){
+						console.log("---------- API request",JSON.stringify(requestBody));
+					}
 					post(
 						environmentVariables.SUNBIRD_NOTIFICAION_SERVICE_BASE_URL,
 						environmentVariables.SUNBIRD_NOTIFICAION_SEND_EMAIL_ROUTE,

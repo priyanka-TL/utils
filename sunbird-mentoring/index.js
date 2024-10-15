@@ -3,22 +3,33 @@ const routes = require('./constants/routes')
 const packageRouter = require('./router')
 const dependencyManager = require('./helpers/dependencyManager')
 
+require('dotenv').config();
+
+
+const packageName = 'sunbird-mentoring'
 const getDependencies = () => {
 	return ['kafka', 'kafka-connect', 'redis']
+}
+const getRequiredDependencies = () => {
+	return 	[
+		{
+			"packageName": packageName,
+			"dependencies": [{ "name": "kafka" }]
+		}
+	]
 }
 
 const getPackageMeta = () => {
 	return {
 		basePackageName: 'mentoring',
-		packageName: 'elevate-mentoring',
+		packageName: packageName,
 	}
 }
 
 const createPackage = (options) => {
 	const { kafkaClient, redisClient } = options
 
-	console.log('Package 1 Called')
-
+	
 	const sendNotification = (message) => {
 		kafkaClient.send(message)
 	}
@@ -41,40 +52,45 @@ const createPackage = (options) => {
 	}
 }
 
-const packageName = 'kb-mentoring-notification'
-const environmentVariablePrefix = packageName.toUpperCase().replace(/-/g, '_');
+if(process.env.DEBUG_MODE== "true"){
+	console.log("running in debug mode");
+}
+
+let kafkaPackageName = "kb-mentoring-notification"
+
+const environmentVariablePrefix = kafkaPackageName.toUpperCase().replace(/-/g, '_');
 
 const requiredEnvs = {
 	[`${environmentVariablePrefix}_KAFKA_CLIENT_ID`]: {
-		message: `[${packageName}] Required Kafka Brokers Hosts`,
+		message: `[${kafkaPackageName}] Required Kafka Brokers Hosts`,
 		optional: false,
 	},
 	[`${environmentVariablePrefix}_KAFKA_BROKERS`]: {
-		message: `[${packageName}] Required Kafka Brokers Hosts`,
+		message: `[${kafkaPackageName}] Required Kafka Brokers Hosts`,
 		optional: false,
 	},
 	[`${environmentVariablePrefix}_KAFKA_GROUP_ID`]: {
-		message: `[${packageName}] Required Kafka Group ID`,
+		message: `[${kafkaPackageName}] Required Kafka Group ID`,
 		optional: false,
 	},
 	[`${environmentVariablePrefix}_KAFKA_TOPIC`]: {
-		message: `[${packageName}] Required Kafka Topics`,
+		message: `[${kafkaPackageName}] Required Kafka Topics`,
 		optional: false,
 	},
 	SUNBIRD_NOTIFICAION_SERVICE_BASE_URL: {
-		message: `[${packageName}] Required Base URL for the Interface Service`,
+		message: `[${kafkaPackageName}] Required Base URL for the Interface Service`,
 		optional: false,
 	},
 	SUNBIRD_NOTIFICAION_SEND_EMAIL_ROUTE: {
-		message: `[${packageName}] Required Route for send email in the Interface Service`,
+		message: `[${kafkaPackageName}] Required Route for send email in the Interface Service`,
 		optional: false,
 	},
 	SUNBIRD_NOTIFICATION_SENDER_EMAIL : {
-		message: `[${packageName}] Required sender email address in the Interface Service`,
+		message: `[${kafkaPackageName}] Required sender email address in the Interface Service`,
 		optional: false,
 	},
 	SUNBIRD_AUTHORIZATION_TOKEN : {
-		message: `[${packageName}] Required authorization token with bearer`,
+		message: `[${kafkaPackageName}] Required authorization token with bearer`,
 		optional: false,
 	}
 }
@@ -88,5 +104,7 @@ module.exports = {
 	packageMeta: getPackageMeta(),
 	packageRouter,
 	requiredEnvs,
-	dependencyManager
+	dependencyManager,
+	requiredDependencies:getRequiredDependencies
+
 }
