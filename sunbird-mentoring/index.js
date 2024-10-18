@@ -56,7 +56,7 @@ if(process.env.DEBUG_MODE== "true"){
 	console.log("running in debug mode");
 }
 
-let kafkaPackageName = "kb-mentoring-notification"
+let kafkaPackageName = "sunbird-mentoring-notification"
 
 const environmentVariablePrefix = kafkaPackageName.toUpperCase().replace(/-/g, '_');
 

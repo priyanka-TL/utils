@@ -59,9 +59,6 @@ const createUser = async (req, res, responses, selectedConfig) => {
 		'device-info': req.headers['device-info'],
 	})
 }
-const updateUser = async (req, res, responses, selectedConfig) => {
-	return await requesters.patch(req.baseUrl, selectedConfig.targetRoute.path, req.body, req.headers)
-}
 
 const entityTypeRead = async (req, res, responses, selectedConfig) => {
 	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body, {
@@ -358,7 +355,6 @@ mentoringController = {
 	rolePermissions,
 	profileRead,
 	createUser,
-	updateUser,
 	entityTypeRead,
 	loginUser,
 	readOrganization,

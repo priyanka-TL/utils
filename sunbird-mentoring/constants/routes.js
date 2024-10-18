@@ -874,17 +874,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/interface/v1/account/update',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: true,
-			targetRoute: {
-				path: '/mentoring/v1/profile/update/',
-				type: 'POST',
-				functionName: 'updateUser',
-			},
-		},
-		{
 			sourceRoute: '/interface/v1/entity-type/read',
 			type: 'POST',
 			inSequence: false,
@@ -1527,28 +1516,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/interface/v1/account/update',
-			type: 'PATCH',
-			inSequence: false,
-			orchestrated: true,
-			targetRoute: {
-				path: '/user/v1/user/update',
-				type: 'POST',
-				functionName: 'updateUser',
-			},
-		},
-		{
-			sourceRoute: '/interface/user-signup',
-			type: 'POST',
-			inSequence: true,
-			orchestrated: true,
-			targetRoute: {
-				path: '/user/v1/account/create',
-				type: 'POST',
-				functionName: 'createUser',
-			},
-		},
-		{
 			sourceRoute: '/interface/v1/entity-type/read',
 			type: 'POST',
 			inSequence: false,
@@ -1611,16 +1578,6 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/user/v1/account/generateOtp',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/account/generateOtp',
-				type: 'POST',
-			},
-		},
-		{
 			sourceRoute: '/user/v1/account/logout',
 			type: 'POST',
 			inSequence: false,
@@ -1639,16 +1596,6 @@ module.exports = {
 				path: '/private/user/v1/search',
 				type: 'POST',
 				functionName: 'accountList',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/account/registrationOtp',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/account/registrationOtp',
-				type: 'POST',
 			},
 		},
 		{
@@ -1822,46 +1769,6 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/cloud-services/file/getDownloadableUrl',
 				type: 'GET',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/admin/deleteUser',
-			type: 'DELETE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/admin/deleteUser',
-				type: 'DELETE',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/admin/deleteUser/:id',
-			type: 'DELETE',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/admin/deleteUser/:id',
-				type: 'DELETE',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/admin/create',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/admin/create',
-				type: 'POST',
-			},
-		},
-		{
-			sourceRoute: '/user/v1/admin/login',
-			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/user/v1/admin/login',
-				type: 'POST',
 			},
 		},
 		{
