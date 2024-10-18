@@ -367,6 +367,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/certificates/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/certificates/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/certificates/update:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/certificates/update:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/resource/list',
 			type: 'GET',
 			inSequence: false,
