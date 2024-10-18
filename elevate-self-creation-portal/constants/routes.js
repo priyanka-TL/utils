@@ -377,12 +377,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/scp/v1/certificates/update:id',
+			sourceRoute: '/scp/v1/certificates/update/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/scp/v1/certificates/update:id',
+				path: '/scp/v1/certificates/update/:id',
 				type: 'POST'
 			},
 		},
