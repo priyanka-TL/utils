@@ -1082,12 +1082,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/survey/v1/configurations/read',
-			type: 'POST',
+			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/survey/v1/configurations/read',
-				type: 'POST'
+				type: 'GET'
 			},
 		},
 		{
