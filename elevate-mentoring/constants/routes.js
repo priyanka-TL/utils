@@ -1596,5 +1596,13 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/connections/list',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/connections/list',
+				type: 'GET',
+			},
+		},
 	],
 }
