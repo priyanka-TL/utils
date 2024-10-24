@@ -1101,6 +1101,36 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/users/programs',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/programs',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/users/solutions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/solutions/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/users/solutions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/solutions',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/interface/v1/internal/getAllPublishedResources',
 			type: 'POST',
 			inSequence: false,
