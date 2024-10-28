@@ -981,6 +981,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/observationSubmissions/update',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update',
+				type: 'DELETE'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update/:id',
+				type: 'DELETE'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/observationSubmissions/list',
 			type: 'POST',
 			inSequence: false,
