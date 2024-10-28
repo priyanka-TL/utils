@@ -941,6 +941,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/observations/targetedEntity',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/targetedEntity',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/targetedEntity/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/targetedEntity/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/observationSubmissions/update',
 			type: 'POST',
 			inSequence: false,
