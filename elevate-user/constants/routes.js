@@ -960,7 +960,29 @@ module.exports = {
 				path: '/user/v1/admin/triggerViewRebuildInternal',
 				type: 'GET',
 			},
-		}
+		},
+		{
+			sourceRoute: '/interface/v1/mentors/details/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/read',
+				type: 'GET',
+				functionName: 'userDetails',
+			},
+		},
+		{
+			sourceRoute: '/interface/v1/profile/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/user/v1/user/read',
+				type: 'GET',
+				functionName: 'userDetails',
+			},
+		},
 	]
 }
 

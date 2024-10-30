@@ -1556,5 +1556,27 @@ module.exports = {
 				type: 'PATCH',
 			},
 		},
+		{
+			sourceRoute: '/interface/v1/mentors/details/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: true,
+			targetRoute: {
+				path: '/mentoring/v1/mentors/details/:id',
+				type: 'POST',
+				functionName: 'mentorDetails',
+			},
+		},
+		{
+			sourceRoute: '/interface/v1/profile/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/mentoring/v1/profile/read',
+				type: 'GET',
+				functionName: 'mentoringProfile',
+			},
+		},
 	],
 }
