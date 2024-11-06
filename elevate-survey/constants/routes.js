@@ -1041,6 +1041,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/observationSubmissions/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/create',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/admin/dbFind/:id',
 			type: 'POST',
 			inSequence: false,
