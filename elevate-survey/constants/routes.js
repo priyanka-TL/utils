@@ -922,11 +922,21 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/survey/v1/observations/updateEntities',
-			type: 'POST',
+			type: 'DELETE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/survey/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/updateEntities/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/updateEntities/:id',
 				type: 'POST'
 			},
 		},
