@@ -93,12 +93,11 @@ const patch = async (baseUrl, route, requestBody, headers) => {
 const get = (baseUrl, route, headers, requestBody = {}) => {
 	const url = baseUrl + route
 	const options = {
-		headers,
-		data: requestBody 
+		headers
 	};
 
 	return axios
-		.post(url, requestBody, options) // Use POST to send body data
+		.get(url, options) // Use POST to send body data
 		.then((response) => response.data)
 		.catch((error) => {
 			console.error('Error fetching data:', error)
