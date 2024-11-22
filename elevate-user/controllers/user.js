@@ -23,6 +23,22 @@ const entityTypeRead = async (req, res, responses) => {
 	})
 }
 
+const userDetails = async (req, res, responses) => {
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	
+	const parameterisedRoute = selectedConfig.targetRoute.path;
+	  
+	let headers = {
+		  'Content-Type': 'application/json',
+		  'X-auth-token': req.headers['x-auth-token'],
+		}
+
+	
+	 let response = await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
+	  return res.json(response)
+
+}
+
 const loginUser = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 	return await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, req.body,{
@@ -48,6 +64,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 
 const readUser = async (req, res, selectedConfig) => {
 	try {
+
 	  const parameterisedRoute = req.params.id ? selectedConfig.targetRoute.path.replace('/:id', `/${req.params.id}`) : selectedConfig.targetRoute.path;
 	  let headers
   
@@ -130,7 +147,8 @@ const userController = {
 	readOrganization,
 	readUser,
 	accountsList,
-	validateEmails
+	validateEmails,
+	userDetails
 }
 
 module.exports = userController
