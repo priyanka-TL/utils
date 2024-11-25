@@ -1179,7 +1179,38 @@ module.exports = {
 				path: '/project/v1/users/programs',
 				type: 'POST'
 			},
+		},
+		{
+			sourceRoute: '/project/v1/projectAttributes/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/projectAttributes/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/projectAttributes/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/projectAttributes/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/projectAttributes/find',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/projectAttributes/find',
+				type: 'GET'
+			},
 		}
+
 	],
 }
 
