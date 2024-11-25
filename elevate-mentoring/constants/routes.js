@@ -1604,5 +1604,21 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/profile/getCommunicationToken',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/profile/getCommunicationToken',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/profile/logout',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/profile/logout',
+				type: 'POST',
+			},
+		},
 	],
 }
