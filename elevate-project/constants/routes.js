@@ -1270,7 +1270,7 @@ const modifiedArray = [].map((item) => ({
 	targetRoute: {
 		path: item.sourceRoute,
 		type: item.type,
-	},projectAttributes
+	},
 }))
 const modifiedArrayJSON = JSON.stringify(modifiedArray, null, 2)
 const filePath = 'modifiedArray.json'
