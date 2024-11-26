@@ -1209,7 +1209,57 @@ module.exports = {
 				path: '/project/v1/projectAttributes/find',
 				type: 'GET'
 			},
-		}
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/add/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/add/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/add',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/add',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/remove/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/remove/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/remove',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/remove',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/list',
+				type: 'POST'
+			},
+		},
 
 	],
 }
@@ -1220,7 +1270,7 @@ const modifiedArray = [].map((item) => ({
 	targetRoute: {
 		path: item.sourceRoute,
 		type: item.type,
-	},
+	},projectAttributes
 }))
 const modifiedArrayJSON = JSON.stringify(modifiedArray, null, 2)
 const filePath = 'modifiedArray.json'
