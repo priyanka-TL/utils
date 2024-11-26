@@ -1252,12 +1252,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/project/v1/wishlist/list',
-			type: 'POST',
+			type: 'GET',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/wishlist/list',
-				type: 'POST'
+				type: 'GET'
 			},
 		},
 
