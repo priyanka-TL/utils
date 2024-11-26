@@ -1209,7 +1209,57 @@ module.exports = {
 				path: '/project/v1/projectAttributes/find',
 				type: 'GET'
 			},
-		}
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/add/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/add/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/add',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/add',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/remove/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/remove/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/remove',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/remove',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/list',
+				type: 'GET'
+			},
+		},
 
 	],
 }
