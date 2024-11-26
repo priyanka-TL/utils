@@ -964,8 +964,8 @@ module.exports = {
 		{
 			sourceRoute: '/interface/v1/mentors/details/:id',
 			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
+			inSequence: true,
+			orchestrated: true,
 			targetRoute: {
 				path: '/user/v1/user/read',
 				type: 'GET',
@@ -975,8 +975,8 @@ module.exports = {
 		{
 			sourceRoute: '/interface/v1/profile/read',
 			type: 'GET',
-			inSequence: false,
-			orchestrated: false,
+			inSequence: true,
+			orchestrated: true,
 			targetRoute: {
 				path: '/user/v1/user/read',
 				type: 'GET',

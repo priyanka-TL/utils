@@ -1559,7 +1559,7 @@ module.exports = {
 		{
 			sourceRoute: '/interface/v1/mentors/details/:id',
 			type: 'POST',
-			inSequence: false,
+			inSequence: true,
 			orchestrated: true,
 			targetRoute: {
 				path: '/mentoring/v1/mentors/details/:id',
@@ -1570,8 +1570,8 @@ module.exports = {
 		{
 			sourceRoute: '/interface/v1/profile/read',
 			type: 'GET',
-			inSequence: false,
-			orchestrated: false,
+			inSequence: true,
+			orchestrated: true,
 			targetRoute: {
 				path: '/mentoring/v1/profile/read',
 				type: 'GET',

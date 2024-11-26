@@ -48,7 +48,7 @@ const mentorDetails = async (req, res, responses) => {
 	  console.log("response ============ headers  ",headers);
 	
 	 let response = await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
-	  return res.json(response)
+	  return response
 
 }
 
@@ -64,7 +64,7 @@ const mentoringProfile = async (req, res, responses) => {
 		}
 	  
 	 let response = await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
-	  return res.json(response)
+	  return response
 
 }
 

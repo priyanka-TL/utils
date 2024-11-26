@@ -35,7 +35,7 @@ const userDetails = async (req, res, responses) => {
 
 	
 	 let response = await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
-	  return res.json(response)
+	  return response
 
 }
 
