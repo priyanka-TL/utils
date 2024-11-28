@@ -1260,6 +1260,16 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/project/v1/template/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/template/list',
+				type: 'GET'
+			},
+		},
 
 	],
 }
