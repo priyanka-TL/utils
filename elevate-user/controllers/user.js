@@ -27,11 +27,18 @@ const userDetails = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 	
 	const parameterisedRoute = selectedConfig.targetRoute.path;
-	  
-	let headers = {
+	let headers
+	if (req.params.id) {
+		headers = {
+		  'internal_access_token': req.headers['internal_access_token'],
+		  'Content-Type': 'application/json',
+		}
+	  } else {
+	    headers = {
 		  'Content-Type': 'application/json',
 		  'X-auth-token': req.headers['x-auth-token'],
 		}
+	}
 
 	
 	 let response = await requesters.get(req.baseUrl, parameterisedRoute,headers,{})

@@ -39,7 +39,6 @@ const mentorDetails = async (req, res, responses) => {
   
 	  if (req.params.id) {
 		headers = {
-		  'internal_access_token': req.headers['internal_access_token'],
 		  'Content-Type': 'application/json',
 		  'X-auth-token': req.headers['x-auth-token'],
 		}
