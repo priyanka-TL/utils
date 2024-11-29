@@ -600,6 +600,26 @@ module.exports = {
 				path: '/scp/v1/resource/getPublishedResources',
 				type: 'GET'
 			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/getDataManagers',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/getDataManagers',
+				type: 'GET'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/update',
+            type: 'POST',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/update',
+				type: 'POST'
+			}
         }	
 	],
 }
