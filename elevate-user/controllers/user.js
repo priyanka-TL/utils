@@ -146,6 +146,27 @@ const validateEmails = async (req, res , selectedConfig) => {
 	}
 }
 
+const mentorDetails = async (req, res, responses) => {
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	
+	let parameterisedRoute = selectedConfig.targetRoute.path;
+
+	if(req.params.id){
+		parameterisedRoute = parameterisedRoute+'/'+req.params.id;
+	}
+	let	headers = {
+		  'Content-Type': 'application/json',
+		  'X-auth-token': req.headers['x-auth-token'],
+		}
+
+		console.log("parameterisedRoute ---------------",parameterisedRoute);
+
+	
+	 let response = await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
+	  return response
+
+}
+
 const userController = {
 	createUser,
 	updateUser,
@@ -155,7 +176,8 @@ const userController = {
 	readUser,
 	accountsList,
 	validateEmails,
-	userDetails
+	userDetails,
+	mentorDetails
 }
 
 module.exports = userController

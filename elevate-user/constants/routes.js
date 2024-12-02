@@ -969,7 +969,7 @@ module.exports = {
 			targetRoute: {
 				path: '/user/v1/user/read',
 				type: 'GET',
-			        functionName: 'userDetails',
+			    functionName: 'mentorDetails',
 			},
 		},
 		{
