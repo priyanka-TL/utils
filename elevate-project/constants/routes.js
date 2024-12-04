@@ -970,6 +970,26 @@ module.exports = {
 			}
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/update',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/update/:id',
+				type: 'POST'
+			}
+		},
+		{
 			sourceRoute: '/project/v1/forms/create',
 			type: 'POST',
 			inSequence: false,
