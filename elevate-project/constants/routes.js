@@ -21,6 +21,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/addStory/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/addStory/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/addStory',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/addStory',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/details',
 			type: 'POST',
 			inSequence: false,
