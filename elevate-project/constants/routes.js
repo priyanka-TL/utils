@@ -22,22 +22,22 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/project/v1/userProjects/addStory/:id',
-			type: 'POST',
+			type: 'PUT',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/userProjects/addStory/:id',
-				type: 'POST'
+				type: 'PUT'
 			},
 		},
 		{
 			sourceRoute: '/project/v1/userProjects/addStory',
-			type: 'POST',
+			type: 'PUT',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/userProjects/addStory',
-				type: 'POST'
+				type: 'PUT'
 			},
 		},
 		{
