@@ -620,7 +620,7 @@ module.exports = {
 				path: '/scp/v1/rollouts/update',
 				type: 'POST'
 			}
-        }	,	
+        },	
         {
             sourceRoute: '/scp/v1/rollouts/list',
             type: 'GET',
@@ -628,6 +628,16 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/scp/v1/rollouts/list',
+				type: 'GET'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/details',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/details',
 				type: 'GET'
 			}
         }	
