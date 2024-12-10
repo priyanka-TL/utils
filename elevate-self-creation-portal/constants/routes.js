@@ -632,12 +632,12 @@ module.exports = {
 			}
         },	
         {
-            sourceRoute: '/scp/v1/rollouts/details',
+            sourceRoute: '/scp/v1/rollouts/details/:id',
             type: 'GET',
             inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/scp/v1/rollouts/details',
+				path: '/scp/v1/rollouts/details/:id',
 				type: 'GET'
 			}
         }	
