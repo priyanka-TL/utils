@@ -622,6 +622,16 @@ module.exports = {
 			}
         },	
         {
+            sourceRoute: '/scp/v1/rollouts/update/:id',
+            type: 'DELETE',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/update/:id',
+				type: 'DELETE'
+			}
+        },	
+        {
             sourceRoute: '/scp/v1/rollouts/list',
             type: 'GET',
             inSequence: false,
@@ -639,16 +649,6 @@ module.exports = {
 			targetRoute: {
 				path: '/scp/v1/rollouts/details/:id',
 				type: 'GET'
-			}
-        },	
-        {
-            sourceRoute: '/scp/v1/rollouts/delete/:id',
-            type: 'DELETE',
-            inSequence: false,
-			orchestrated: false,
-			targetRoute: {
-				path: '/scp/v1/rollouts/delete/:id',
-				type: 'DELETE'
 			}
         }
 	],
