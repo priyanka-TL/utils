@@ -1578,5 +1578,13 @@ module.exports = {
 				functionName: 'mentoringProfile',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/reports/filterList',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/reports/filterList	',
+				type: 'GET',
+			},
+		},
 	],
 }
