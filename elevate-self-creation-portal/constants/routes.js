@@ -650,6 +650,16 @@ module.exports = {
 				path: '/scp/v1/rollouts/details/:id',
 				type: 'GET'
 			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/publish/:id',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/publish/:id',
+				type: 'GET'
+			}
         }
 	],
 }
