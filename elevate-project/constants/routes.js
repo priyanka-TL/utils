@@ -1310,6 +1310,16 @@ module.exports = {
 				type: 'GET'
 			},
 		},
+		{
+			sourceRoute: '/project/v1/scp/publishTemplateAndTasks',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/scp/publishTemplateAndTasks',
+				type: 'POST'
+			},
+		},
 
 	],
 }
