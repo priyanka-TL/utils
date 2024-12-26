@@ -1311,12 +1311,12 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/project/templates/publishTemplateAndTask',
+			sourceRoute: '/project/v1/scp/publishTemplateAndTasks',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/project/v1/project/templates/publishTemplateAndTask',
+				path: '/project/v1/scp/publishTemplateAndTasks',
 				type: 'POST'
 			},
 		},
