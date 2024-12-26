@@ -1586,5 +1586,13 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/mentoring/v1/reports/reportData',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/reports/reportData	',
+				type: 'GET',
+			},
+		},
 	],
 }
