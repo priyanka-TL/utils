@@ -922,11 +922,51 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/survey/v1/observations/updateEntities',
-			type: 'POST',
+			type: 'DELETE',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/survey/v1/observations/updateEntities',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/updateEntities/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/updateEntities/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/list',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/targetedEntity',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/targetedEntity',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observations/targetedEntity/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/targetedEntity/:id',
 				type: 'POST'
 			},
 		},
@@ -951,6 +991,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/survey/v1/observationSubmissions/update',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update',
+				type: 'DELETE'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/update/:id',
+			type: 'DELETE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/update/:id',
+				type: 'DELETE'
+			},
+		},
+		{
 			sourceRoute: '/survey/v1/observationSubmissions/list',
 			type: 'POST',
 			inSequence: false,
@@ -967,6 +1027,186 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/survey/v1/observationSubmissions/list/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/solutionList',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/solutionList',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/observationSubmissions/create/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/create/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/admin/dbFind/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/admin/dbFind/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutionDetails/criteria/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutionDetails/criteria/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/solutionDetails/criteria',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/solutionDetails/criteria',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/find',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/find',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/read',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/read',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/read/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/read/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/forms/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/forms/update/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/profile/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/profile/read',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/configurations/read',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/configurations/read',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/configurations/createOrUpdate',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/configurations/createOrUpdate',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/users/programs',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/programs',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/users/solutions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/solutions/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/survey/v1/users/solutions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/solutions',
 				type: 'POST'
 			},
 		},

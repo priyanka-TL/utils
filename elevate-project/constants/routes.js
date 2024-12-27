@@ -21,6 +21,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/addStory/:id',
+			type: 'PUT',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/addStory/:id',
+				type: 'PUT'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/addStory',
+			type: 'PUT',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/addStory',
+				type: 'PUT'
+			},
+		},
+		{
 			sourceRoute: '/project/v1/userProjects/details',
 			type: 'POST',
 			inSequence: false,
@@ -970,6 +990,26 @@ module.exports = {
 			}
 		},
 		{
+			sourceRoute: '/project/v1/userProjects/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/update',
+				type: 'POST'
+			}
+		},
+		{
+			sourceRoute: '/project/v1/userProjects/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/userProjects/update/:id',
+				type: 'POST'
+			}
+		},
+		{
 			sourceRoute: '/project/v1/forms/create',
 			type: 'POST',
 			inSequence: false,
@@ -1046,6 +1086,16 @@ module.exports = {
 			orchestrated: false,
 			targetRoute: {
 				path: '/project/v1/reports/getProgramsByEntity/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/reports/getProgramsByEntity',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/reports/getProgramsByEntity',
 				type: 'POST'
 			},
 		},
@@ -1139,7 +1189,138 @@ module.exports = {
 				type: 'POST',
 				functionName: 'fetchProjectTemplates',
 			},
-		}
+		},
+		{
+			sourceRoute: '/project/v1/users/solutions',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/users/solutions',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/users/solutions/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/users/solutions/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/users/programs',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/users/programs',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/projectAttributes/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/projectAttributes/create',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/projectAttributes/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/projectAttributes/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/projectAttributes/find',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/projectAttributes/find',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/add/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/add/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/add',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/add',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/remove/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/remove/:id',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/remove',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/remove',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/wishlist/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/wishlist/list',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/template/list',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/template/list',
+				type: 'GET'
+			},
+		},
+		{
+			sourceRoute: '/project/v1/scp/publishTemplateAndTasks',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/project/v1/scp/publishTemplateAndTasks',
+				type: 'POST'
+			},
+		},
+
 	],
 }
 

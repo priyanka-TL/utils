@@ -1557,6 +1557,7 @@ module.exports = {
 			},
 		},
 		{
+
 			sourceRoute: '/interface/v1/mentors/details/:id',
 			type: 'POST',
 			inSequence: true,
@@ -1583,6 +1584,56 @@ module.exports = {
 			type: 'GET',
 			targetRoute: {
 				path: '/mentoring/v1/reports/filterList	',
+        type: 'GET',
+      }
+        
+      },
+      {
+			sourceRoute: '/mentoring/v1/connections/initiate',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/initiate',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/pending',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/connections/pending',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/accept',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/accept',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/reject',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/reject',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/getInfo',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/connections/getInfo',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/connections/list',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/connections/list',
+
 				type: 'GET',
 			},
 		},
@@ -1594,5 +1645,21 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+    {
+			sourceRoute: '/mentoring/v1/profile/getCommunicationToken',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/profile/getCommunicationToken',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/profile/logout',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/profile/logout',
+				type: 'POST',
+			},
+		}
 	],
 }

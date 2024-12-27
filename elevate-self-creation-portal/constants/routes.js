@@ -367,6 +367,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/certificates/update',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/certificates/update',
+				type: 'POST'
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/certificates/update/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/certificates/update/:id',
+				type: 'POST'
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/resource/list',
 			type: 'GET',
 			inSequence: false,
@@ -391,7 +411,7 @@ module.exports = {
 					},
 					{
 						baseUrl: process.env.SURVEY_SERVICE_BASE_URL,
-						path: '/samiksha/v1/admin/dbFind/solutions',
+						path: '/survey/v1/admin/dbFind/solutions',
 						type: 'POST'
 						}
 			],
@@ -497,6 +517,17 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/comments/update/:id',
+			type: 'DELETE',
+			priority: 'MUST_HAVE',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/comments/update/:id',
+				type: 'DELETE',
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/reviews/update/:id',
 			type: 'POST',
 			priority: 'MUST_HAVE',
@@ -559,17 +590,86 @@ module.exports = {
 				path: '/scp/v1/cloud-services/file/getDownloadableUrl',
 				type: 'POST'
 			},
-		},	
-		,
+		},
         {
-            sourceRoute: "/scp/v1/resource/getPublishedResources",
-            type: "GET",
+            sourceRoute: '/scp/v1/resource/getPublishedResources',
+            type: 'GET',
             inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/scp/v1/resource/getPublishedResources',
+				type: 'GET'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/getDataManagers',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/getDataManagers',
+				type: 'GET'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/update',
+            type: 'POST',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/update',
 				type: 'POST'
 			}
-        }	
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/update/:id',
+            type: 'DELETE',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/update/:id',
+				type: 'DELETE'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/list',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/list',
+				type: 'GET'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/details/:id',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/details/:id',
+				type: 'GET'
+			}
+        },	
+        {
+            sourceRoute: '/scp/v1/rollouts/publish/:id',
+            type: 'GET',
+            inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/rollouts/publish/:id',
+				type: 'GET'
+			}
+        },
+		{
+			sourceRoute: '/scp/v1/resource/publishCallback',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/resource/publishCallback',
+				type: 'GET'
+			},
+		},
 	],
 }
