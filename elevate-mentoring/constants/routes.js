@@ -1652,10 +1652,10 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/reports/getReportById',
+			sourceRoute: '/mentoring/v1/reports/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/mentoring/v1/reports/getReportById',
+				path: '/mentoring/v1/reports/read',
 				type: 'GET',
 			},
 		},
@@ -1684,10 +1684,10 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/report-type/getReportType',
+			sourceRoute: '/mentoring/v1/report-type/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/mentoring/v1/report-type/getReportType',
+				path: '/mentoring/v1/report-type/read',
 				type: 'GET',
 			},
 		},
@@ -1716,10 +1716,10 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/report-mapping/getReportMapping',
+			sourceRoute: '/mentoring/v1/report-mapping/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/mentoring/v1/report-mapping/getReportMapping',
+				path: '/mentoring/v1/report-mapping/read',
 				type: 'GET',
 			},
 		},
@@ -1748,10 +1748,10 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/report-queries/getReportQuery',
+			sourceRoute: '/mentoring/v1/report-queries/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/mentoring/v1/report-queries/getReportQuery',
+				path: '/mentoring/v1/report-queries/read',
 				type: 'GET',
 			},
 		},
@@ -1780,10 +1780,10 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/mentoring/v1/role-extension/getRoleExtension',
+			sourceRoute: '/mentoring/v1/role-extension/read',
 			type: 'GET',
 			targetRoute: {
-				path: '/mentoring/v1/role-extension/getRoleExtension',
+				path: '/mentoring/v1/role-extension/read',
 				type: 'GET',
 			},
 		},
