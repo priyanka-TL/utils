@@ -1644,6 +1644,166 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/mentoring/v1/reports/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/reports/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/reports/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/reports/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/reports/update',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/reports/update',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/reports/delete',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/reports/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-type/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/report-type/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-type/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/report-type/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-type/update',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/report-type/update',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-type/delete',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/report-type/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-mapping/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/report-mapping/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-mapping/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/report-mapping/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-mapping/update',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/report-mapping/update',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-mapping/delete',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/report-mapping/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-queries/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/report-queries/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-queries/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/report-queries/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-queries/update',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/report-queries/update',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/report-queries/delete',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/report-queries/delete',
+				type: 'DELETE',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/role-extension/create',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/role-extension/create',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/role-extension/read',
+			type: 'GET',
+			targetRoute: {
+				path: '/mentoring/v1/role-extension/read',
+				type: 'GET',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/role-extension/update',
+			type: 'POST',
+			targetRoute: {
+				path: '/mentoring/v1/role-extension/update',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/mentoring/v1/role-extensions/delete',
+			type: 'DELETE',
+			targetRoute: {
+				path: '/mentoring/v1/role-extension/delete',
+				type: 'DELETE',
+			},
+		},
+    {
 			sourceRoute: '/mentoring/v1/profile/getCommunicationToken',
 			type: 'GET',
 			targetRoute: {
