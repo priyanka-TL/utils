@@ -300,13 +300,14 @@ module.exports = {
 			},
 		},
 		{
-			sourceRoute: '/project/v1/userProjects/list',
+			sourceRoute: '/interface/v1/userProjects/list',
 			type: 'POST',
-			inSequence: false,
-			orchestrated: false,
+			inSequence: true,
+			orchestrated: true,
 			targetRoute: {
 				path: '/project/v1/userProjects/list',
-				type: 'POST'
+				type: 'POST',
+				functionName: 'projectsList'
 			},
 		},
 		{
