@@ -89,8 +89,22 @@ const fetchProjectTemplates = async (req, res, responses) => {
 	return response
 }
 
+const projectsList = async (req, res) => {
+	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	let targetedRoutePath = selectedConfig.targetRoute.path
+	if("completedCount" in req.body){
+		targetedRoutePath = targetedRoutePath + `?status=completed`
+	}
+	delete req.body["completedCount"]
+	return await requesters.post(req.baseUrl, targetedRoutePath, req.body, {
+		'X-auth-token': req.headers['x-auth-token'],
+	})
+
+}
+
 const projectController = {
-	fetchProjectTemplates
+	fetchProjectTemplates,
+	projectsList
 }
 
 module.exports = projectController
