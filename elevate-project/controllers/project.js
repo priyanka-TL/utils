@@ -92,14 +92,26 @@ const fetchProjectTemplates = async (req, res, responses) => {
 const projectsList = async (req, res) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
 	let targetedRoutePath = selectedConfig.targetRoute.path
-	if("completedCount" in req.body){
-		targetedRoutePath = targetedRoutePath + `?status=completed`
+	// Add the query params to the request call
+	Object.keys(req.query).map((key) => {
+		if(targetedRoutePath.includes('?')){
+			targetedRoutePath = targetedRoutePath + `&${key}=${req.query[key]}`
+		}else{
+			targetedRoutePath = targetedRoutePath + `?${key}=${req.query[key]}`
+		}
+	})
+	// Set status=completed in query based on req.body
+	if("filter" in req.body && req.body.filter == "submittedCount"){
+		if(targetedRoutePath.includes('?')){
+			targetedRoutePath = targetedRoutePath + `&status=completed`
+		}else{
+			targetedRoutePath = targetedRoutePath + `?status=completed`
+		}
+		delete req.body["filter"]
 	}
-	delete req.body["completedCount"]
 	return await requesters.post(req.baseUrl, targetedRoutePath, req.body, {
 		'X-auth-token': req.headers['x-auth-token'],
 	})
-
 }
 
 const projectController = {
