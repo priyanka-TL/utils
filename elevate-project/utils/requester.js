@@ -17,6 +17,9 @@ const passThroughRequester = async (req, res) => {
 		const sourceBaseUrl = req.protocol + '://' + req.headers.host + '/'
 		const sourceUrl = new URL(req.originalUrl, sourceBaseUrl)
 		const route = routesConfig.routes.find((route) => route.sourceRoute === req.sourceRoute)
+		if(route.service){
+			req['baseUrl'] = process.env[`${route.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
 		const params = matchPathsAndExtractParams(route.sourceRoute, req.originalUrl)
 		console.log(params,'params')
 		const targetRoute = pathParamSetter(route.targetRoute.path, params)
@@ -111,11 +114,31 @@ const axiosPatch = async (baseUrl, route, requestBody, headers) => {
 	}
 }
 
+const get = (baseUrl, route, headers, requestBody = {}) => {
+	const url = baseUrl + route
+	const options = {
+		headers,
+		data: requestBody 
+	};
+
+	return axios
+		.get(url, options) // Use POST to send body data
+		.then((response) => response.data)
+		.catch((error) => {
+			console.error('Error fetching data:', error)
+			if (error.response) {
+				return error.response
+			}
+			return error
+		})
+}
+
 const requesters = {
 	passThroughRequester,
 	post,
 	patch,
 	axiosPatch,
+	get
 }
 
 module.exports = requesters
