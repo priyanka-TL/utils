@@ -24,7 +24,7 @@ const common = require('../constants/common')
  */
 
 const fetchProjectTemplates = async (req, res, responses) => {
-	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	const selectedConfig = routeConfigs.routes.find((obj) => req.service === obj.service && obj.sourceRoute === req.sourceRoute)
 
 	let response = { result: { data: [], count: 0 } }
 	let proceedToCallProjectService = false
@@ -90,7 +90,7 @@ const fetchProjectTemplates = async (req, res, responses) => {
 }
 
 const projectsList = async (req, res) => {
-	const selectedConfig = routeConfigs.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
+	const selectedConfig = routeConfigs.routes.find((obj) => req.service === obj.service && obj.sourceRoute === req.sourceRoute)
 	let targetedRoutePath = selectedConfig.targetRoute.path
 	// Add the query params to the request call
 	Object.keys(req.query).map((key) => {
