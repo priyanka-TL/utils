@@ -221,6 +221,17 @@ const createLocationReqBody = async (req, res) => {
 
 	let bodyData = {}
 	bodyData["request"] = {}
+	bodyData["request"]["filters"] = {}
+	if("_id" in req.body){
+		bodyData["request"]["filters"] = {
+			"id" : req.body._id
+		}
+	}
+	if("code" in req.body){
+		bodyData["request"]["filters"] = {
+			"code" : req.body.code
+		}
+	}
 	bodyData["request"]["filters"] = req.body
 	return await requesters.post(req.baseUrl, targetedRoutePath, bodyData, {
 		'content-type': 'application/json',
