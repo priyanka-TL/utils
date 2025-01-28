@@ -232,7 +232,6 @@ const createLocationReqBody = async (req, res) => {
 			"code" : req.body.code
 		}
 	}
-	bodyData["request"]["filters"] = req.body
 	return await requesters.post(req.baseUrl, targetedRoutePath, bodyData, {
 		'content-type': 'application/json',
 		'internal-access-token': process.env.INTERNAL_ACCESS_TOKEN		
