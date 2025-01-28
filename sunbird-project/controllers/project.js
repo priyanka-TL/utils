@@ -233,8 +233,7 @@ const createLocationReqBody = async (req, res) => {
 		}
 	}
 	return await requesters.post(req.baseUrl, targetedRoutePath, bodyData, {
-		'content-type': 'application/json',
-		'internal-access-token': process.env.INTERNAL_ACCESS_TOKEN		
+		'Authorization': `Bearer ${req.headers['x-auth-token']}`	
 	})
 }
 
