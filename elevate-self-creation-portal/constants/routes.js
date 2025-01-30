@@ -701,5 +701,35 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/programs/addResources/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/addResources/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/programs/removeResources/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/removeResources/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: '/scp/v1/programs/details/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/details/:id',
+				type: 'GET',
+			},
+		},
 	],
 }
