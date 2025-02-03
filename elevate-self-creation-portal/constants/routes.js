@@ -731,5 +731,15 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/programs/submitForReview/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/submitForReview/:id',
+				type: 'POST',
+			},
+		},
 	],
 }
