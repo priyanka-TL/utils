@@ -741,5 +741,15 @@ module.exports = {
 				type: 'POST',
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/programs/getProgramManagers',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/getProgramManagers',
+				type: 'GET',
+			},
+		},
 	],
 }
