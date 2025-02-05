@@ -1497,41 +1497,26 @@ module.exports = {
         service: "scheduler"
     },
     {
-        sourceRoute: '/user/v1/user/read/:id',
+        sourceRoute: '/user/v1/user/read',
         type: 'GET',
         inSequence: false,
-        orchestrated: false,
+        orchestrated: true,
         targetRoute: {
-            paths: [
-                { path: '/private/user/v1/read/:id', type: 'GET' },
-                {
-                    baseUrl: 'http://lms-service:9000',
-                    path: '/private/v3/user/courses/list/:id',
-                    type: 'GET',
-                },
-            ],
-            functionName: 'readUserById',
+            path: '/api/user/v2/read',
+            type: 'GET',
+            functionName: "attachToken"
         },
         service: "user"
     },
     {
-        sourceRoute: '/user/v1/user/read',
+        sourceRoute: '/user/v1/user/read/:id',
         type: 'GET',
         inSequence: false,
-        orchestrated: false,
+        orchestrated: true,
         targetRoute: {
-        paths: [
-            {
-            path: '/private/user/v1/read/:id',
-            type: 'GET'
-            },
-            {
-                baseUrl: 'http://lms-service:9000',
-                path: '/private/v3/user/courses/list/:id',
-                type: 'GET'
-            }
-            ],
-            functionName: 'readUserWithToken'
+            path: '/api/user/v2/read/:id',
+            type: 'GET',
+            functionName: "attachToken"
         },
         service: "user"
     },
@@ -1542,10 +1527,10 @@ module.exports = {
         orchestrated: false,
         targetRoute: {
             path: "/api/data/v1/location/search",
-            type: "POST"
+            type: "POST",
+            functionName: "createLocationReqBody"
         },
         service: "entity",
-        functionName: "createLocationReqBody"
     },
     {
         sourceRoute: "/entity-management/v1/entityTypes/find",
@@ -1554,10 +1539,10 @@ module.exports = {
         orchestrated: false,
         targetRoute: {
             path: "/api/data/v1/location/search",
-            type: "POST"
+            type: "POST",
+            functionName: "createLocationReqBody"
         },
         service: "entity",
-        functionName: "createLocationReqBody"
     },
     {
         sourceRoute: "/entity-management/v1/userRoleExtension/find",
@@ -1566,10 +1551,10 @@ module.exports = {
         orchestrated: false,
         targetRoute: {
             path: "/api/data/v1/location/search",
-            type: "POST"
+            type: "POST",
+            functionName: "createLocationReqBody"
         },
         service: "entity",
-        functionName: "createLocationReqBody"
     }
     ]
 }

@@ -8,6 +8,8 @@
 const routeConfigs = require('../constants/routes')
 const requesters = require('../utils/requester')
 const common = require('../constants/common')
+const {matchPathsAndExtractParams} = require('../utils/patternMatcher')
+const {pathParamSetter} = require('../utils/pathParamSetter')
 /**
  * Fetch project templates from projects service.
  * @name fetchProjectTemplates
@@ -114,110 +116,28 @@ const projectsList = async (req, res) => {
 	})
 }
 
-const readUserById = async (req, res, selectedConfig) => {
-	const userId = req.params.id
-	try {
-		console.log('read by userid');
-		const targetRoute1 = selectedConfig.targetRoute.paths[0].path
-		const targetRoute2 = selectedConfig.targetRoute.paths[1]
-
-		const userResponse = await requesters.get(req.baseUrl, targetRoute1, req.headers, {
-			id: userId,
-		})
-
-		if(process.env.DEBUG_MODE == "true"){
-			console.log("READ API response status:",userResponse.params.status);
-			console.log(" user read API resp ==  ",JSON.stringify(userResponse));
-			console.log(" API Response",JSON.stringify(userResponse));
-		}
-		if (userResponse.params.status == 'FAILED') {
-
-			if(process.env.DEBUG_MODE == "true"){
-				console.log("userResponse.params.status ",userResponse.params.status);	
-				console.log("userResponse.params.status ",JSON.stringify(userResponse));
-			}	
-			return res.send(userResponse) 
-		}
-		const enrollmentResponse = await requesters.get(targetRoute2.baseUrl, targetRoute2.path, req.headers, {
-			id: userId,
-		})
-
-		if(process.env.DEBUG_MODE == "true"){
-			console.log('CALLING COMPETENCY ')
-		}
-
-		let competencyIds = []
-		if(enrollmentResponse.result && enrollmentResponse.result.courses){
-			competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
-
-		}
-		 
-		if(process.env.DEBUG_MODE == "true"){
-			console.log('competencyIds ==',competencyIds)
-			console.log("userResponse profile response ",userResponse);
-		}
-		const responseData = processUserResponse(userResponse)
-		responseData.result.competency = competencyIds
-
-		if(process.env.DEBUG_MODE == "true"){
-			console.log('RESPONSE DATA: ', JSON.stringify(responseData, null, 3))
-		}
-		responseData.responseCode = 'OK'
-		return res.send(responseData)
-	} catch (error) {
-		if(process.env.DEBUG_MODE == "true"){
-			console.error('Error fetching user details:', error)
-		}
-		return res.status(500).json({ error: 'Internal Server Error' })
-	}
-}
-
-const readUserWithToken = async (req, res, selectedConfig) => {
-	try {
-
-		if(process.env.DEBUG_MODE == "true"){
-			console.log("================== readUserWithToken =======")
-		}
-		const targetRoute1 = selectedConfig.targetRoute.paths[0].path
-		const targetRoute2 = selectedConfig.targetRoute.paths[1]
-
-		let token = req.headers['x-auth-token']
-		if (token && token.toLowerCase().startsWith('bearer ')) token = token.slice(7)
-
-		const tokenClaims = jwt.decode(token)
-		const userId = tokenClaims.sub.split(':').pop()
-
-		const userResponse = await requesters.get(req.baseUrl,targetRoute1.path, req.headers, {
-			id: userId,
-		})
-
-		if (userResponse.params.status == 'FAILED') return res.send(userResponse)
-		const enrollmentResponse = await requesters.get(targetRoute2.baseUrl, targetRoute2.path, req.headers, {
-			id: userId,
-		})
-		const competencyIds = getCompetencyIds(enrollmentResponse.result.courses || [])
-		
-
-		if(process.env.DEBUG_MODE == "true"){
-			console.log("================== competencyIds =======",competencyIds)
-		}
-		let responseData = processUserResponse(userResponse)
-		responseData.result.competency = competencyIds
-
-
-
-		return res.json(responseData)
-	} catch (error) {
-		if(process.env.DEBUG_MODE == "true"){
-			console.error('Error fetching user details:', error)
-		}
-		return res.status(500).json({ error: 'Internal Server Error' })
-	}
-}
-
-const createLocationReqBody = async (req, res) => {
+const attachToken = async (req, res, responses) => {
 	const selectedConfig = routeConfigs.routes.find((obj) => req.service === obj.service && obj.sourceRoute === req.sourceRoute)
 	let targetedRoutePath = selectedConfig.targetRoute.path
+	const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
+	const targetRoute = pathParamSetter(targetedRoutePath, params)
+	let response = await requesters.get(req.baseUrl, targetRoute, {
+		"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
+		"x-authenticated-user-token": req.headers["x-auth-token"]
+	}, req.body)
+	response["result"] = response.result.response
+	let userProfileLocation = response["result"]["profileLocation"]
+	response["result"]["profileLocation"] = {}
+	userProfileLocation.forEach(ele => {
+		response["result"]["profileLocation"][`${ele.type}`] = ele.id
+	})
+	return response
+}
+
+const createLocationReqBody = async (req, res, selectedConfig) => {
+	let targetedRoutePath = selectedConfig.targetRoute.path
+	const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
+	const targetRoute = pathParamSetter(targetedRoutePath, params)
 
 	let bodyData = {}
 	bodyData["request"] = {}
@@ -232,16 +152,18 @@ const createLocationReqBody = async (req, res) => {
 			"code" : req.body.code
 		}
 	}
-	return await requesters.post(req.baseUrl, targetedRoutePath, bodyData, {
-		'Authorization': `Bearer ${req.headers['x-auth-token']}`	
+	console.log(req.baseUrl, targetRoute, bodyData)
+	let response = await requesters.post(req.baseUrl, targetRoute, bodyData, {
+		"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
 	})
+
+	return res.json(response)
 }
 
 const projectController = {
 	fetchProjectTemplates,
 	projectsList,
-	readUserById,
-	readUserWithToken,
+	attachToken,
 	createLocationReqBody
 }
 
