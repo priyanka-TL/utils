@@ -133,9 +133,6 @@ const readUser = async (req, res, selectedConfig) => {
 	  }
     
 	  let response = await requesters.get(req.baseUrl, parameterisedRoute, headers)
-	  
-	  // Extract only the relevant data
-	  response.result = convertIdsToString(response.result)
 	  return res.json(response)
 	} catch (error) {
 	  console.error('Error fetching user details:', error);
