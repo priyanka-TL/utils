@@ -116,24 +116,6 @@ const projectsList = async (req, res) => {
 	})
 }
 
-const attachToken = async (req, res, responses) => {
-	const selectedConfig = routeConfigs.routes.find((obj) => req.service === obj.service && obj.sourceRoute === req.sourceRoute)
-	let targetedRoutePath = selectedConfig.targetRoute.path
-	const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
-	const targetRoute = pathParamSetter(targetedRoutePath, params)
-	let response = await requesters.get(req.baseUrl, targetRoute, {
-		"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
-		"x-authenticated-user-token": req.headers["x-auth-token"]
-	}, req.body)
-	response["result"] = response.result.response
-	let userProfileLocation = response["result"]["profileLocation"]
-	response["result"]["profileLocation"] = {}
-	userProfileLocation.forEach(ele => {
-		response["result"]["profileLocation"][`${ele.type}`] = ele.id
-	})
-	return response
-}
-
 const createLocationReqBody = async (req, res, selectedConfig) => {
 	let targetedRoutePath = selectedConfig.targetRoute.path
 	const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
