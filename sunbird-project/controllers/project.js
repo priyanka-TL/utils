@@ -159,11 +159,74 @@ const createLocationReqBody = async (req, res, selectedConfig) => {
 
 	return res.json(response)
 }
+/*The profileRead API retrieves and transforms user profile information from an external service (e.g., Sunbird's user service). 
+The function processes and restructures the data into a format 
+suitable for the Elevate Project frontend application.*/
+
+const profileRead = async (req, res, selectedConfig) => {
+	try {
+		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+		let targetedRoutePath = selectedConfig.targetRoute.path
+		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
+		const targetRoute = pathParamSetter(targetedRoutePath, params)
+		
+		// Fetch user profile details
+		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
+			"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
+			"x-authenticated-user-token": req.headers["x-auth-token"]
+		}, req.body)
+		
+		// confirm success response
+		if (userProfileData.responseCode === 'OK') {
+			
+			userProfileData["result"] = userProfileData.result.response
+		
+			//generate role data for EP
+			if (userProfileData.result.profileUserTypes && userProfileData.result.profileUserTypes.length > 0) {
+				
+				// Create a new user_roles array with transformed data
+				userProfileData.result.user_roles = userProfileData.result.profileUserTypes.map(ele => {
+					return {
+						title: ele.subType // map subType to title
+					};
+				});
+				
+			}
+			// generate location data of user for EP
+			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
+				userProfileData.result.profileLocation.forEach(location => {
+					// Set each location's type as a key in userProfileData.result with the id as value
+					userProfileData.result[location.type] = {
+						value: location.id
+					};
+				});
+			}
+			res.json(userProfileData)
+		} else {
+	
+			if(process.env.DEBUG_MODE == "true"){
+				console.log("profileRead error",JSON.stringify(userProfileData));
+			}
+			res.json(userProfileData)
+		
+		}
+
+	}  catch (error) { 
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching user details:', error)
+		}
+		res.status(500).json({ error: 'Internal Server Error' })
+
+	}
+}
 
 const projectController = {
 	fetchProjectTemplates,
 	projectsList,
-	attachToken,
+	profileRead,
 	createLocationReqBody
 }
 

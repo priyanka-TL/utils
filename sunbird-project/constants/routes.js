@@ -1504,7 +1504,7 @@ module.exports = {
         targetRoute: {
             path: '/api/user/v2/read',
             type: 'GET',
-            functionName: "attachToken"
+            functionName: "profileRead"
         },
         service: "user"
     },
@@ -1516,7 +1516,7 @@ module.exports = {
         targetRoute: {
             path: '/api/user/v2/read/:id',
             type: 'GET',
-            functionName: "attachToken"
+            functionName: "profileRead"
         },
         service: "user"
     },
