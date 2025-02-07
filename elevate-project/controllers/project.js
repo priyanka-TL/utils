@@ -116,27 +116,30 @@ const projectsList = async (req, res) => {
 
 const readUser = async (req, res, selectedConfig) => {
 	try {
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
 
-	  const parameterisedRoute = req.params.id ? selectedConfig.targetRoute.path.replace('/:id', `/${req.params.id}`) : selectedConfig.targetRoute.path;
-	  let headers
-  
-	  if (req.params.id) {
-		headers = {
-		  'internal_access_token': req.headers['internal_access_token'],
-		  'Content-Type': 'application/json',
+		const parameterisedRoute = req.params.id ? selectedConfig.targetRoute.path.replace('/:id', `/${req.params.id}`) : selectedConfig.targetRoute.path;
+		let headers
+	
+		if (req.params.id) {
+			headers = {
+			'internal_access_token': req.headers['internal_access_token'],
+			'Content-Type': 'application/json',
+			}
+		} else {
+			headers = {
+			'X-auth-token': req.headers['x-auth-token'],
+			'Content-Type': 'application/json',
+			}
 		}
-	  } else {
-		headers = {
-		  'X-auth-token': req.headers['x-auth-token'],
-		  'Content-Type': 'application/json',
-		}
-	  }
-    
-	  let response = await requesters.get(req.baseUrl, parameterisedRoute, headers)
-	  return res.json(response)
+		
+		let response = await requesters.get(req.baseUrl, parameterisedRoute, headers)
+		return res.json(response)
 	} catch (error) {
-	  console.error('Error fetching user details:', error);
-	  return res.status(500).json({ error: 'Internal Server Error' })
+		console.error('Error fetching user details:', error);
+		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 };
 
