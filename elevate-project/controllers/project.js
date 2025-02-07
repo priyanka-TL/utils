@@ -114,9 +114,39 @@ const projectsList = async (req, res) => {
 	})
 }
 
+const readUser = async (req, res, selectedConfig) => {
+	try {
+
+	  const parameterisedRoute = req.params.id ? selectedConfig.targetRoute.path.replace('/:id', `/${req.params.id}`) : selectedConfig.targetRoute.path;
+	  let headers
+  
+	  if (req.params.id) {
+		headers = {
+		  'internal_access_token': req.headers['internal_access_token'],
+		  'Content-Type': 'application/json',
+		}
+	  } else {
+		headers = {
+		  'X-auth-token': req.headers['x-auth-token'],
+		  'Content-Type': 'application/json',
+		}
+	  }
+    
+	  let response = await requesters.get(req.baseUrl, parameterisedRoute, headers)
+	  
+	  // Extract only the relevant data
+	  response.result = convertIdsToString(response.result)
+	  return res.json(response)
+	} catch (error) {
+	  console.error('Error fetching user details:', error);
+	  return res.status(500).json({ error: 'Internal Server Error' })
+	}
+};
+
 const projectController = {
 	fetchProjectTemplates,
-	projectsList
+	projectsList,
+	readUser
 }
 
 module.exports = projectController
