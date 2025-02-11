@@ -1543,18 +1543,6 @@ module.exports = {
             functionName: "fetchLocationDetails"
         },
         service: "entity",
-    },
-    {
-        sourceRoute: "/entity-management/v1/userRoleExtension/find",
-        type: "POST",
-        inSequence: false,
-        orchestrated: false,
-        targetRoute: {
-            path: "/api/data/v1/location/search",
-            type: "POST",
-            functionName: "fetchLocationDetails"
-        },
-        service: "entity",
     }
     ]
 }
