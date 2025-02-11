@@ -1528,7 +1528,7 @@ module.exports = {
         targetRoute: {
             path: "/api/data/v1/location/search",
             type: "POST",
-            functionName: "createLocationReqBody"
+            functionName: "fetchLocationDetails"
         },
         service: "entity",
     },
@@ -1540,7 +1540,7 @@ module.exports = {
         targetRoute: {
             path: "/api/data/v1/location/search",
             type: "POST",
-            functionName: "createLocationReqBody"
+            functionName: "fetchLocationDetails"
         },
         service: "entity",
     },
@@ -1552,7 +1552,7 @@ module.exports = {
         targetRoute: {
             path: "/api/data/v1/location/search",
             type: "POST",
-            functionName: "createLocationReqBody"
+            functionName: "fetchLocationDetails"
         },
         service: "entity",
     }
