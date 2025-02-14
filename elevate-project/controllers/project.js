@@ -8,6 +8,7 @@
 const routeConfigs = require('../constants/routes')
 const requesters = require('../utils/requester')
 const common = require('../constants/common')
+const {convertIdsToString} = require('../utils/integerToStringConverter')
 /**
  * Fetch project templates from projects service.
  * @name fetchProjectTemplates
@@ -141,12 +142,31 @@ const readUser = async (req, res, selectedConfig) => {
 		console.error('Error fetching user details:', error);
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
-};
+}
+
+const readOrganization = async (req, res, selectedConfig) => {
+	try {
+		const parameterisedRoute = req.query.organisation_code ? selectedConfig.targetRoute.path + `?organisation_code=${req.query.organisation_code}` : selectedConfig.targetRoute.path + `?organisation_id=${req.query.organisation_id}`
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+		let response = await requesters.get(req.baseUrl, parameterisedRoute , {
+			'internal_access_token': req.headers['internal_access_token'],
+			'Content-Type':'application/json'
+		})
+	    response.result = convertIdsToString(response.result)
+		return res.json(response)
+	} catch (error) {
+		console.error('Error fetching organization details:', error)
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
 
 const projectController = {
 	fetchProjectTemplates,
 	projectsList,
-	readUser
+	readUser,
+	readOrganization
 }
 
 module.exports = projectController
