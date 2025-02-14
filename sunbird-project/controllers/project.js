@@ -269,11 +269,63 @@ const profileRead = async (req, res, selectedConfig) => {
 	}
 }
 
+const readOrganization = async (req, res, selectedConfig) => {
+	// Constructing the request body to fetch organization details
+	const body = {
+		request: {
+			// Extracting organisation ID or code from query parameters
+			organisationId: req.query.organisation_id || req.query.organisation_code,
+		},
+	}
+
+	try {
+		// If the selected API config has a defined service, set the base URL dynamically
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		// Sending a POST request to the target service API
+		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'], // Passing device info from request headers
+			'Authorization': `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}` // Authorization token from environment variables
+		})
+
+		// Logging response in debug mode for troubleshooting
+		if(process.env.DEBUG_MODE == "true"){
+			console.log('RESPONSE:', response)
+			console.log('RESPONSE.RESULT:', response?.result)
+		}
+
+		// Constructing the final response object with relevant data
+		const responseData = {
+			result: {
+				id: response.result.response.id, 
+				name: response.result.response.orgName, 
+				related_orgs: [], // Placeholder for related organizations (if needed in future)
+			},
+			responseCode : response.responseCode // Including response code from API response
+		}
+
+		// Sending the final response to the client
+		return res.json(responseData)
+
+	} catch (error) {
+		// Logging error details in debug mode if enabled
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching organization details:', error)
+		}
+		// Returning a generic internal server error response
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+
 const projectController = {
 	fetchProjectTemplates,
 	projectsList,
 	profileRead,
-	fetchLocationDetails
+	fetchLocationDetails,
+	readOrganization
 }
 
 module.exports = projectController

@@ -1543,6 +1543,18 @@ module.exports = {
             functionName: "fetchLocationDetails"
         },
         service: "entity",
-    }
+    },
+    {
+        sourceRoute: '/user/v1/organization/read',
+        type: 'GET',
+        inSequence: false,
+        orchestrated: false,
+        targetRoute: {
+            path: '/api/org/v1/read',
+            type: 'POST',
+            functionName: 'readOrganization',
+        },
+        service: "user",
+    },
     ]
 }
