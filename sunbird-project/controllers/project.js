@@ -164,7 +164,7 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		}
 		// fetch location details
 		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
-			"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
+			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
 		})
 
 
@@ -218,7 +218,7 @@ const profileRead = async (req, res, selectedConfig) => {
 
 		// Fetch user profile details
 		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
-			"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
+			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
 			"x-authenticated-user-token": req.headers["x-auth-token"]
 		}, req.body)
 		
