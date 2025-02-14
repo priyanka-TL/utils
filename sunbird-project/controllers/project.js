@@ -116,30 +116,91 @@ const projectsList = async (req, res) => {
 	})
 }
 
-const createLocationReqBody = async (req, res, selectedConfig) => {
-	let targetedRoutePath = selectedConfig.targetRoute.path
-	const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
-	const targetRoute = pathParamSetter(targetedRoutePath, params)
-
-	let bodyData = {}
-	bodyData["request"] = {}
-	bodyData["request"]["filters"] = {}
-	if("_id" in req.body){
-		bodyData["request"]["filters"] = {
-			"id" : req.body._id
+const fetchLocationDetails = async (req, res, selectedConfig) => {
+	try{
+		// validate the body, if body is not present throw error
+		if(!(Object.keys(req["body"]).length > 0) || !(Object.keys(req["body"]["query"]).length>0)){
+			if(process.env.DEBUG_MODE == "true"){
+				console.log("req.body cannot be empty")
+			}
+			res.status(500).json("Internal Server Error")
 		}
-	}
-	if("code" in req.body){
-		bodyData["request"]["filters"] = {
-			"code" : req.body.code
-		}
-	}
-	console.log(req.baseUrl, targetRoute, bodyData)
-	let response = await requesters.post(req.baseUrl, targetRoute, bodyData, {
-		"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
-	})
 
-	return res.json(response)
+		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+		let targetedRoutePath = selectedConfig.targetRoute.path
+		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
+		const targetRoute = pathParamSetter(targetedRoutePath, params)
+		
+		// prepare req.body to match sunbird location API req.body
+		let bodyData = {}
+		bodyData["request"] = {}
+		bodyData["request"]["filters"] = {}
+		if("_id" in req.body.query){
+			if(typeof req.body.query._id == "object"){
+				bodyData["request"]["filters"] = {
+					"id" : req.body.query._id["$in"]
+				}
+			}
+			else{
+				bodyData["request"]["filters"] = {
+					"id" : req.body.query._id
+				}
+			}
+		}
+		if("code" in req.body.query){
+			if(typeof req.body.query.code == "object"){
+				bodyData["request"]["filters"] = {
+					"code" : req.body.query.code["$in"]
+				}
+			}
+			else{
+				bodyData["request"]["filters"] = {
+					"code" : req.body.query.code
+				}
+			}
+		}
+		// fetch location details
+		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
+			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
+		})
+
+
+		// confirm success response
+		if (locationDetails.responseCode === 'OK') {
+
+			locationDetails["result"] = locationDetails.result.response
+			locationDetails["status"] = 200
+
+			// modify the response to be compatible with EP
+			if(locationDetails.result.length > 0){
+				locationDetails.result.map(location => {
+					location["_id"] = location.id
+					location["registryDetails"] = {
+						"code" : location.code
+					}
+					location["entityType"] = location.type
+				})
+			}
+		}
+		else{
+			if(process.env.DEBUG_MODE == "true"){
+				console.log("location API error",JSON.stringify(locationDetails))
+			}
+			res.json(locationDetails)
+		}
+
+		res.json(locationDetails)
+
+	}  catch (error) { 
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching location details:', error)
+		}
+		res.status(500).json({ error: 'Internal Server Error' })
+
+	}
 }
 /*The profileRead API retrieves and transforms user profile information from an external service (e.g., Sunbird's user service). 
 The function processes and restructures the data into a format 
@@ -154,10 +215,10 @@ const profileRead = async (req, res, selectedConfig) => {
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
-		
+
 		// Fetch user profile details
 		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
-			"Authorization": `Bearer ${process.env.BEARER_TOKEN}`,
+			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
 			"x-authenticated-user-token": req.headers["x-auth-token"]
 		}, req.body)
 		
@@ -186,6 +247,9 @@ const profileRead = async (req, res, selectedConfig) => {
 					};
 				});
 			}
+
+			// generate name for EP
+			userProfileData.result["name"] = userProfileData.result.userName
 			res.json(userProfileData)
 		} else {
 	
@@ -205,11 +269,63 @@ const profileRead = async (req, res, selectedConfig) => {
 	}
 }
 
+const readOrganization = async (req, res, selectedConfig) => {
+	// Constructing the request body to fetch organization details
+	const body = {
+		request: {
+			// Extracting organisation ID or code from query parameters
+			organisationId: req.query.organisation_id || req.query.organisation_code,
+		},
+	}
+
+	try {
+		// If the selected API config has a defined service, set the base URL dynamically
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		// Sending a POST request to the target service API
+		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'], // Passing device info from request headers
+			'Authorization': `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}` // Authorization token from environment variables
+		})
+
+		// Logging response in debug mode for troubleshooting
+		if(process.env.DEBUG_MODE == "true"){
+			console.log('RESPONSE:', response)
+			console.log('RESPONSE.RESULT:', response?.result)
+		}
+
+		// Constructing the final response object with relevant data
+		const responseData = {
+			result: {
+				id: response.result.response.id, 
+				name: response.result.response.orgName, 
+				related_orgs: [], // Placeholder for related organizations (if needed in future)
+			},
+			responseCode : response.responseCode // Including response code from API response
+		}
+
+		// Sending the final response to the client
+		return res.json(responseData)
+
+	} catch (error) {
+		// Logging error details in debug mode if enabled
+		if(process.env.DEBUG_MODE == "true"){
+			console.error('Error fetching organization details:', error)
+		}
+		// Returning a generic internal server error response
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+
 const projectController = {
 	fetchProjectTemplates,
 	projectsList,
 	profileRead,
-	createLocationReqBody
+	fetchLocationDetails,
+	readOrganization
 }
 
 module.exports = projectController

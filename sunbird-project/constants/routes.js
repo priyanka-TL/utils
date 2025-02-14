@@ -1528,7 +1528,7 @@ module.exports = {
         targetRoute: {
             path: "/api/data/v1/location/search",
             type: "POST",
-            functionName: "createLocationReqBody"
+            functionName: "fetchLocationDetails"
         },
         service: "entity",
     },
@@ -1540,21 +1540,21 @@ module.exports = {
         targetRoute: {
             path: "/api/data/v1/location/search",
             type: "POST",
-            functionName: "createLocationReqBody"
+            functionName: "fetchLocationDetails"
         },
         service: "entity",
     },
     {
-        sourceRoute: "/entity-management/v1/userRoleExtension/find",
-        type: "POST",
+        sourceRoute: '/user/v1/organization/read',
+        type: 'GET',
         inSequence: false,
         orchestrated: false,
         targetRoute: {
-            path: "/api/data/v1/location/search",
-            type: "POST",
-            functionName: "createLocationReqBody"
+            path: '/api/org/v1/read',
+            type: 'POST',
+            functionName: 'readOrganization',
         },
-        service: "entity",
-    }
+        service: "user",
+    },
     ]
 }
