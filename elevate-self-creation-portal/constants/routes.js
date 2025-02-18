@@ -101,6 +101,26 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: 'scp/v1/organization-extensions/updateConfig/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: 'scp/v1/organization-extensions/updateConfig/:id',
+				type: 'POST',
+			},
+		},
+		{
+			sourceRoute: 'scp/v1/organization-extensions/createConfig',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: 'scp/v1/organization-extensions/createConfig',
+				type: 'POST',
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/entity-types/update/:id',
 			type: 'POST',
 			inSequence: false,
