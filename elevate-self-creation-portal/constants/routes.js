@@ -261,6 +261,16 @@ module.exports = {
 			},
 		},
 		{
+			sourceRoute: '/scp/v1/programs/reviewerList',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/reviewerList',
+				type: 'GET',
+			},
+		},
+		{
 			sourceRoute: '/scp/v1/projects/update',
 			type: 'POST',
 			inSequence: false,
