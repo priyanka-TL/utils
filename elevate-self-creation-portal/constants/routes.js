@@ -781,5 +781,15 @@ module.exports = {
 				type: 'GET',
 			},
 		},
+		{
+			sourceRoute: '/scp/v1/programs/publish/:id',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/scp/v1/programs/publish/:id',
+				type: 'GET',
+			},
+		},
 	],
 }
