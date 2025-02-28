@@ -162,6 +162,19 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 				}
 			}
 		}
+
+		if ("metaInformation.name" in req.body.query) {
+			bodyData["request"]["filters"] = {
+				"name": req.body.query["metaInformation.name"]
+			};
+		}
+		
+
+		if("entityType" in req.body.query){
+			bodyData["request"]["filters"]={
+				"type" : req.body.query.entityType["$in"]
+			}
+		}		
 		// fetch location details
 		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
 			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
@@ -180,6 +193,9 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 					location["_id"] = location.id
 					location["registryDetails"] = {
 						"code" : location.code
+					}
+					location['metaInformation']={
+						'name' : location.name
 					}
 					location["entityType"] = location.type
 				})
