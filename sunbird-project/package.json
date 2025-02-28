@@ -1,6 +1,6 @@
 {
   "name": "sunbird-project",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Npm package for Project service integration with Interface service with sunbird authentication and entities",
   "main": "index.js",
   "author": "Vishnu",
