@@ -249,7 +249,7 @@ const profileRead = async (req, res, selectedConfig) => {
 				// Create a new user_roles array with transformed data
 				userProfileData.result.user_roles = userProfileData.result.profileUserTypes.map(ele => {
 					return {
-						title: ele.subType // map subType to title
+						title: ele.subType && ele.subType !== "" ? ele.subType : ele.type // map subType to title if not empty. if it is empty take value from type
 					};
 				});
 				
