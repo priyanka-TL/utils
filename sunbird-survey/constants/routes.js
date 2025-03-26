@@ -2338,9 +2338,8 @@ module.exports = {
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/api/data/v1/location/search",
-                type: "POST",
-                functionName: "fetchLocationDetails"
+               path: "/entity-management/v1/entityTypes/find",
+               type: "POST"
             },
             service: "entity",
         },
@@ -2548,9 +2547,8 @@ module.exports = {
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/api/data/v1/location/search",
-                type: "POST",
-                functionName: "fetchLocationDetails"
+               path: "/entity-management/v1/entities/find",
+               type: "POST"
             },
             service: "entity",
         },
