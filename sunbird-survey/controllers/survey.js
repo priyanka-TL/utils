@@ -156,6 +156,20 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 				}
 			}
 		}
+
+		if ("metaInformation.name" in req.body.query) {
+			bodyData["request"]["filters"] = {
+				"name": req.body.query["metaInformation.name"]
+			};
+		}
+		
+
+		if("entityType" in req.body.query){
+			bodyData["request"]["filters"]={
+				"type" : req.body.query.entityType["$in"]
+			}
+		}	
+		console.log(req.baseUrl,targetRoute,bodyData,"this is req body data");
 		// fetch location details
 		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
 			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
@@ -167,7 +181,7 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 
 			locationDetails["result"] = locationDetails.result.response
 			locationDetails["status"] = 200
-
+            console.log(locationDetails.result,"this is response")
 			// modify the response to be compatible with EP
 			if(locationDetails.result.length > 0){
 				locationDetails.result.map(location => {
