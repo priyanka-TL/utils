@@ -193,6 +193,9 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 					location["registryDetails"] = {
 						"code" : location.code
 					}
+					location['metaInformation']={
+						'name' : location.name
+					}
 					location["entityType"] = location.type
 				})
 			}

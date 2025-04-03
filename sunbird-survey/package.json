@@ -1,6 +1,6 @@
 {
     "name": "sunbird-survey-observation",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Npm package for Survey service integration with Interface service with sunbird authentication and entities",
     "main": "index.js",
     "author": "Praveen",
