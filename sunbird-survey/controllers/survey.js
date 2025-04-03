@@ -124,6 +124,7 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		if(selectedConfig.service){
 			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
+		console.log(JSON.stringify(req.body),'---------------------------------------------------------')
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
@@ -164,12 +165,15 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		}
 		
 
-		if("entityType" in req.body.query){
-			bodyData["request"]["filters"]={
-				"type" : req.body.query.entityType["$in"]
+		if ("entityType" in req.body.query) {
+			if (typeof req.body.query.entityType === "object" && "$in" in req.body.query.entityType) {
+				bodyData["request"]["filters"]["type"] = req.body.query.entityType["$in"];
+			} else {
+				bodyData["request"]["filters"]["type"] = req.body.query.entityType;
 			}
-		}	
-		console.log(req.baseUrl,targetRoute,bodyData,"this is req body data");
+		}
+		console.log(JSON.stringify(bodyData),'---------------------------------------------------------')
+
 		// fetch location details
 		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
 			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
