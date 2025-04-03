@@ -133,8 +133,6 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
-		console.log(JSON.stringify(req.body),'---------------------------------------------------------')
-		console.log(JSON.stringify(req.body.query),'req.body.query---------------------------------------------------------')
 
 		// prepare req.body to match sunbird location API req.body
 		let bodyData = {}
@@ -173,14 +171,9 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		
 
 		if ("entityType" in req.body.query) {
-			if (typeof req.body.query.entityType === "object" && "$in" in req.body.query.entityType) {
 				bodyData["request"]["filters"]["type"] = req.body.query.entityType["$in"];
-			} else {
-				bodyData["request"]["filters"]["type"] = req.body.query.entityType;
-			}
+			
 		}
-		console.log(JSON.stringify(bodyData),'---------------------------------------------------------')
-		console.log(JSON.stringify(bodyData.request.filter),'Project Service---------------------------------------------------------')
 
 		// fetch location details
 		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
