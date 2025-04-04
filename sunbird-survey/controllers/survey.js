@@ -391,6 +391,68 @@ const readOrganization = async (req, res, selectedConfig) => {
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
+
+const orgSchoolSearch = async ( filterData, pageSize = "", pageNo = "", searchKey = "", fields = [] ) =>{
+	try {
+
+		let bodyData = {};
+		bodyData["request"] = {};
+		bodyData["request"]["filters"] = filterData;
+
+		if ( pageSize !== "" ) {
+			bodyData["request"]["limit"] = pageSize;
+		} 
+
+		if ( pageNo !== "" ) {
+			let offsetValue = pageSize * ( pageNo - 1 ); 
+			bodyData["request"]["offset"] = offsetValue;
+		}
+
+		// if ( searchKey !== "" ) {
+		// 	if ( gen.utils.checkIfStringIsNumber(searchKey) ) {
+		// 		bodyData["request"]["fuzzy"] = {
+		// 			"externalId" : searchKey
+		// 		}
+		// 	} else {
+		// 		bodyData["request"]["fuzzy"] = {
+		// 			"orgName" : searchKey
+		// 		}
+		// 	}
+		// }
+
+		//for getting specified key data only.
+		if ( fields.length > 0 ) {
+			bodyData["request"]["fields"] = fields;
+		}
+	  
+
+		const response = await requesters.post(process.env.ENTITY_SERVICE_BASE_URL,"/api/org/v2/search", bodyData, {
+			'Authorization': `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}` // Authorization token from environment variables
+		})
+		
+	// Logging response in debug mode for troubleshooting
+	if(process.env.DEBUG_MODE == "true"){
+		console.log('RESPONSE:', response)
+		console.log('RESPONSE.RESULT:', response?.result)
+	}
+	// Constructing the final response object with relevant data
+	const responseData = {
+		
+			count: response.result.response.count, 
+			data: response.result.response.content, 
+			
+		responseCode : response.responseCode // Including response code from API response
+	}
+
+	// Sending the final response to the client
+	return responseData
+
+	} catch (error) {
+		console.log(error)
+		return (error);
+	}
+
+}
 const surveyController = {
 	fetchObserbationAndSurvey,
 	profileRead,
