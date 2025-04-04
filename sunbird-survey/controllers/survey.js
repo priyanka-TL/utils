@@ -124,7 +124,6 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		if(selectedConfig.service){
 			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
-		console.log(JSON.stringify(req.body),'---------------------------------------------------------')
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
@@ -135,8 +134,16 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		bodyData["request"]["filters"] = {}
 		if("_id" in req.body.query){
 			if(typeof req.body.query._id == "object"){
-				bodyData["request"]["filters"] = {
-					"id" : req.body.query._id["$in"]
+				if (Array.isArray(req.body.query._id)) {
+					// If it's an array, use it directly
+					bodyData["request"]["filters"] = {
+						"id":  req.body.query._id 
+					};
+				} else if (req.body.query._id["$in"]) {
+					// If it's an object with `$in`, use its value
+					bodyData["request"]["filters"] = {
+						"id": req.body.query._id["$in"]
+					};
 				}
 			}
 			else{
@@ -174,21 +181,71 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		}
 		console.log(JSON.stringify(bodyData),'---------------------------------------------------------')
 
+		let groups = {
+			school: new Set(),
+			district: new Set(),
+			block: new Set(),
+			cluster: new Set(),
+			state:new Set()
+		  };
+		  let convertedGroups
+		if( "_id" in req.body.query && req.body.projection && req.body.projection.includes("groups")){
+
+			let filterData = {
+				"orgLocation.id" : req.body.query._id,
+			}
+			let fields = ["externalId","orgLocation"];
+            let subEntitiesCode = await orgSchoolSearch(
+				filterData,
+				req.pageSize,
+				req.pageNo,
+				req.searchText,
+				fields
+			);
+			if( !subEntitiesCode.responseCode ==='OK' ) {
+				return ({
+					"message" : "No entitiy found",
+					"result" : [{
+						"count":0,
+						"data" : []
+					}]
+				})
+			}
+			let schoolDetails = subEntitiesCode.data;
+			
+			const validTypes = new Set(['school', 'district', 'block', 'cluster',"state"]); // Fast lookup for valid types
+
+			schoolDetails.forEach(schoolData => {
+				schoolData.orgLocation.forEach(location => {								
+					if (validTypes.has(location.type)) {
+					  groups[location.type].add(location.id); // Use Set for uniqueness
+					} 
+				  });
+			  
+			});
+			  
+			 convertedGroups = Object.fromEntries(
+				Object.entries(groups).map(([key, value]) => [key, [...value]])
+			  );
+       
+		}
+
 		// fetch location details
 		let locationDetails = await requesters.post(req.baseUrl, targetRoute, bodyData, {
 			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
 		})
 
-
+        
 		// confirm success response
 		if (locationDetails.responseCode === 'OK') {
 
 			locationDetails["result"] = locationDetails.result.response
 			locationDetails["status"] = 200
-            console.log(locationDetails.result,"this is response")
+
 			// modify the response to be compatible with EP
 			if(locationDetails.result.length > 0){
-				locationDetails.result.map(location => {
+				
+				locationDetails.result= locationDetails.result.map(location => {
 					location["_id"] = location.id
 					location["registryDetails"] = {
 						"code" : location.code
@@ -197,6 +254,8 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 						'name' : location.name
 					}
 					location["entityType"] = location.type
+					location["groups"]=convertedGroups
+					return location;
 				})
 			}
 		}
@@ -206,7 +265,6 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 			}
 			res.json(locationDetails)
 		}
-
 		res.json(locationDetails)
 
 	}  catch (error) { 
