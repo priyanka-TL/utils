@@ -2867,6 +2867,17 @@ module.exports = {
                 type: "POST"
             },
             service: "scheduler"
+        },
+        {
+            sourceRoute: "/user/v1/org-admin/createUsers",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/user/v1/org-admin/createUsers",
+                type: "POST"
+            },
+            service: "user"
         }
     ]
 }
