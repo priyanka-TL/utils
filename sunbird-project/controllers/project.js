@@ -231,7 +231,7 @@ const profileRead = async (req, res, selectedConfig) => {
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
-
+		
 		// Fetch user profile details
 		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
 			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
@@ -254,14 +254,34 @@ const profileRead = async (req, res, selectedConfig) => {
 				});
 				
 			}
+		
 			// generate location data of user for EP
 			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
-				userProfileData.result.profileLocation.forEach(location => {
-					// Set each location's type as a key in userProfileData.result with the id as value
-					userProfileData.result[location.type] = {
-						value: location.id
-					};
-				});
+
+				// if profile location is available get ids of location and fetch complete data of location by calling sunbird's location search API
+				const locationIds = userProfileData.result.profileLocation.map(location => location.id)
+				
+				// Create location search api call request body
+				const bodyData = {
+					request: {
+						filters: {
+							id: locationIds
+						}
+					}
+				};
+				
+				// Call location details fetcher
+				const locationData = await getLocationDetails(bodyData, req.baseUrl)
+				if (locationData.length > 0) {
+					locationData.forEach(location => {
+						// Set each location's type as a key in userProfileData.result with the id as value
+						userProfileData.result[location.type] = {
+							value: location.id,
+							label: location.name
+						};
+					});
+				}
+				
 			}
 
 			// generate name for EP
@@ -334,6 +354,37 @@ const readOrganization = async (req, res, selectedConfig) => {
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
+
+/**
+ * This function calls sunbird's location search api 
+ * @param {Object} bodyData - Body data for api call
+ * @param {*} baseUrl - Base url
+ * @returns 
+ */
+const getLocationDetails = async (bodyData, baseUrl) => {
+	try {
+		// setting API end point and making the call
+		const apiEndpoint = "/api/data/v1/location/search"
+		const locationDetails = await requesters.post(baseUrl, apiEndpoint, bodyData, {
+			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
+		});
+		
+		// Verifying the response
+		if (locationDetails.responseCode === 'OK' && locationDetails.result?.response?.length > 0) {
+			return locationDetails.result.response;
+		} else {
+			if (process.env.DEBUG_MODE === "true") {
+				console.log("Location API error", JSON.stringify(locationDetails));
+			}
+			return [];
+		}
+	} catch (error) {
+		if (process.env.DEBUG_MODE === "true") {
+			console.error('Error in getLocationDetails:', error);
+		}
+		return [];
+	}
+};
 
 
 const projectController = {
