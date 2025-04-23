@@ -143,6 +143,75 @@ const readUser = async (req, res, selectedConfig) => {
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
+const readUserTitle = async (req,res,selectedConfig)=>{
+	try {
+
+		
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+
+		}		
+		const parameterisedRoute = req.params.id ? selectedConfig.targetRoute.path.replace('/:id', `/${req.params.id}`) : selectedConfig.targetRoute.path;
+		let headers
+	
+		if (req.params.id) {
+			headers = {
+			'X-auth-token': req.headers['x-auth-token'],
+			'Content-Type': 'application/json',
+			}
+		}		
+
+		let response = await requesters.get(req.baseUrl, parameterisedRoute, headers)
+		let responseWithTranslation = await readUserServiceTitle(response,req.headers['x-auth-token'],req.query.language)
+		
+		return res.json(responseWithTranslation)
+	} catch (error){
+		console.error('Error fetching user title:', error);
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+
+const readUserServiceTitle = async (targetedRoleResponse,authToken,languageCode)=>{
+	try {
+		
+		let InterfaceBaseUrl = "http://localhost:" + process.env.APPLICATION_PORT +"/"
+
+		if(languageCode && languageCode !== common.ENGLISH_LANGUGE_CODE){
+			parameterisedRoute = "user/v1/user-role/list?language=" + `${languageCode}`
+
+		}else {
+			parameterisedRoute = "user/v1/user-role/list"
+		}		
+		let headers 
+
+			headers = {
+			'X-auth-token': 'bearer ' + authToken,
+			'Content-Type': 'application/json',
+			}
+		let response = await requesters.get(InterfaceBaseUrl, parameterisedRoute, headers)
+
+		const idToLabelMap = new Map();
+		for (const roleData of response.result.data) {
+		  idToLabelMap.set(roleData.id, roleData.label);
+		}
+	
+		// Update the label in targetedRoleResponse based on matching id
+		targetedRoleResponse.result = targetedRoleResponse.result.map(role => {
+		  const roleId = parseInt(role.value); // Convert string to number for comparison
+		  if (idToLabelMap.has(roleId)) {
+			return {
+			  ...role,
+			  label: idToLabelMap.get(roleId) // Replace the label
+			};
+		  }
+		  return role; // No change if id not found
+		});		
+		return targetedRoleResponse
+	} catch (error){
+		console.error('Error fetching user title:', error);
+	}
+}
 
 const readOrganization = async (req, res, selectedConfig) => {
 	try {
@@ -166,7 +235,8 @@ const projectController = {
 	fetchProjectTemplates,
 	projectsList,
 	readUser,
-	readOrganization
+	readOrganization,
+	readUserTitle
 }
 
 module.exports = projectController

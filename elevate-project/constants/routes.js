@@ -2634,7 +2634,22 @@ module.exports = {
             orchestrated: false,
             targetRoute: {
                 path: "/entity-management/v1/entities/targetedRoles/:id",
-                type: "GET"
+                type: "GET",
+                functionName: "readUserTitle"
+
+            },
+            service: "entity"
+        },
+        {
+            sourceRoute: "/entity-management/v1/entities/targetedRoles",
+            type: "GET",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/entity-management/v1/entities/targetedRoles",
+                type: "GET",
+                functionName: "readUserTitle"
+
             },
             service: "entity"
         },
