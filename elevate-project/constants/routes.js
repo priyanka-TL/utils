@@ -2583,6 +2583,29 @@ module.exports = {
             },
             service: "entity"
         },
+
+        {
+            sourceRoute: "/entity-management/v1/admin/createIndex",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+            targetRoute: {
+                path: "/entity-management/v1/admin/createIndex",
+                type: "POST"
+            },
+            service: "entity"
+		},
+        {
+            sourceRoute: "/entity-management/v1/admin/createIndex/:id",
+			type: "POST",
+			inSequence: false,
+			orchestrated: false,
+            targetRoute: {
+                path: "/entity-management/v1/admin/createIndex/:id",
+                type: "POST"
+            },
+            service: "entity"
+		},
         {
             sourceRoute: "/entity-management/v1/userRoleExtension/create",
             type: "POST",
