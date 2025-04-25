@@ -1,5 +1,5 @@
 const routesConfig = require('../constants/routes')
-const scpController = require('./scp')
+const scpController = require('./scpController')
 
 const customHandler = async (req, res) => {
 	const selectedRouteConfig = routesConfig.routes.find((obj) => obj.sourceRoute === req.sourceRoute)
