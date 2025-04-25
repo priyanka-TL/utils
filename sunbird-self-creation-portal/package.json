@@ -1,6 +1,6 @@
 {
 	"name": "sunbird-self-creation-portal",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Sunbird Self Creation Portal Package",
 	"main": "index.js",
 	"scripts": {
