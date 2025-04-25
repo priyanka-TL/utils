@@ -1,5 +1,5 @@
 /**
- * name : controllers/scpController.js
+ * name : controllers/scp.js
  * author : Priyanka Pradeep
  * Date : 24-Apr-2025
  * Description : Orchestration controller for scp
