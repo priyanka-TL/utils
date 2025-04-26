@@ -1005,9 +1005,9 @@ module.exports = {
 			inSequence: false,
 			orchestrated: true,
 			targetRoute: {
-				path: '/api/user/v2/read/:id',
+				path: '/api/user/v5/read/:id',
 				type: 'GET',
-				functionName: 'profileRead',
+				functionName: 'profileReadV5',
 			},
 			service: 'user',
 		},

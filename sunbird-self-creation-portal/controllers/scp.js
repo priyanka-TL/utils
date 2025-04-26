@@ -143,6 +143,21 @@ const profileRead = async (req, res, selectedConfig) => {
 				})
 			}
 
+			//generate role data for EP
+			if (userProfileData.result.roles && userProfileData.result.roles.length > 0) {
+				// Create a new user_roles array with transformed data
+				userProfileData.result.user_roles = userProfileData.result.roles.map((role) => {
+					return {
+						label: role
+							.toLowerCase()
+							.split('_')
+							.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+							.join(' '),
+						title: role,
+					}
+				})
+			}
+
 			// generate location data of user for EP
 			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
 				// if profile location is available get ids of location and fetch complete data of location by calling sunbird's location search API
@@ -172,6 +187,66 @@ const profileRead = async (req, res, selectedConfig) => {
 
 			// generate name for EP
 			userProfileData.result['name'] = userProfileData.result.userName
+			res.json(userProfileData)
+		} else {
+			if (process.env.DEBUG_MODE == 'true') {
+				console.log('profileRead error', JSON.stringify(userProfileData))
+			}
+			res.json(userProfileData)
+		}
+	} catch (error) {
+		if (process.env.DEBUG_MODE == 'true') {
+			console.error('Error fetching user details:', error)
+		}
+		res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+const profileReadV5 = async (req, res, selectedConfig) => {
+	try {
+		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		let targetedRoutePath = selectedConfig.targetRoute.path
+		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
+		const targetRoute = pathParamSetter(targetedRoutePath, params)
+
+		// Fetch user profile details
+		let userProfileData = await requesters.get(
+			req.baseUrl,
+			targetRoute,
+			{
+				Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
+				'x-authenticated-user-token': req.headers['x-auth-token'],
+			},
+			req.body
+		)
+
+		// confirm success response
+
+		if (userProfileData.responseCode === 'OK') {
+			userProfileData['result'] = userProfileData.result.response
+			//generate role data for SCP
+			if (userProfileData.result.roleList && userProfileData.result.roleList.length > 0) {
+				// Create a new user_roles array with transformed data
+				userProfileData.result.user_roles = userProfileData.result.roleList.map((role) => {
+					return {
+						label: role.name,
+						title: role.name,
+						id: role.id,
+					}
+				})
+			}
+
+			if (userProfileData.result.organisations && userProfileData.result.organisations.length > 0) {
+				userProfileData['result'].organisation_id = userProfileData.result.organisations[0]?.organisationId
+			}
+
+			;(userProfileData['result'].name = userProfileData.userName),
+				(userProfileData['result'].email = userProfileData.recoveryEmail)
+
 			res.json(userProfileData)
 		} else {
 			if (process.env.DEBUG_MODE == 'true') {
@@ -368,12 +443,14 @@ const accountList = async (req, res, selectedConfig) => {
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
+
 scpController = {
 	readUserById,
 	profileRead,
 	fetchLocationDetails,
 	readOrganization,
 	accountList,
+	profileReadV5,
 }
 
 module.exports = scpController
