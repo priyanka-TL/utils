@@ -104,105 +104,8 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
-/*The profileRead API retrieves and transforms user profile information from an external service (e.g., Sunbird's user service). 
-The function processes and restructures the data into a format 
-suitable for the Elevate Project frontend application.*/
 
 const profileRead = async (req, res, selectedConfig) => {
-	try {
-		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
-		if (selectedConfig.service) {
-			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
-		}
-		let targetedRoutePath = selectedConfig.targetRoute.path
-		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
-		const targetRoute = pathParamSetter(targetedRoutePath, params)
-
-		// Fetch user profile details
-		let userProfileData = await requesters.get(
-			req.baseUrl,
-			targetRoute,
-			{
-				Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
-				'x-authenticated-user-token': req.headers['x-auth-token'],
-			},
-			req.body
-		)
-
-		// confirm success response
-		if (userProfileData.responseCode === 'OK') {
-			userProfileData['result'] = userProfileData.result.response
-
-			//generate role data for EP
-			if (userProfileData.result.profileUserTypes && userProfileData.result.profileUserTypes.length > 0) {
-				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.profileUserTypes.map((ele) => {
-					return {
-						title: ele.subType && ele.subType !== '' ? ele.subType : ele.type, // map subType to title if not empty. if it is empty take value from type
-					}
-				})
-			}
-
-			//generate role data for EP
-			if (userProfileData.result.roles && userProfileData.result.roles.length > 0) {
-				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.roles.map((role) => {
-					return {
-						label: role
-							.toLowerCase()
-							.split('_')
-							.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-							.join(' '),
-						title: role,
-					}
-				})
-			}
-
-			// generate location data of user for EP
-			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
-				// if profile location is available get ids of location and fetch complete data of location by calling sunbird's location search API
-				const locationIds = userProfileData.result.profileLocation.map((location) => location.id)
-
-				// Create location search api call request body
-				const bodyData = {
-					request: {
-						filters: {
-							id: locationIds,
-						},
-					},
-				}
-
-				// Call location details fetcher
-				const locationData = await getLocationDetails(bodyData, req.baseUrl)
-				if (locationData.length > 0) {
-					locationData.forEach((location) => {
-						// Set each location's type as a key in userProfileData.result with the id as value
-						userProfileData.result[location.type] = {
-							value: location.id,
-							label: location.name,
-						}
-					})
-				}
-			}
-
-			// generate name for EP
-			userProfileData.result['name'] = userProfileData.result.userName
-			res.json(userProfileData)
-		} else {
-			if (process.env.DEBUG_MODE == 'true') {
-				console.log('profileRead error', JSON.stringify(userProfileData))
-			}
-			res.json(userProfileData)
-		}
-	} catch (error) {
-		if (process.env.DEBUG_MODE == 'true') {
-			console.error('Error fetching user details:', error)
-		}
-		res.status(500).json({ error: 'Internal Server Error' })
-	}
-}
-
-const profileReadV5 = async (req, res, selectedConfig) => {
 	try {
 		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
 		if (selectedConfig.service) {
@@ -429,45 +332,18 @@ const processUserSearchResponse = (content) => {
 const accountList = async (req, res, selectedConfig) => {
 	const body = {
 		request: {
-			filters: {
-				userId: [],
-			},
-		},
-	}
-	try {
-		const userIds = req.body.userIds
-		if (process.env.DEBUG_MODE == 'true') {
-			console.log('------- ================ -------', req.body)
-		}
-		// if (Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
-		body.request.filters.userId = userIds
-
-		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
-	} catch (error) {
-		if (process.env.DEBUG_MODE == 'true') {
-			console.error('Error fetching user details:', error)
-		}
-		return res.status(500).json({ error: 'Internal Server Error' })
-	}
-}
-
-const userList = async (req, res, selectedConfig) => {
-	console.log('came to userList')
-
-	const body = {
-		request: {
 			filters: {},
 		},
 	}
 	try {
-		const userIds = req.body.userIds
+		const userIds = req.body.user_ids
 
 		if (selectedConfig.service) {
 			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
 
 		if (userIds) {
-			body.request.filters.userId = userIds
+			body.request.filters.id = userIds
 		}
 
 		if (req.query.organisation_id) {
@@ -478,7 +354,7 @@ const userList = async (req, res, selectedConfig) => {
 			body.request.filters['organisations.organisationId'] = req.query.organisation_code
 		}
 
-		if (req.query.type) {
+		if (req.query.type && req.query.type != 'all') {
 			body.request.filters['roles.role'] = req.query.type
 		}
 
@@ -500,6 +376,12 @@ const userList = async (req, res, selectedConfig) => {
 			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
 			'x-authenticated-user-token': cleanToken,
 		})
+		console.log(userSearchResponse, 'userSearchResponse')
+		console.log(cleanToken, body, 'Req body')
+
+		if (userSearchResponse?.responseCode != 'OK') {
+			throw new Error('User Search Failed')
+		}
 
 		let data = processUserSearchResponse(userSearchResponse.result.response.content) || []
 
@@ -510,10 +392,87 @@ const userList = async (req, res, selectedConfig) => {
 			},
 		})
 	} catch (error) {
+		console.log(error, 'error')
 		if (process.env.DEBUG_MODE == 'true') {
 			console.error('Error fetching user details:', error)
 		}
 		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+const organizationList = async (req, res, selectedConfig) => {
+	console.log('came to org list')
+	const body = {
+		request: {
+			filters: {},
+		},
+	}
+	try {
+		const orgIds = req.body.organizationIds
+
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		if (orgIds) {
+			body.request.filters.id = orgIds
+		}
+
+		if (req.query.organization_id) {
+			body.request.filters.id = req.query.organization_id
+		}
+
+		if (req.query.limit) {
+			body.request['limit'] = parseInt(req.query.limit)
+		}
+
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('------- ================ -------', req.body)
+			console.log(body, 'Req body')
+		}
+
+		// Format token removes "Bearer " if present at the start
+		const authToken = req.headers['x-auth-token'] || ''
+		const cleanToken = authToken.replace(/^bearer\s+/i, '')
+
+		const orgSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'], // Passing device info from request headers
+			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
+			'x-authenticated-user-token': cleanToken,
+		})
+		console.log(orgSearchResponse, 'orgSearchResponse')
+		console.log(cleanToken, body, 'Req body')
+
+		if (orgSearchResponse?.responseCode != 'OK') {
+			throw new Error('User Search Failed')
+		}
+
+		let data = processOrgSearchResponse(orgSearchResponse.result.response.content) || []
+		// return res.json(orgSearchResponse)
+		return res.json({ result: data?.result })
+	} catch (error) {
+		console.log(error, 'error')
+		if (process.env.DEBUG_MODE == 'true') {
+			console.error('Error fetching user details:', error)
+		}
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+const processOrgSearchResponse = (content) => {
+	if (process.env.DEBUG_MODE == 'true') {
+		// console.log(content,'============ org Details  ====================')
+	}
+	return {
+		result: content.map((org) => {
+			console.log(org, 'org')
+			return {
+				id: org.id,
+				name: org?.orgName,
+				code: org?.orgCode,
+				description: '',
+			}
+		}),
 	}
 }
 
@@ -523,8 +482,8 @@ scpController = {
 	fetchLocationDetails,
 	readOrganization,
 	accountList,
-	profileReadV5,
-	userList,
+	organizationList,
+	getLocationDetails,
 }
 
 module.exports = scpController
