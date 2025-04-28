@@ -210,6 +210,7 @@ const profileReadV5 = async (req, res, selectedConfig) => {
 		}
 
 		let targetedRoutePath = selectedConfig.targetRoute.path
+		console.log(targetedRoutePath, 'targetedRoutePath')
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
 
@@ -224,29 +225,35 @@ const profileReadV5 = async (req, res, selectedConfig) => {
 			req.body
 		)
 
-		// confirm success response
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('RESPONSE:', userProfileData)
+			console.log('RESPONSE.RESULT:', userProfileData?.result)
+		}
 
+		// confirm success response
 		if (userProfileData.responseCode === 'OK') {
 			userProfileData['result'] = userProfileData.result.response
 			//generate role data for SCP
-			if (userProfileData.result.roleList && userProfileData.result.roleList.length > 0) {
+			if (userProfileData.result.roles && userProfileData.result.roles.length > 0) {
 				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.roleList.map((role) => {
+				userProfileData.result.user_roles = userProfileData.result.roles.map((eachRole) => {
 					return {
-						label: role.name,
-						title: role.name,
-						id: role.id,
+						label: eachRole.role
+							.toLowerCase()
+							.split('_')
+							.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+							.join(' '),
+						title: eachRole.role,
 					}
 				})
 			}
 
 			if (userProfileData.result.organisations && userProfileData.result.organisations.length > 0) {
-				userProfileData['result'].organisation_id = userProfileData.result.organisations[0]?.organisationId
+				userProfileData['result'].organization_id = userProfileData.result?.organisations[0].organisationId
 			}
 
 			;(userProfileData['result'].name = userProfileData.userName),
 				(userProfileData['result'].email = userProfileData.recoveryEmail)
-
 			res.json(userProfileData)
 		} else {
 			if (process.env.DEBUG_MODE == 'true') {
