@@ -408,20 +408,19 @@ const readUserById = async (req, res, selectedConfig) => {
 
 const processUserSearchResponse = (content) => {
 	if (process.env.DEBUG_MODE == 'true') {
-		console.log('============ user Details  ====================', content)
+		// console.log(content,'============ user Details  ====================')
 	}
 	return {
 		result: content.map((user) => {
-			console.log(user)
 			return {
 				id: user.id,
-				image: user?.profileDetails?.profileImageUrl,
-				name: user?.profileDetails?.personalDetails?.firstname,
+				image: user?.profileImageUrl,
+				name: user?.firstName,
 				organization: {
-					id: user?.rootOrgId,
-					name: user?.rootOrgName,
+					id: user?.organisations?.[0]?.organisationId,
+					name: user?.organisations?.[0]?.orgName,
 				},
-				email: user?.profileDetails?.personalDetails?.primaryEmail,
+				email: user?.primaryEmail,
 			}
 		}),
 	}
@@ -442,7 +441,7 @@ const accountList = async (req, res, selectedConfig) => {
 		}
 		// if (Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
 		body.request.filters.userId = userIds
-		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
+
 		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
 	} catch (error) {
 		if (process.env.DEBUG_MODE == 'true') {
@@ -452,23 +451,64 @@ const accountList = async (req, res, selectedConfig) => {
 	}
 }
 
-const userListBasedOnRole = async (req, res, selectedConfig) => {
+const userList = async (req, res, selectedConfig) => {
+	console.log('came to userList')
+
 	const body = {
 		request: {
-			filters: {
-				userId: [],
-			},
+			filters: {},
 		},
 	}
 	try {
 		const userIds = req.body.userIds
-		if (process.env.DEBUG_MODE == 'true') {
-			console.log('------- ================ -------', req.body)
+
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
 
-		body.request.filters.userId = userIds
-		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
-		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
+		if (userIds) {
+			body.request.filters.userId = userIds
+		}
+
+		if (req.query.organisation_id) {
+			body.request.filters['organisations.organisationId'] = req.query.organisation_id
+		}
+
+		if (req.query.organisation_code) {
+			body.request.filters['organisations.organisationId'] = req.query.organisation_code
+		}
+
+		if (req.query.type) {
+			body.request.filters['roles.role'] = req.query.type
+		}
+
+		if (req.query.limit) {
+			body.request['limit'] = parseInt(req.query.limit)
+		}
+
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('------- ================ -------', req.body)
+			console.log(body, 'Req body')
+		}
+
+		// Format token removes "Bearer " if present at the start
+		const authToken = req.headers['x-auth-token'] || ''
+		const cleanToken = authToken.replace(/^bearer\s+/i, '')
+
+		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'], // Passing device info from request headers
+			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
+			'x-authenticated-user-token': cleanToken,
+		})
+
+		let data = processUserSearchResponse(userSearchResponse.result.response.content) || []
+
+		return res.json({
+			result: {
+				data: data?.result,
+				count: data?.result?.length,
+			},
+		})
 	} catch (error) {
 		if (process.env.DEBUG_MODE == 'true') {
 			console.error('Error fetching user details:', error)
@@ -484,7 +524,7 @@ scpController = {
 	readOrganization,
 	accountList,
 	profileReadV5,
-	userListBasedOnRole,
+	userList,
 }
 
 module.exports = scpController
