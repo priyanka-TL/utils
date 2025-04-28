@@ -1045,5 +1045,17 @@ module.exports = {
 			},
 			service: 'user',
 		},
+		{
+			sourceRoute: '/user/v1/account/search',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/api/user/v1/search',
+				type: 'POST',
+				functionName: 'listUserBasedOnRole',
+			},
+			service: 'user',
+		},
 	],
 }

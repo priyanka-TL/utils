@@ -294,6 +294,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 			result: {
 				id: response.result.response.id,
 				name: response.result.response.orgName,
+				code: response.result.response.orgCode,
 				related_orgs: [], // Placeholder for related organizations (if needed in future)
 			},
 			responseCode: response.responseCode, // Including response code from API response
@@ -444,6 +445,31 @@ const accountList = async (req, res, selectedConfig) => {
 	}
 }
 
+const userListBasedOnRole = async (req, res, selectedConfig) => {
+	const body = {
+		request: {
+			filters: {
+				userId: [],
+			},
+		},
+	}
+	try {
+		const userIds = req.body.userIds
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('------- ================ -------', req.body)
+		}
+
+		body.request.filters.userId = userIds
+		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
+		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
+	} catch (error) {
+		if (process.env.DEBUG_MODE == 'true') {
+			console.error('Error fetching user details:', error)
+		}
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
 scpController = {
 	readUserById,
 	profileRead,
@@ -451,6 +477,7 @@ scpController = {
 	readOrganization,
 	accountList,
 	profileReadV5,
+	userListBasedOnRole,
 }
 
 module.exports = scpController
