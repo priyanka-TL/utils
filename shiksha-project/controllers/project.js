@@ -231,13 +231,16 @@ const profileRead = async (req, res, selectedConfig) => {
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		const targetRoute = pathParamSetter(targetedRoutePath, params)
+		// Add the query params to the request call
+		console.log("targetedRoutePath",targetedRoutePath)
+		targetRoute = targetedRoutePath + `?fieldvalue=true`
 		
 		// Fetch user profile details
 		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
-			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
-			"x-authenticated-user-token": req.headers["x-auth-token"]
+			"Authorization": `Bearer ${req.headers["x-auth-token"]}`,
+			// "x-authenticated-user-token": req.headers["x-auth-token"]
 		}, req.body)
-		
+		console.log("userProfileData",userProfileData)
 		// confirm success response
 		if (userProfileData.responseCode === 'OK') {
 			

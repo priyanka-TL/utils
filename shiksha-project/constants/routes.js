@@ -1502,7 +1502,7 @@ module.exports = {
         inSequence: false,
         orchestrated: true,
         targetRoute: {
-            path: '/api/user/v2/read',
+            path: '/interface/v1/user/list',
             type: 'GET',
             functionName: "profileRead"
         },
@@ -1514,7 +1514,7 @@ module.exports = {
         inSequence: false,
         orchestrated: true,
         targetRoute: {
-            path: '/api/user/v2/read/:id',
+            path: '/interface/v1/user/list',
             type: 'GET',
             functionName: "profileRead"
         },
