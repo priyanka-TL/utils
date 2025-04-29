@@ -1433,30 +1433,6 @@ module.exports = {
             service: "user"
         },
         {
-            sourceRoute: '/user/v1/user/read/:id',
-            type: 'GET',
-            inSequence: false,
-            orchestrated: true,
-            targetRoute: {
-                path: '/api/user/v2/read/:id',
-                type: 'GET',
-                functionName: "profileRead"
-            },
-            service: "user"
-        },
-        {
-            sourceRoute: '/user/v1/user/read',
-            type: 'GET',
-            inSequence: false,
-            orchestrated: true,
-            targetRoute: {
-                path: '/api/user/v2/read',
-                type: 'GET',
-                functionName: "profileRead"
-            },
-            service: "user"
-        },
-        {
             sourceRoute: "/user/v1/user/update",
             type: "PATCH",
             inSequence: false,
