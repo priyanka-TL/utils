@@ -261,6 +261,7 @@ const profileRead = async (req, res, selectedConfig) => {
 			
 			// generate name for EP
 			userProfileData.result["name"] = userProfileData.result.username
+			userProfileData.responseCode = "OK"
 			res.json(userProfileData)
 		} else {
 	

@@ -1,6 +1,6 @@
 {
   "name": "shiksha-project",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Npm package for Project service integration with Interface service with shiksha-user management",
   "main": "index.js",
   "author": "Vishnu",
