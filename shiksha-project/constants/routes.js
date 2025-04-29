@@ -1514,7 +1514,7 @@ module.exports = {
         inSequence: false,
         orchestrated: true,
         targetRoute: {
-            path: '/interface/v1/user/list',
+            path: '/user/v1/list',
             type: 'GET',
             functionName: "profileRead"
         },
