@@ -1388,6 +1388,30 @@ module.exports = {
             service: "user"
         },
         {
+            sourceRoute: '/user/v1/user/read',
+            type: 'GET',
+            inSequence: false,
+            orchestrated: true,
+            targetRoute: {
+                path: '/interface/v1/user/list',
+                type: 'GET',
+                functionName: "profileRead"
+            },
+            service: "user"
+        },
+        {
+            sourceRoute: '/user/v1/user/read/:id',
+            type: 'GET',
+            inSequence: false,
+            orchestrated: true,
+            targetRoute: {
+                path: '/user/v1/list',
+                type: 'GET',
+                functionName: "profileRead"
+            },
+            service: "user"
+        },
+        {
             sourceRoute: "/user/v1/account/generateOtp",
             type: "POST",
             inSequence: false,
