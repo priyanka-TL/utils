@@ -17,4 +17,5 @@ module.exports = {
 	AUTH_TOKEN_KEY: 'X-auth-token',
 	HEADER_CONTENT_TYPE: 'content-type',
 	INTERNAL_ACCESS_TOKEN: 'internal-access-token',
+	DEFAULT_ROLE_FOR_STATE_HIERARCHY : "DEO"
 }
