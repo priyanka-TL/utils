@@ -151,10 +151,11 @@ const profileRead = async (req, res, selectedConfig) => {
 				})
 			}
 
-			if (userProfileData.result.organisations && userProfileData.result.organisations.length > 0) {
-				userProfileData['result'].organization_id = userProfileData.result?.organisations[0].organisationId
+			userProfileData['result'].organization_id = userProfileData.result?.rootOrgId
+			userProfileData['result'].organization = {
+				id: userProfileData.result?.rootOrgId,
+				name: userProfileData.result?.rootOrgName,
 			}
-
 			;(userProfileData['result'].name = userProfileData.userName),
 				(userProfileData['result'].email = userProfileData.recoveryEmail)
 			res.json(userProfileData)
@@ -347,11 +348,11 @@ const accountList = async (req, res, selectedConfig) => {
 		}
 
 		if (req.query.organization_id) {
-			body.request.filters['organisations.organisationId'] = req.query.organization_id
+			body.request.filters['rootOrgId'] = req.query.organization_id
 		}
 
 		if (req.query.organization_code) {
-			body.request.filters['organisations.organisationId'] = req.query.organization_code
+			body.request.filters['rootOrgId'] = req.query.organization_code
 		}
 
 		if (req.query.type && req.query.type != 'all') {
