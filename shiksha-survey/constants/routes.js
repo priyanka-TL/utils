@@ -2333,16 +2333,26 @@ module.exports = {
             service: "entity"
         },
         {
+            sourceRoute: "/entity/v1/entities/find",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/entity/v1/entities/find",
+                type: "POST"
+            },
+            service: "entity"
+        },
+        {
             sourceRoute: "/entity/v1/entityTypes/find",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/api/data/v1/location/search",
-                type: "POST",
-                functionName: "fetchLocationDetails"
+                path: "/entity/v1/entityTypes/find",
+                type: "POST"
             },
-            service: "entity",
+            service: "entity"
         },
         {
             sourceRoute: "/entity/v1/entityTypes/list",
