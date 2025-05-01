@@ -233,30 +233,19 @@ const profileRead = async (req, res, selectedConfig) => {
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		let targetRoute = pathParamSetter(targetedRoutePath, params)
 		
-		// Prepare the body
-		let requestBody = req.body;
-
-		// If params exist and have 'id', override the request body with filters
-		if (params && params.id) {
-			requestBody = {
-				filters: {
-					userId: params.id
-				}
-			};
-		}
 		
-		JSON.stringify(requestBody)
-		
+		// await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
+		// https://shiksha-dev-interface.tekdinext.com/interface/v1/user/profile
 		// Fetch user profile details
-		let userProfileData = await requesters.post(req.baseUrl, targetRoute, requestBody, {
+		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
 			"Authorization": `Bearer ${req.headers["x-auth-token"]}`,
 			"Content-Type" : "application/json"
-		})
-
+		},{})
+		console.log("userProfileData",JSON.stringify(userProfileData))
 		// confirm success response
 		if (userProfileData.responseCode === 200) {
 			
-			userProfileData["result"] = userProfileData.result.getUserDetails[0] 
+			userProfileData["result"] = userProfileData.result.userData
 			userProfileData.result = await transformUserProfileData(userProfileData.result)
 			
 			// generate name for EP
@@ -333,7 +322,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 
 /**
  * This  function will modify the user profie data coming from shiksha user
- * @param {Thiis } userProfileData 
+ * @param { } userProfileData 
  * @returns 
  */
 

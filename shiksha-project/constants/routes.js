@@ -319,16 +319,18 @@ module.exports = {
         },
         service: "project"
     },
+    
     {
-        sourceRoute: "/project/v1/profile/read",
-        type: "GET",
+        sourceRoute: '/project/v1/profile/read',
+        type: 'GET',
         inSequence: false,
-        orchestrated: false,
+        orchestrated: true,
         targetRoute: {
-        path: "/project/v1/profile/read",
-        type: "GET"
+            path: '/user/v1/profile',
+            type: 'GET',
+            functionName: "profileRead"
         },
-        service: "project"
+        service: "user"
     },
     {
         sourceRoute: "/interface/v1/userProjects/list",
@@ -1502,7 +1504,7 @@ module.exports = {
         inSequence: false,
         orchestrated: true,
         targetRoute: {
-            path: '/interface/v1/user/list',
+            path: '/user/v1/profile',
             type: 'GET',
             functionName: "profileRead"
         },
@@ -1514,7 +1516,7 @@ module.exports = {
         inSequence: false,
         orchestrated: true,
         targetRoute: {
-            path: '/user/v1/list',
+            path: '/user/v1/profile',
             type: 'GET',
             functionName: "profileRead"
         },
