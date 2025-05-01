@@ -1269,12 +1269,13 @@ module.exports = {
 			sourceRoute: '/survey/v1/profile/read',
 			type: 'GET',
 			inSequence: false,
-			orchestrated: false,
+			orchestrated: true,
 			targetRoute: {
-				path: '/survey/v1/profile/read',
-				type: 'GET'
+				path: '/user/v1/profile',
+				type: 'GET',
+                functionName: "profileRead"
 			},
-			service:"survey"
+			service:"user"
 		},
 		{
 			sourceRoute: '/survey/v1/configurations/read',

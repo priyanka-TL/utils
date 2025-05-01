@@ -290,35 +290,25 @@ const profileRead = async (req, res, selectedConfig) => {
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		let targetRoute = pathParamSetter(targetedRoutePath, params)
 		
-		// Prepare the body
-		let requestBody = req.body;
-
-		// If params exist and have 'id', override the request body with filters
-		if (params && params.id) {
-			requestBody = {
-				filters: {
-					userId: params.id
-				}
-			};
-		}
 		
-		JSON.stringify(requestBody)
-		
+		// await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
+		// https://shiksha-dev-interface.tekdinext.com/interface/v1/user/profile
 		// Fetch user profile details
-		let userProfileData = await requesters.post(req.baseUrl, targetRoute, requestBody, {
+		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
 			"Authorization": `Bearer ${req.headers["x-auth-token"]}`,
 			"Content-Type" : "application/json"
-		})
-
+		},{})
+		
 		// confirm success response
 		if (userProfileData.responseCode === 200) {
 			
-			userProfileData["result"] = userProfileData.result.getUserDetails[0] 
+			userProfileData["result"] = userProfileData.result.userData
 			userProfileData.result = await transformUserProfileData(userProfileData.result)
 			
 			// generate name for EP
 			userProfileData.result["name"] = userProfileData.result.username
 			userProfileData.responseCode = "OK"
+			userProfileData.status = 200
 			res.json(userProfileData)
 		} else {
 	
@@ -337,6 +327,7 @@ const profileRead = async (req, res, selectedConfig) => {
 
 	}
 }
+
 
 const readOrganization = async (req, res, selectedConfig) => {
 	// Constructing the request body to fetch organization details
