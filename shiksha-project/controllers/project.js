@@ -251,6 +251,8 @@ const profileRead = async (req, res, selectedConfig) => {
 			// generate name for EP
 			userProfileData.result["name"] = userProfileData.result.username
 			userProfileData.responseCode = "OK"
+			userProfileData.status = 200
+			console.log("userProfileData###############################@@",userProfileData)
 			res.json(userProfileData)
 		} else {
 	
@@ -306,7 +308,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 			},
 			responseCode : response.responseCode // Including response code from API response
 		}
-
+		console.log("responseData",responseData)
 		// Sending the final response to the client
 		return res.json(responseData)
 
