@@ -1,7 +1,7 @@
 /**
  * name : controllers/project.js
- * author : Adithya Dinesh
- * Date : 22-Aug-2024
+ * author : Vishnu
+ * Date : 28-Apr-2025
  * Description : Orchestration controller for project
  */
 
@@ -224,68 +224,44 @@ suitable for the Elevate Project frontend application.*/
 
 const profileRead = async (req, res, selectedConfig) => {
 	try {
+		console.log("profileRead API called",selectedConfig)
 		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
 		if(selectedConfig.service){
 			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
-		const targetRoute = pathParamSetter(targetedRoutePath, params)
+		let targetRoute = pathParamSetter(targetedRoutePath, params)
+		
+		// Prepare the body
+		let requestBody = req.body;
+
+		// If params exist and have 'id', override the request body with filters
+		if (params && params.id) {
+			requestBody = {
+				filters: {
+					userId: params.id
+				}
+			};
+		}
+		
+		JSON.stringify(requestBody)
 		
 		// Fetch user profile details
-		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
-			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
-			"x-authenticated-user-token": req.headers["x-auth-token"]
-		}, req.body)
-		
+		let userProfileData = await requesters.post(req.baseUrl, targetRoute, requestBody, {
+			"Authorization": `Bearer ${req.headers["x-auth-token"]}`,
+			"Content-Type" : "application/json"
+		})
+
 		// confirm success response
-		if (userProfileData.responseCode === 'OK') {
+		if (userProfileData.responseCode === 200) {
 			
-			userProfileData["result"] = userProfileData.result.response
-		
-			//generate role data for EP
-			if (userProfileData.result.profileUserTypes && userProfileData.result.profileUserTypes.length > 0) {
-				
-				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.profileUserTypes.map(ele => {
-					return {
-						title: ele.subType && ele.subType !== "" ? ele.subType : ele.type // map subType to title if not empty. if it is empty take value from type
-					};
-				});
-				
-			}
-		
-			// generate location data of user for EP
-			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
-
-				// if profile location is available get ids of location and fetch complete data of location by calling sunbird's location search API
-				const locationIds = userProfileData.result.profileLocation.map(location => location.id)
-				
-				// Create location search api call request body
-				const bodyData = {
-					request: {
-						filters: {
-							id: locationIds
-						}
-					}
-				};
-				
-				// Call location details fetcher
-				const locationData = await getLocationDetails(bodyData, req.baseUrl)
-				if (locationData.length > 0) {
-					locationData.forEach(location => {
-						// Set each location's type as a key in userProfileData.result with the id as value
-						userProfileData.result[location.type] = {
-							value: location.id,
-							label: location.name
-						};
-					});
-				}
-				
-			}
-
+			userProfileData["result"] = userProfileData.result.getUserDetails[0] 
+			userProfileData.result = await transformUserProfileData(userProfileData.result)
+			
 			// generate name for EP
-			userProfileData.result["name"] = userProfileData.result.userName
+			userProfileData.result["name"] = userProfileData.result.username
+			userProfileData.responseCode = "OK"
 			res.json(userProfileData)
 		} else {
 	
@@ -356,35 +332,101 @@ const readOrganization = async (req, res, selectedConfig) => {
 }
 
 /**
- * This function calls sunbird's location search api 
- * @param {Object} bodyData - Body data for api call
- * @param {*} baseUrl - Base url
+ * This  function will modify the user profie data coming from shiksha user
+ * @param {Thiis } userProfileData 
  * @returns 
  */
-const getLocationDetails = async (bodyData, baseUrl) => {
+
+const transformUserProfileData = async (userProfileData) => {
 	try {
-		// setting API end point and making the call
-		const apiEndpoint = "/api/data/v1/location/search"
-		const locationDetails = await requesters.post(baseUrl, apiEndpoint, bodyData, {
-			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
-		});
+		const transformedData = {};
+		const userRoles = [];
 		
-		// Verifying the response
-		if (locationDetails.responseCode === 'OK' && locationDetails.result?.response?.length > 0) {
-			return locationDetails.result.response;
-		} else {
-			if (process.env.DEBUG_MODE === "true") {
-				console.log("Location API error", JSON.stringify(locationDetails));
+		// Check if customFields exist
+		if (userProfileData?.customFields?.length > 0) {
+			for (const field of userProfileData.customFields) {
+				const label = field.label?.toLowerCase();
+				const fieldId = field.fieldId;
+				const selectedValues = field.selectedValues;
+
+				if (label === 'roles' || label === 'subroles') {
+					// Handle roles and subroles
+					for (const role of selectedValues) {
+						userRoles.push({
+							id: fieldId,                     // fieldId as id
+							title: role.id,                  // id from selectedValues
+							label: role.value,               // value from selectedValues
+						});
+					}
+				} else {
+					if (typeof selectedValues === 'string') {
+						parserdString = fixMalformedJSONString(selectedValues);
+						if (parserdString) {
+							transformedData[label] = {
+								value: parserdString.id,
+								label: parserdString.name
+							}
+						}
+							
+						
+					} else {
+						const firstValue = selectedValues[0];
+						transformedData[label] = {
+						value: firstValue.id,
+						label: firstValue.value
+					};
+					}
+					
+				}
 			}
-			return [];
 		}
+
+		// Add user_roles if any roles found
+		if (userRoles.length > 0) {
+			transformedData["user_roles"] = userRoles;
+		}
+		// Delete customFields from original
+		delete userProfileData.customFields;
+
+		// Merge transformedData into original userProfileData
+		const finalUserProfileData = {
+			...userProfileData,
+			...transformedData
+		};
+
+		return finalUserProfileData;
+		// return transformedData;
+
 	} catch (error) {
 		if (process.env.DEBUG_MODE === "true") {
-			console.error('Error in getLocationDetails:', error);
+			console.error('Error in transformUserProfileData:', error);
 		}
-		return [];
+		return {};
 	}
 };
+/**
+ * This function will fix the malformed JSON string
+ * @param {string} input - The input string to be fixed
+ * @returns {object} - The parsed JSON object or an empty string if parsing fails
+ */
+const fixMalformedJSONString = (input) => {
+	
+	try {
+		
+		// Use regex to extract the quoted inner JSON string
+		const match = input.match(/^\{"(.*)"\}$/);
+		if (match && match[1]) {
+		  const innerStr = match[1]
+			.replace(/\\"/g, '"'); // Convert escaped quotes to real quotes
+		  const innerObj = JSON.parse(innerStr); 
+		  return innerObj
+		}
+	  } catch (e) {
+		console.error("Final parse failed:", e);
+	  }
+	  return '';
+};
+
 
 
 const projectController = {

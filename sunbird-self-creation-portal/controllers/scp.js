@@ -104,105 +104,8 @@ const fetchLocationDetails = async (req, res, selectedConfig) => {
 		res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
-/*The profileRead API retrieves and transforms user profile information from an external service (e.g., Sunbird's user service). 
-The function processes and restructures the data into a format 
-suitable for the Elevate Project frontend application.*/
 
 const profileRead = async (req, res, selectedConfig) => {
-	try {
-		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
-		if (selectedConfig.service) {
-			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
-		}
-		let targetedRoutePath = selectedConfig.targetRoute.path
-		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
-		const targetRoute = pathParamSetter(targetedRoutePath, params)
-
-		// Fetch user profile details
-		let userProfileData = await requesters.get(
-			req.baseUrl,
-			targetRoute,
-			{
-				Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
-				'x-authenticated-user-token': req.headers['x-auth-token'],
-			},
-			req.body
-		)
-
-		// confirm success response
-		if (userProfileData.responseCode === 'OK') {
-			userProfileData['result'] = userProfileData.result.response
-
-			//generate role data for EP
-			if (userProfileData.result.profileUserTypes && userProfileData.result.profileUserTypes.length > 0) {
-				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.profileUserTypes.map((ele) => {
-					return {
-						title: ele.subType && ele.subType !== '' ? ele.subType : ele.type, // map subType to title if not empty. if it is empty take value from type
-					}
-				})
-			}
-
-			//generate role data for EP
-			if (userProfileData.result.roles && userProfileData.result.roles.length > 0) {
-				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.roles.map((role) => {
-					return {
-						label: role
-							.toLowerCase()
-							.split('_')
-							.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-							.join(' '),
-						title: role,
-					}
-				})
-			}
-
-			// generate location data of user for EP
-			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
-				// if profile location is available get ids of location and fetch complete data of location by calling sunbird's location search API
-				const locationIds = userProfileData.result.profileLocation.map((location) => location.id)
-
-				// Create location search api call request body
-				const bodyData = {
-					request: {
-						filters: {
-							id: locationIds,
-						},
-					},
-				}
-
-				// Call location details fetcher
-				const locationData = await getLocationDetails(bodyData, req.baseUrl)
-				if (locationData.length > 0) {
-					locationData.forEach((location) => {
-						// Set each location's type as a key in userProfileData.result with the id as value
-						userProfileData.result[location.type] = {
-							value: location.id,
-							label: location.name,
-						}
-					})
-				}
-			}
-
-			// generate name for EP
-			userProfileData.result['name'] = userProfileData.result.userName
-			res.json(userProfileData)
-		} else {
-			if (process.env.DEBUG_MODE == 'true') {
-				console.log('profileRead error', JSON.stringify(userProfileData))
-			}
-			res.json(userProfileData)
-		}
-	} catch (error) {
-		if (process.env.DEBUG_MODE == 'true') {
-			console.error('Error fetching user details:', error)
-		}
-		res.status(500).json({ error: 'Internal Server Error' })
-	}
-}
-
-const profileReadV5 = async (req, res, selectedConfig) => {
 	try {
 		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
 		if (selectedConfig.service) {
@@ -248,10 +151,11 @@ const profileReadV5 = async (req, res, selectedConfig) => {
 				})
 			}
 
-			if (userProfileData.result.organisations && userProfileData.result.organisations.length > 0) {
-				userProfileData['result'].organization_id = userProfileData.result?.organisations[0].organisationId
+			userProfileData['result'].organization_id = userProfileData.result?.rootOrgId
+			userProfileData['result'].organization = {
+				id: userProfileData.result?.rootOrgId,
+				name: userProfileData.result?.rootOrgName,
 			}
-
 			;(userProfileData['result'].name = userProfileData.userName),
 				(userProfileData['result'].email = userProfileData.recoveryEmail)
 			res.json(userProfileData)
@@ -408,20 +312,19 @@ const readUserById = async (req, res, selectedConfig) => {
 
 const processUserSearchResponse = (content) => {
 	if (process.env.DEBUG_MODE == 'true') {
-		console.log('============ user Details  ====================', content)
+		// console.log(content,'============ user Details  ====================')
 	}
 	return {
 		result: content.map((user) => {
-			console.log(user)
 			return {
 				id: user.id,
-				image: user?.profileDetails?.profileImageUrl,
-				name: user?.profileDetails?.personalDetails?.firstname,
+				image: user?.profileImageUrl,
+				name: user?.firstName,
 				organization: {
-					id: user?.rootOrgId,
-					name: user?.rootOrgName,
+					id: user?.organisations?.[0]?.organisationId,
+					name: user?.organisations?.[0]?.orgName,
 				},
-				email: user?.profileDetails?.personalDetails?.primaryEmail,
+				email: user?.primaryEmail,
 			}
 		}),
 	}
@@ -430,20 +333,123 @@ const processUserSearchResponse = (content) => {
 const accountList = async (req, res, selectedConfig) => {
 	const body = {
 		request: {
-			filters: {
-				userId: [],
-			},
+			filters: {},
 		},
 	}
 	try {
-		const userIds = req.body.userIds
+		const userIds = req.body.user_ids
+
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		if (userIds) {
+			body.request.filters.id = userIds
+		}
+
+		if (req.query.organization_id) {
+			body.request.filters['rootOrgId'] = req.query.organization_id
+		}
+
+		if (req.query.organization_code) {
+			body.request.filters['rootOrgId'] = req.query.organization_code
+		}
+
+		if (req.query.type && req.query.type != 'all') {
+			body.request.filters['roles.role'] = req.query.type
+		}
+
+		if (req.query.limit) {
+			body.request['limit'] = parseInt(req.query.limit)
+		}
+
+		// Format token removes "Bearer " if present at the start
+		const authToken = req.headers['x-auth-token'] || ''
+		const cleanToken = authToken.replace(/^bearer\s+/i, '')
+
+		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'], // Passing device info from request headers
+			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
+			'x-authenticated-user-token': cleanToken,
+		})
+
 		if (process.env.DEBUG_MODE == 'true') {
 			console.log('------- ================ -------', req.body)
+			console.log(body, 'Req body---')
+			console.log(userSearchResponse, 'userSearchResponse')
+			console.log(cleanToken, 'Token')
 		}
-		// if (Array.isArray(userIds)) throw Error('req.body.userIds is not an array.')
-		body.request.filters.userId = userIds
-		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
-		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
+
+		if (userSearchResponse?.responseCode != 'OK') {
+			throw new Error('User Search Failed')
+		}
+
+		let data = processUserSearchResponse(userSearchResponse.result.response.content) || []
+
+		return res.json({
+			result: {
+				data: data?.result,
+				count: data?.result?.length,
+			},
+		})
+	} catch (error) {
+		console.log(error, 'error')
+		if (process.env.DEBUG_MODE == 'true') {
+			console.error('Error fetching user details:', error)
+		}
+		return res.status(500).json({ error: 'Internal Server Error' })
+	}
+}
+
+const organizationList = async (req, res, selectedConfig) => {
+	console.log('came to org list')
+	const body = {
+		request: {
+			filters: {},
+		},
+	}
+	try {
+		const orgIds = req.body.organizationIds
+
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		if (orgIds) {
+			body.request.filters.id = orgIds
+		}
+
+		if (req.query.organization_id) {
+			body.request.filters.id = req.query.organization_id
+		}
+
+		if (req.query.limit) {
+			body.request['limit'] = parseInt(req.query.limit)
+		}
+
+		// Format token removes "Bearer " if present at the start
+		const authToken = req.headers['x-auth-token'] || ''
+		const cleanToken = authToken.replace(/^bearer\s+/i, '')
+
+		const orgSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
+			'device-info': req.headers['device-info'], // Passing device info from request headers
+			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
+			'x-authenticated-user-token': cleanToken,
+		})
+
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('------- ================ -------', req.body)
+			console.log(body, 'Req body')
+			console.log(orgSearchResponse, 'orgSearchResponse')
+			console.log(cleanToken, body, 'Req body')
+		}
+
+		if (orgSearchResponse?.responseCode != 'OK') {
+			throw new Error('User Search Failed')
+		}
+
+		let data = processOrgSearchResponse(orgSearchResponse.result.response.content) || []
+		return res.json({ result: data?.result })
 	} catch (error) {
 		if (process.env.DEBUG_MODE == 'true') {
 			console.error('Error fetching user details:', error)
@@ -452,28 +458,19 @@ const accountList = async (req, res, selectedConfig) => {
 	}
 }
 
-const userListBasedOnRole = async (req, res, selectedConfig) => {
-	const body = {
-		request: {
-			filters: {
-				userId: [],
-			},
-		},
+const processOrgSearchResponse = (content) => {
+	if (process.env.DEBUG_MODE == 'true') {
+		// console.log(content,'============ org Details  ====================')
 	}
-	try {
-		const userIds = req.body.userIds
-		if (process.env.DEBUG_MODE == 'true') {
-			console.log('------- ================ -------', req.body)
-		}
-
-		body.request.filters.userId = userIds
-		const userSearchResponse = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {})
-		return res.json(processUserSearchResponse(userSearchResponse.result.response.content))
-	} catch (error) {
-		if (process.env.DEBUG_MODE == 'true') {
-			console.error('Error fetching user details:', error)
-		}
-		return res.status(500).json({ error: 'Internal Server Error' })
+	return {
+		result: content.map((org) => {
+			return {
+				id: org.id,
+				name: org?.orgName,
+				code: org?.orgCode,
+				description: '',
+			}
+		}),
 	}
 }
 
@@ -483,8 +480,8 @@ scpController = {
 	fetchLocationDetails,
 	readOrganization,
 	accountList,
-	profileReadV5,
-	userListBasedOnRole,
+	organizationList,
+	getLocationDetails,
 }
 
 module.exports = scpController

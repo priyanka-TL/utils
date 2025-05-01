@@ -1007,7 +1007,7 @@ module.exports = {
 			targetRoute: {
 				path: '/api/user/v5/read/:id',
 				type: 'GET',
-				functionName: 'profileReadV5',
+				functionName: 'profileRead',
 			},
 			service: 'user',
 		},
@@ -1047,13 +1047,25 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/user/v1/account/search',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/api/user/v1/search',
 				type: 'POST',
-				functionName: 'listUserBasedOnRole',
+				functionName: 'accountList',
+			},
+			service: 'user',
+		},
+		{
+			sourceRoute: '/user/v1/organization/list',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/api/org/v1/search',
+				type: 'POST',
+				functionName: 'organizationList',
 			},
 			service: 'user',
 		},

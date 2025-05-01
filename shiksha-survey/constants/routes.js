@@ -1388,6 +1388,30 @@ module.exports = {
             service: "user"
         },
         {
+            sourceRoute: '/user/v1/user/read',
+            type: 'GET',
+            inSequence: false,
+            orchestrated: true,
+            targetRoute: {
+                path: '/interface/v1/user/list',
+                type: 'GET',
+                functionName: "profileRead"
+            },
+            service: "user"
+        },
+        {
+            sourceRoute: '/user/v1/user/read/:id',
+            type: 'GET',
+            inSequence: false,
+            orchestrated: true,
+            targetRoute: {
+                path: '/user/v1/list',
+                type: 'GET',
+                functionName: "profileRead"
+            },
+            service: "user"
+        },
+        {
             sourceRoute: "/user/v1/account/generateOtp",
             type: "POST",
             inSequence: false,
@@ -1429,30 +1453,6 @@ module.exports = {
             targetRoute: {
                 path: "/user/v1/account/registrationOtp",
                 type: "POST"
-            },
-            service: "user"
-        },
-        {
-            sourceRoute: '/user/v1/user/read/:id',
-            type: 'GET',
-            inSequence: false,
-            orchestrated: true,
-            targetRoute: {
-                path: '/api/user/v2/read/:id',
-                type: 'GET',
-                functionName: "profileRead"
-            },
-            service: "user"
-        },
-        {
-            sourceRoute: '/user/v1/user/read',
-            type: 'GET',
-            inSequence: false,
-            orchestrated: true,
-            targetRoute: {
-                path: '/api/user/v2/read',
-                type: 'GET',
-                functionName: "profileRead"
             },
             service: "user"
         },
@@ -2311,239 +2311,249 @@ module.exports = {
             service: "user"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/bulkCreate",
+            sourceRoute: "/entity-management/v1/entityTypes/bulkCreate",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entityTypes/bulkCreate",
+                path: "/entity-management/v1/entityTypes/bulkCreate",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/bulkUpdate",
+            sourceRoute: "/entity-management/v1/entityTypes/bulkUpdate",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entityTypes/bulkUpdate",
+                path: "/entity-management/v1/entityTypes/bulkUpdate",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/find",
+            sourceRoute: "/entity-management/v1/entities/find",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/api/data/v1/location/search",
-                type: "POST",
-                functionName: "fetchLocationDetails"
+                path: "/entity-management/v1/entities/find",
+                type: "POST"
             },
-            service: "entity",
+            service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/list",
+            sourceRoute: "/entity-management/v1/entityTypes/find",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/entity-management/v1/entityTypes/find",
+                type: "POST"
+            },
+            service: "entity"
+        },
+        {
+            sourceRoute: "/entity-management/v1/entityTypes/list",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entityTypes/list",
+                path: "/entity-management/v1/entityTypes/list",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/create",
+            sourceRoute: "/entity-management/v1/entityTypes/create",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entityTypes/create",
+                path: "/entity-management/v1/entityTypes/create",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/update",
+            sourceRoute: "/entity-management/v1/entityTypes/update",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entityTypes/update",
+                path: "/entity-management/v1/entityTypes/update",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entityTypes/update/:id",
+            sourceRoute: "/entity-management/v1/entityTypes/update/:id",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entityTypes/update/:id",
+                path: "/entity-management/v1/entityTypes/update/:id",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/bulkCreate",
+            sourceRoute: "/entity-management/v1/entities/bulkCreate",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/bulkCreate",
+                path: "/entity-management/v1/entities/bulkCreate",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/entityListBasedOnEntityType",
+            sourceRoute: "/entity-management/v1/entities/entityListBasedOnEntityType",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/entityListBasedOnEntityType",
+                path: "/entity-management/v1/entities/entityListBasedOnEntityType",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/mappingUpload",
+            sourceRoute: "/entity-management/v1/entities/mappingUpload",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/mappingUpload",
+                path: "/entity-management/v1/entities/mappingUpload",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/bulkUpdate",
+            sourceRoute: "/entity-management/v1/entities/bulkUpdate",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/bulkUpdate",
+                path: "/entity-management/v1/entities/bulkUpdate",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/add",
+            sourceRoute: "/entity-management/v1/entities/add",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/add",
+                path: "/entity-management/v1/entities/add",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/update",
+            sourceRoute: "/entity-management/v1/entities/update",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/update",
+                path: "/entity-management/v1/entities/update",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/update/:id",
+            sourceRoute: "/entity-management/v1/entities/update/:id",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/update/:id",
+                path: "/entity-management/v1/entities/update/:id",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/userRoleExtension/create",
+            sourceRoute: "/entity-management/v1/userRoleExtension/create",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/userRoleExtension/create",
+                path: "/entity-management/v1/userRoleExtension/create",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/userRoleExtension/update/:id",
+            sourceRoute: "/entity-management/v1/userRoleExtension/update/:id",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/userRoleExtension/update/:id",
+                path: "/entity-management/v1/userRoleExtension/update/:id",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/userRoleExtension/find",
+            sourceRoute: "/entity-management/v1/userRoleExtension/find",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/userRoleExtension/find",
+                path: "/entity-management/v1/userRoleExtension/find",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/userRoleExtension/delete/:id",
+            sourceRoute: "/entity-management/v1/userRoleExtension/delete/:id",
             type: "DELETE",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/userRoleExtension/delete/:id",
+                path: "/entity-management/v1/userRoleExtension/delete/:id",
                 type: "DELETE"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/targetedRoles/:id",
+            sourceRoute: "/entity-management/v1/entities/targetedRoles/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/targetedRoles/:id",
+                path: "/entity-management/v1/entities/targetedRoles/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/list",
+            sourceRoute: "/entity-management/v1/entities/list",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/list",
+                path: "/entity-management/v1/entities/list",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/list/:id",
+            sourceRoute: "/entity-management/v1/entities/list/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/list/:id",
+                path: "/entity-management/v1/entities/list/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/find",
+            sourceRoute: "/entity-management/v1/entities/find",
             type: "POST",
             inSequence: false,
             orchestrated: false,
@@ -2555,144 +2565,144 @@ module.exports = {
             service: "entity",
         },
         {
-            sourceRoute: "/entity/v1/entities/details",
+            sourceRoute: "/entity-management/v1/entities/details",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/details",
+                path: "/entity-management/v1/entities/details",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/details/:id",
+            sourceRoute: "/entity-management/v1/entities/details/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/details/:id",
+                path: "/entity-management/v1/entities/details/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/listByEntityType",
+            sourceRoute: "/entity-management/v1/entities/listByEntityType",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/listByEntityType",
+                path: "/entity-management/v1/entities/listByEntityType",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/listByEntityType/:id",
+            sourceRoute: "/entity-management/v1/entities/listByEntityType/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/listByEntityType/:id",
+                path: "/entity-management/v1/entities/listByEntityType/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/subEntityList",
+            sourceRoute: "/entity-management/v1/entities/subEntityList",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/subEntityList",
+                path: "/entity-management/v1/entities/subEntityList",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/subEntityList/:id",
+            sourceRoute: "/entity-management/v1/entities/subEntityList/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/subEntityList/:id",
+                path: "/entity-management/v1/entities/subEntityList/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/listByIds",
+            sourceRoute: "/entity-management/v1/entities/listByIds",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/listByIds",
+                path: "/entity-management/v1/entities/listByIds",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/subEntityListBasedOnRoleAndLocation",
+            sourceRoute: "/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/subEntityListBasedOnRoleAndLocation",
+                path: "/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/subEntityListBasedOnRoleAndLocation/:id",
+            sourceRoute: "/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/subEntityListBasedOnRoleAndLocation/:id",
+                path: "/entity-management/v1/entities/subEntityListBasedOnRoleAndLocation/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/listByLocationIds",
+            sourceRoute: "/entity-management/v1/entities/listByLocationIds",
             type: "POST",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/listByLocationIds",
+                path: "/entity-management/v1/entities/listByLocationIds",
                 type: "POST"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/relatedEntities",
+            sourceRoute: "/entity-management/v1/entities/relatedEntities",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/relatedEntities",
+                path: "/entity-management/v1/entities/relatedEntities",
                 type: "GET"
             },
             service: "entity"
         },
         {
-            sourceRoute: "/entity/v1/entities/relatedEntities/:id",
+            sourceRoute: "/entity-management/v1/entities/relatedEntities/:id",
             type: "GET",
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: "/entity/v1/entities/relatedEntities/:id",
+                path: "/entity-management/v1/entities/relatedEntities/:id",
                 type: "GET"
             },
             service: "entity"
         },
         {
-			sourceRoute: "/entity/v1/entities/createMappingCsv",
+			sourceRoute: "/entity-management/v1/entities/createMappingCsv",
 			type: "POST",
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: "/entity/v1/entities/createMappingCsv",
+				path: "/entity-management/v1/entities/createMappingCsv",
 				type: "POST"
 			},
             service: "entity"
