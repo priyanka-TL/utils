@@ -233,7 +233,7 @@ const profileRead = async (req, res, selectedConfig) => {
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
 		let targetRoute = pathParamSetter(targetedRoutePath, params)
 		
-		
+		console.log("################################ : ",req.baseUrl,targetRoute)
 		// await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
 		// https://shiksha-dev-interface.tekdinext.com/interface/v1/user/profile
 		// Fetch user profile details
@@ -241,7 +241,7 @@ const profileRead = async (req, res, selectedConfig) => {
 			"Authorization": `Bearer ${req.headers["x-auth-token"]}`,
 			"Content-Type" : "application/json"
 		},{})
-		console.log("userProfileData",JSON.stringify(userProfileData))
+		console.log("userProfileData###############################@@",userProfileData)
 		// confirm success response
 		if (userProfileData.responseCode === 200) {
 			
