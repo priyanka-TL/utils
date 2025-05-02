@@ -223,17 +223,133 @@ const readOrganization = async (req, res, selectedConfig) => {
 	}
 }
 
+const entityListBasedOnEntityType = async (req, res, selectedConfig) => {
+	try {
+		
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+
+		let bodyData = {
+			request: {
+				filters : {}
+			}
+		}
+		Object.keys(req.query).forEach((query) => {
+			if(query == 'entityType') bodyData.request.filters.type = req.query[query]
+			if(query == 'limit') bodyData.request[query] = Number(req.query[query])
+			if(query == 'page') bodyData.request.offset = Number(req.query[query])
+		})
+		const locationDetails = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, bodyData, {
+			Authorization: `bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
+			'content-type' : 'application/json'
+		})
+		// Verifying the response
+		if (locationDetails.responseCode === 'OK' && locationDetails.result?.response?.length > 0) {
+			
+			res.json({
+				message: "ASSETS_FETCHED_SUCCESSFULLY",
+				status: 200,
+				result: {
+					data: entityListDataProcessor(locationDetails.result.response),
+					count: locationDetails.result.count,
+					}
+				})
+			// return 
+		} else {
+			if (process.env.DEBUG_MODE === 'true') {
+				console.log('Location API error', JSON.stringify(locationDetails))
+			}
+			return []
+		}
+	} catch (error) {
+		if (process.env.DEBUG_MODE === 'true') {
+			console.error('Error in getLocationDetails:', error)
+		}
+		return []
+	}
+}
+
+const subEntityListBasedOnRoleAndLocation = async (req, res, selectedConfig) => {
+	try {
+		console.log("req : QUERY : ---------->>>>> ",req.params.id)
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+		const route = selectedConfig.targetRoute.path.endsWith("\\") ? `${selectedConfig.targetRoute.path}${req.params.id}?role=${common.DEFAULT_ROLE_FOR_STATE_HIERARCHY}` : `${selectedConfig.targetRoute.path} \ ${req.params.id}?role=${common.DEFAULT_ROLE_FOR_STATE_HIERARCHY}`
+		let bodyData = {
+			request: {
+				filters : {
+
+				}
+			}
+		}
+		Object.keys(req.query).forEach((query) => {
+			if(query == 'entityType') bodyData.request.filters.type = req.query[query]
+			if(query == 'limit') bodyData.request[query] = Number(req.query[query])
+			if(query == 'page') bodyData.request.offset = Number(req.query[query])
+		})
+		const locationDetails = await requesters.get(req.baseUrl, route , {
+			Authorization: `bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
+			'content-type' : 'application/json'
+		})
+		// // Verifying the response
+		// if (locationDetails.responseCode === 'OK' && locationDetails.result?.response?.length > 0) {
+			
+		// 	res.json({
+		// 		message: "ASSETS_FETCHED_SUCCESSFULLY",
+		// 		status: 200,
+		// 		result: {
+		// 			data: entityListDataProcessor(locationDetails.result.response),
+		// 			count: locationDetails.result.count,
+		// 			}
+		// 		})
+		// 	// return 
+		// } else {
+		// 	if (process.env.DEBUG_MODE === 'true') {
+		// 		console.log('Location API error', JSON.stringify(locationDetails))
+		// 	}
+		// 	return []
+		// }
+	} catch (error) {
+		if (process.env.DEBUG_MODE === 'true') {
+			console.error('Error in getLocationDetails:', error)
+		}
+		return []
+	}
+}
+
+const entityListDataProcessor = (data) => {
+	const response = data.map((entity) => {
+		return {
+			_id : entity.identifier,
+			name : entity.name,
+			externalId : entity.identifier
+		}
+
+	})
+	return response
+}
+
 /**
  * This function calls sunbird's location search api
  * @param {Object} bodyData - Body data for api call
  * @param {*} baseUrl - Base url
  * @returns
  */
-const getLocationDetails = async (bodyData, baseUrl) => {
+const getLocationDetails = async (req, res, selectedConfig) => {
 	try {
-		// setting API end point and making the call
-		const apiEndpoint = '/api/data/v1/location/search'
-		const locationDetails = await requesters.post(baseUrl, apiEndpoint, bodyData, {
+		if (selectedConfig.service) {
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+		}
+		const bodyData = {
+			request: {
+				filters: {
+					
+				}
+			}
+		}
+		const locationDetails = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, bodyData, {
 			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
 		})
 
@@ -482,6 +598,8 @@ scpController = {
 	accountList,
 	organizationList,
 	getLocationDetails,
+	entityListBasedOnEntityType,
+	subEntityListBasedOnRoleAndLocation
 }
 
 module.exports = scpController
