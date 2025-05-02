@@ -151,10 +151,11 @@ const profileRead = async (req, res, selectedConfig) => {
 				})
 			}
 
-			if (userProfileData.result.organisations && userProfileData.result.organisations.length > 0) {
-				userProfileData['result'].organization_id = userProfileData.result?.organisations[0].organisationId
+			userProfileData['result'].organization_id = userProfileData.result?.rootOrgId
+			userProfileData['result'].organization = {
+				id: userProfileData.result?.rootOrgId,
+				name: userProfileData.result?.rootOrgName,
 			}
-
 			;(userProfileData['result'].name = userProfileData.userName),
 				(userProfileData['result'].email = userProfileData.recoveryEmail)
 			res.json(userProfileData)
@@ -462,12 +463,12 @@ const accountList = async (req, res, selectedConfig) => {
 			body.request.filters.id = userIds
 		}
 
-		if (req.query.organisation_id) {
-			body.request.filters['organisations.organisationId'] = req.query.organisation_id
+		if (req.query.organization_id) {
+			body.request.filters['rootOrgId'] = req.query.organization_id
 		}
 
-		if (req.query.organisation_code) {
-			body.request.filters['organisations.organisationId'] = req.query.organisation_code
+		if (req.query.organization_code) {
+			body.request.filters['rootOrgId'] = req.query.organization_code
 		}
 
 		if (req.query.type && req.query.type != 'all') {
@@ -476,11 +477,6 @@ const accountList = async (req, res, selectedConfig) => {
 
 		if (req.query.limit) {
 			body.request['limit'] = parseInt(req.query.limit)
-		}
-
-		if (process.env.DEBUG_MODE == 'true') {
-			console.log('------- ================ -------', req.body)
-			console.log(body, 'Req body')
 		}
 
 		// Format token removes "Bearer " if present at the start
@@ -492,8 +488,13 @@ const accountList = async (req, res, selectedConfig) => {
 			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
 			'x-authenticated-user-token': cleanToken,
 		})
-		console.log(userSearchResponse, 'userSearchResponse')
-		console.log(cleanToken, body, 'Req body')
+
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('------- ================ -------', req.body)
+			console.log(body, 'Req body---')
+			console.log(userSearchResponse, 'userSearchResponse')
+			console.log(cleanToken, 'Token')
+		}
 
 		if (userSearchResponse?.responseCode != 'OK') {
 			throw new Error('User Search Failed')
@@ -542,11 +543,6 @@ const organizationList = async (req, res, selectedConfig) => {
 			body.request['limit'] = parseInt(req.query.limit)
 		}
 
-		if (process.env.DEBUG_MODE == 'true') {
-			console.log('------- ================ -------', req.body)
-			console.log(body, 'Req body')
-		}
-
 		// Format token removes "Bearer " if present at the start
 		const authToken = req.headers['x-auth-token'] || ''
 		const cleanToken = authToken.replace(/^bearer\s+/i, '')
@@ -556,18 +552,21 @@ const organizationList = async (req, res, selectedConfig) => {
 			Authorization: `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`, // Authorization token from environment variables
 			'x-authenticated-user-token': cleanToken,
 		})
-		console.log(orgSearchResponse, 'orgSearchResponse')
-		console.log(cleanToken, body, 'Req body')
+
+		if (process.env.DEBUG_MODE == 'true') {
+			console.log('------- ================ -------', req.body)
+			console.log(body, 'Req body')
+			console.log(orgSearchResponse, 'orgSearchResponse')
+			console.log(cleanToken, body, 'Req body')
+		}
 
 		if (orgSearchResponse?.responseCode != 'OK') {
 			throw new Error('User Search Failed')
 		}
 
 		let data = processOrgSearchResponse(orgSearchResponse.result.response.content) || []
-		// return res.json(orgSearchResponse)
 		return res.json({ result: data?.result })
 	} catch (error) {
-		console.log(error, 'error')
 		if (process.env.DEBUG_MODE == 'true') {
 			console.error('Error fetching user details:', error)
 		}
@@ -581,7 +580,6 @@ const processOrgSearchResponse = (content) => {
 	}
 	return {
 		result: content.map((org) => {
-			console.log(org, 'org')
 			return {
 				id: org.id,
 				name: org?.orgName,

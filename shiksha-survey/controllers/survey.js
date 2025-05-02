@@ -281,48 +281,34 @@ suitable for the Elevate Project frontend application.*/
 
 const profileRead = async (req, res, selectedConfig) => {
 	try {
+		console.log("profileRead API called",selectedConfig)
 		// if passed api config has service value defined. We are getting the baseURl of that service from env of Interface service
 		if(selectedConfig.service){
 			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
 		let targetedRoutePath = selectedConfig.targetRoute.path
 		const params = matchPathsAndExtractParams(selectedConfig.sourceRoute, req.originalUrl)
-		const targetRoute = pathParamSetter(targetedRoutePath, params)
-
+		let targetRoute = pathParamSetter(targetedRoutePath, params)
+		
+		
+		// await requesters.get(req.baseUrl, parameterisedRoute,headers,{})
+		// https://shiksha-dev-interface.tekdinext.com/interface/v1/user/profile
 		// Fetch user profile details
 		let userProfileData = await requesters.get(req.baseUrl, targetRoute, {
-			"Authorization": `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}`,
-			"x-authenticated-user-token": req.headers["x-auth-token"]
-		}, req.body)
+			"Authorization": `Bearer ${req.headers["x-auth-token"]}`,
+			"Content-Type" : "application/json"
+		},{})
 		
 		// confirm success response
-		if (userProfileData.responseCode === 'OK') {
+		if (userProfileData.responseCode === 200) {
 			
-			userProfileData["result"] = userProfileData.result.response
-		
-			//generate role data for EP
-			if (userProfileData.result.profileUserTypes && userProfileData.result.profileUserTypes.length > 0) {
-				
-				// Create a new user_roles array with transformed data
-				userProfileData.result.user_roles = userProfileData.result.profileUserTypes.map(ele => {
-					return {
-						title: ele.subType // map subType to title
-					};
-				});
-				
-			}
-			// generate location data of user for EP
-			if (userProfileData.result.profileLocation && userProfileData.result.profileLocation.length > 0) {
-				userProfileData.result.profileLocation.forEach(location => {
-					// Set each location's type as a key in userProfileData.result with the id as value
-					userProfileData.result[location.type] = {
-						value: location.id
-					};
-				});
-			}
-
+			userProfileData["result"] = userProfileData.result.userData
+			userProfileData.result = await transformUserProfileData(userProfileData.result)
+			
 			// generate name for EP
-			userProfileData.result["name"] = userProfileData.result.userName
+			userProfileData.result["name"] = userProfileData.result.username
+			userProfileData.responseCode = "OK"
+			userProfileData.status = 200
 			res.json(userProfileData)
 		} else {
 	
@@ -341,6 +327,7 @@ const profileRead = async (req, res, selectedConfig) => {
 
 	}
 }
+
 
 const readOrganization = async (req, res, selectedConfig) => {
 	// Constructing the request body to fetch organization details
@@ -453,6 +440,103 @@ const orgSchoolSearch = async ( filterData, pageSize = "", pageNo = "", searchKe
 	}
 
 }
+
+/**
+ * This  function will modify the user profie data coming from shiksha user
+ * @param {Thiis } userProfileData 
+ * @returns 
+ */
+
+const transformUserProfileData = async (userProfileData) => {
+	try {
+		const transformedData = {};
+		const userRoles = [];
+		
+		// Check if customFields exist
+		if (userProfileData?.customFields?.length > 0) {
+			for (const field of userProfileData.customFields) {
+				const label = field.label?.toLowerCase();
+				const fieldId = field.fieldId;
+				const selectedValues = field.selectedValues;
+
+				if (label === 'roles' || label === 'subroles') {
+					// Handle roles and subroles
+					for (const role of selectedValues) {
+						userRoles.push({
+							id: fieldId,                     // fieldId as id
+							title: role.id,                  // id from selectedValues
+							label: role.value,               // value from selectedValues
+						});
+					}
+				} else {
+					if (typeof selectedValues === 'string') {
+						parserdString = fixMalformedJSONString(selectedValues);
+						if (parserdString) {
+							transformedData[label] = {
+								value: parserdString.id,
+								label: parserdString.name
+							}
+						}
+							
+						
+					} else {
+						const firstValue = selectedValues[0];
+						transformedData[label] = {
+						value: firstValue.id,
+						label: firstValue.value
+					};
+					}
+					
+				}
+			}
+		}
+
+		// Add user_roles if any roles found
+		if (userRoles.length > 0) {
+			transformedData["user_roles"] = userRoles;
+		}
+		// Delete customFields from original
+		delete userProfileData.customFields;
+
+		// Merge transformedData into original userProfileData
+		const finalUserProfileData = {
+			...userProfileData,
+			...transformedData
+		};
+
+		return finalUserProfileData;
+		// return transformedData;
+
+	} catch (error) {
+		if (process.env.DEBUG_MODE === "true") {
+			console.error('Error in transformUserProfileData:', error);
+		}
+		return {};
+	}
+};
+/**
+ * This function will fix the malformed JSON string
+ * @param {string} input - The input string to be fixed
+ * @returns {object} - The parsed JSON object or an empty string if parsing fails
+ */
+const fixMalformedJSONString = (input) => {
+	
+	try {
+		
+		// Use regex to extract the quoted inner JSON string
+		const match = input.match(/^\{"(.*)"\}$/);
+		if (match && match[1]) {
+		  const innerStr = match[1]
+			.replace(/\\"/g, '"'); // Convert escaped quotes to real quotes
+		  const innerObj = JSON.parse(innerStr); 
+		  return innerObj
+		}
+	  } catch (e) {
+		console.error("Final parse failed:", e);
+	  }
+	  return '';
+};
+
 const surveyController = {
 	fetchObserbationAndSurvey,
 	profileRead,
