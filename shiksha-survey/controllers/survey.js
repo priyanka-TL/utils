@@ -328,46 +328,40 @@ const profileRead = async (req, res, selectedConfig) => {
 	}
 }
 
-
 const readOrganization = async (req, res, selectedConfig) => {
-	// Constructing the request body to fetch organization details
-	const body = {
-		request: {
-			// Extracting organisation ID or code from query parameters
-			organisationId: req.query.organisation_id || req.query.organisation_code,
-		},
-	}
-
 	try {
+		const tenantIdentifier = req.query.organisation_id || req.query.organisation_code
 		// If the selected API config has a defined service, set the base URL dynamically
 		if(selectedConfig.service){
 			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
 		}
 
-		// Sending a POST request to the target service API
-		const response = await requesters.post(req.baseUrl, selectedConfig.targetRoute.path, body, {
-			'device-info': req.headers['device-info'], // Passing device info from request headers
-			'Authorization': `Bearer ${process.env.SUNBIRD_BEARER_TOKEN}` // Authorization token from environment variables
-		})
+		let targetedRoutePath = selectedConfig.targetRoute.path
+		targetedRoutePath = targetedRoutePath + '/' + tenantIdentifier
+		
+		let tenantInformations = await requesters.get(req.baseUrl, targetedRoutePath, {
+			// "Authorization": `Bearer ${req.headers["x-auth-token"]}`,
+			// "Content-Type" : "application/json"
+		},{})
 
-		// Logging response in debug mode for troubleshooting
-		if(process.env.DEBUG_MODE == "true"){
-			console.log('RESPONSE:', response)
-			console.log('RESPONSE.RESULT:', response?.result)
+		// confirm success response
+		if (tenantInformations.responseCode === 200) {
+			
+			tenantInformations["result"] = tenantInformations.result
+			
+			// generate name for EP	
+			tenantInformations.responseCode = "OK"
+			tenantInformations.related_orgs = tenantInformations.result.childIds
+			delete tenantInformations.result.childIds
+			res.json(tenantInformations)
+		} else {
+	
+			if(process.env.DEBUG_MODE == "true"){
+				console.log("profileRead error",JSON.stringify(tenantInformations));
+			}
+			res.json(tenantInformations)
+		
 		}
-
-		// Constructing the final response object with relevant data
-		const responseData = {
-			result: {
-				id: response.result.response.id, 
-				name: response.result.response.orgName, 
-				related_orgs: [], // Placeholder for related organizations (if needed in future)
-			},
-			responseCode : response.responseCode // Including response code from API response
-		}
-
-		// Sending the final response to the client
-		return res.json(responseData)
 
 	} catch (error) {
 		// Logging error details in debug mode if enabled
@@ -378,6 +372,7 @@ const readOrganization = async (req, res, selectedConfig) => {
 		return res.status(500).json({ error: 'Internal Server Error' })
 	}
 }
+
 
 const orgSchoolSearch = async ( filterData, pageSize = "", pageNo = "", searchKey = "", fields = [] ) =>{
 	try {

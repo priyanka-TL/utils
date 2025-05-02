@@ -1853,7 +1853,7 @@ module.exports = {
             inSequence: false,
             orchestrated: false,
             targetRoute: {
-                path: '/api/org/v1/read',
+                path: '/user/v1/tenant/read',
                 type: 'POST',
                 functionName: 'readOrganization',
             },
