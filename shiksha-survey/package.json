@@ -1,6 +1,6 @@
 {
     "name": "shiksha-survey-observation",
-    "version": "1.0.4",
+    "version": "1.0.7",
     "description": "Npm package for Survey-observation  integration with Interface service with siksha user-management",
     "main": "index.js",
     "author": "Vishnu",
