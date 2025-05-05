@@ -144,6 +144,122 @@ const readUser = async (req, res, selectedConfig) => {
 	}
 }
 
+/**
+ * Reads user role information from a remote service and updates labels with translations if needed.
+ *
+ * @param {Object} req - Express request object containing headers, params, and query.
+ * @param {Object} res - Express response object used to return the final response.
+ * @param {Object} selectedConfig - Config object with `service` and `targetRoute` info.
+ * @returns {Promise<Object>} - Responds with role information updated with translations.
+ */
+const readUserTitle = async (req,res,selectedConfig)=>{
+	try {
+
+		// Set the base URL for the external service using environment variable
+		if(selectedConfig.service){
+			req['baseUrl'] = process.env[`${selectedConfig.service.toUpperCase()}_SERVICE_BASE_URL`]
+
+		}		
+		// Replace :id in route with actual id from request params if available
+		const parameterisedRoute = req.params.id ? selectedConfig.targetRoute.path.replace('/:id', `/${req.params.id}`) : selectedConfig.targetRoute.path;
+		let headers
+
+		// Prepare headers if ID param is present (usually for secure or specific fetches)
+		if (req.params.id) {
+			headers = {
+			'X-auth-token': req.headers['x-auth-token'],
+			'Content-Type': 'application/json',
+			}
+		}		
+
+		// Fetch user role data from the configured service
+		let response = await requesters.get(req.baseUrl, parameterisedRoute, headers)
+		
+		// Validate response
+		if (!response.result || response.result.length < 0 || !response){
+			throw {
+				status:400,
+				message: "Roles not found",
+			}
+
+		}
+		
+		// Send the updated response
+		let responseWithTranslation = await readUserServiceTitle(response,req.headers['x-auth-token'],req.query.language)
+		
+		return res.json(responseWithTranslation)
+	} catch (error){
+		console.error('Error fetching user title:', error);
+		return res.status(error.status).json({ error })
+	}
+}
+
+/**
+ * Replaces role labels in `targetedRoleResponse` based on matched role IDs from user-role service.
+ *
+ * @param {Object} targetedRoleResponse - The response object containing roles to be updated.
+ * @param {string} authToken - The auth token used for authorization header.
+ * @param {string} languageCode - Optional language code to fetch translated role labels.
+ * @returns {Promise<Object>} - Returns the updated targetedRoleResponse with modified labels.
+ */
+const readUserServiceTitle = async (targetedRoleResponse,authToken,languageCode)=>{
+	try {
+		
+		// Base URL to call the local user-role service
+		let InterfaceBaseUrl = "http://localhost:" + process.env.APPLICATION_PORT +"/"
+
+		// Construct the route based on language preference
+		if(languageCode && languageCode !== common.ENGLISH_LANGUGE_CODE){
+			parameterisedRoute = "user/v1/user-role/list?language=" + `${languageCode}`
+
+		}else {
+			parameterisedRoute = "user/v1/user-role/list"
+		}		
+
+		// Prepare headers with bearer token
+		let headers 
+
+			headers = {
+			'X-auth-token': 'bearer ' + authToken,
+			'Content-Type': 'application/json',
+			}
+
+		// Fetch translated role data
+		let response = await requesters.get(InterfaceBaseUrl, parameterisedRoute, headers)
+
+		// Validate response
+		if (response.result || response.result.length < 0 || !response){
+			throw {
+				status:400,
+				message: "Roles Title not found",
+			}
+
+		}
+
+		// Create a mapping of role ID to label
+		const idToLabelMap = new Map();
+		for (const roleData of response.result.data) {
+		  idToLabelMap.set(roleData.id, roleData.label);
+		}
+	
+		// Update the label in targetedRoleResponse based on matching id
+		targetedRoleResponse.result = targetedRoleResponse.result.map(role => {
+		  const roleId = parseInt(role.value); // Convert string to number for comparison
+		  if (idToLabelMap.has(roleId)) {
+			return {
+			  ...role,
+			  label: idToLabelMap.get(roleId) // Replace the label
+			};
+		  }
+		  return role; // No change if id not found
+		});		
+		return targetedRoleResponse
+	} catch (error){
+		console.error('Error fetching user title:', error);
+		return  error 
+	}
+}
+
 const readOrganization = async (req, res, selectedConfig) => {
 	try {
 		const parameterisedRoute = req.query.organisation_code ? selectedConfig.targetRoute.path + `?organisation_code=${req.query.organisation_code}` : selectedConfig.targetRoute.path + `?organisation_id=${req.query.organisation_id}`
@@ -166,7 +282,8 @@ const projectController = {
 	fetchProjectTemplates,
 	projectsList,
 	readUser,
-	readOrganization
+	readOrganization,
+	readUserTitle
 }
 
 module.exports = projectController
