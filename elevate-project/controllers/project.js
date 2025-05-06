@@ -228,7 +228,7 @@ const readUserServiceTitle = async (targetedRoleResponse,authToken,languageCode)
 		let response = await requesters.get(InterfaceBaseUrl, parameterisedRoute, headers)
 
 		// Validate response
-		if (response.result || response.result.length < 0 || !response){
+		if (!response.result || response.result.length < 0 || !response){
 			throw {
 				status:400,
 				message: "Roles Title not found",
