@@ -1309,6 +1309,94 @@ module.exports = {
 			},
 			service:"survey"
 		},
+        {
+			sourceRoute: '/survey/v1/observationSubmissions/pushCompletedObservationSubmissionForReporting/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/pushCompletedObservationSubmissionForReporting/:id',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/observationSubmissions/pushCompletedObservationSubmissionForReporting',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/pushCompletedObservationSubmissionForReporting',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/observationSubmissions/pushInCompleteObservationSubmissionForReporting/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/pushInCompleteObservationSubmissionForReporting/:id',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/observationSubmissions/pushInCompleteObservationSubmissionForReporting',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observationSubmissions/pushInCompleteObservationSubmissionForReporting',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/surveySubmissions/pushCompletedSurveySubmissionForReporting/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveySubmissions/pushCompletedSurveySubmissionForReporting/:id',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/surveySubmissions/pushCompletedSurveySubmissionForReporting',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveySubmissions/pushCompletedSurveySubmissionForReporting',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/surveySubmissions/pushInCompleteSurveySubmissionForReporting/:id',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveySubmissions/pushInCompleteSurveySubmissionForReporting/:id',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+        {
+			sourceRoute: '/survey/v1/surveySubmissions/pushInCompleteSurveySubmissionForReporting',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/surveySubmissions/pushInCompleteSurveySubmissionForReporting',
+				type: 'POST'
+			},
+			service:"survey"
+		},
 		{
 			sourceRoute: '/survey/v1/users/solutions/:id',
 			type: 'POST',
