@@ -398,6 +398,28 @@ module.exports = {
             service: "project"
         },
         {
+            sourceRoute: "/project/v1/dataPipeline/pushProjectDetailsToKafka",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/dataPipeline/pushProjectDetailsToKafka",
+                type: "POST"
+            },
+            service: "project"
+        },
+        {
+            sourceRoute: "/project/v1/dataPipeline/pushProjectDetailsToKafka/:id",
+            type: "GET",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/dataPipeline/pushProjectDetailsToKafka/:id",
+                type: "POST"
+            },
+            service: "project"
+        },
+        {
             sourceRoute: "/project/v1/project/templates/bulkCreate",
             type: "POST",
             inSequence: false,
