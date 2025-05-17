@@ -2418,6 +2418,28 @@ module.exports = {
             },
             service: "user"
         },
+		{
+            sourceRoute: "/user/v1/tenant/read",
+            type: "GET",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/user/v1/tenant/read",
+                type: "GET"
+            },
+            service: "user"
+        },
+		{
+            sourceRoute: "/user/v1/tenant/read/:id",
+            type: "GET",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/user/v1/tenant/read/:id",
+                type: "GET"
+            },
+            service: "user"
+        },
         {
             sourceRoute: "/entity-management/v1/entityTypes/bulkCreate",
             type: "POST",
