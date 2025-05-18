@@ -2938,6 +2938,28 @@ module.exports = {
                 type: "POST"
             },
             service: "user"
+        },
+        {
+            sourceRoute: "/user/v1/tenant/read",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/user/v1/tenant/read",
+                type: "POST"
+            },
+            service: "user"
+        },
+        {
+            sourceRoute: "/user/v1/tenant/read/:id",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/user/v1/tenant/read/:id",
+                type: "POST"
+            },
+            service: "user"
         }
     ]
 }
