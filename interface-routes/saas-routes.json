@@ -7674,6 +7674,7 @@
 		{
 			"sourceRoute": "/survey/v1/files/download",
 			"type": "GET",
+            "priority": "MUST_HAVE",
 			"inSequence": false,
 			"orchestrated": false,
 			"targetPackages": [
