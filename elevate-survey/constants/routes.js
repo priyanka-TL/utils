@@ -89,6 +89,17 @@ module.exports = {
 			service:"survey"
 		},
 		{
+			sourceRoute: '/survey/v1/files/download',
+			type: 'GET',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/files/download',
+				type: 'GET'
+			},
+			service:"survey"
+		},
+		{
 			sourceRoute: '/survey/v1/reports/submissionReport',
 			type: 'POST',
 			inSequence: false,
