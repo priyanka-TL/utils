@@ -7671,6 +7671,19 @@
             ],
             "service": "survey"
         },
+		{
+			"sourceRoute": "/survey/v1/files/download",
+			"type": "GET",
+			"inSequence": false,
+			"orchestrated": false,
+			"targetPackages": [
+                {
+                    "basePackageName": "survey",
+                    "packageName": "elevate-survey-observation"
+                }
+            ],
+			"service":"survey"
+		},
         {
             "sourceRoute": "/survey/v1/admin/dbFind",
             "type": "POST",
