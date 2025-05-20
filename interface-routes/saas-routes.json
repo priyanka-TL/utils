@@ -238,6 +238,20 @@
             ]
         },
         {
+            "sourceRoute": "/user/v1/account/delete",
+            "type": "DELETE",
+            "priority": "MUST_HAVE",
+            "inSequence": false,
+            "orchestrated": false,
+            "requiresCustomHandling": false,
+            "targetPackages": [
+                {
+                    "basePackageName": "mentoring",
+                    "packageName": "elevate-mentoring"
+                }
+            ]
+        },
+        {
             "sourceRoute": "/user/v1/account/list",
             "type": "GET",
             "priority": "MUST_HAVE",
@@ -7671,20 +7685,20 @@
             ],
             "service": "survey"
         },
-		{
-			"sourceRoute": "/survey/v1/files/download",
-			"type": "GET",
+        {
+            "sourceRoute": "/survey/v1/files/download",
+            "type": "GET",
             "priority": "MUST_HAVE",
-			"inSequence": false,
-			"orchestrated": false,
-			"targetPackages": [
+            "inSequence": false,
+            "orchestrated": false,
+            "targetPackages": [
                 {
                     "basePackageName": "survey",
                     "packageName": "elevate-survey-observation"
                 }
             ],
-			"service":"survey"
-		},
+            "service": "survey"
+        },
         {
             "sourceRoute": "/survey/v1/admin/dbFind",
             "type": "POST",
@@ -11602,11 +11616,8 @@
                     "basePackageName": "mentoring",
                     "packageName": "elevate-mentoring",
                     "targetBody": [],
-                    "responseBody": [
-                        
-                    ]
+                    "responseBody": []
                 }
-               
             ]
         },
         {
