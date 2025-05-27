@@ -2889,7 +2889,18 @@ module.exports = {
                 type: "POST"
             },
             service: "scheduler"
-        }
+        },
+		{
+			sourceRoute: '/survey/v1/users/deleteUserPIIData',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/users/deleteUserPIIData',
+				type: 'POST'
+			},
+			service:"survey"
+		},
 	],
 }
 
