@@ -2960,6 +2960,17 @@ module.exports = {
                 type: "POST"
             },
             service: "user"
-        }
+        },
+        {
+            sourceRoute: "/project/v1/userProjects/deleteUserPIIData",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/userProjects/deleteUserPIIData",
+                type: "POST"
+            },
+            service: "project"
+        },
     ]
 }
