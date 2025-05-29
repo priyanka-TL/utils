@@ -133,6 +133,50 @@ module.exports = {
             service: "project"
         },
         {
+            sourceRoute: "/project/v1/userProjects/solutionDetails/:id",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/userProjects/solutionDetails/:id",
+                type: "POST"
+            },
+            service: "project"
+        },
+        {
+            sourceRoute: "/project/v1/userProjects/solutionDetails",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/userProjects/solutionDetails",
+                type: "POST"
+            },
+            service: "project"
+        },
+        {
+            sourceRoute: "/project/v1/userProjects/pushSubmissionToTask/:id",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/userProjects/pushSubmissionToTask/:id",
+                type: "POST"
+            },
+            service: "project"
+        },
+        {
+            sourceRoute: "/project/v1/userProjects/pushSubmissionToTask",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/userProjects/pushSubmissionToTask",
+                type: "POST"
+            },
+            service: "project"
+        },
+        {
             sourceRoute: "/project/v1/certificateBaseTemplates/createOrUpdate",
             type: "POST",
             inSequence: false,

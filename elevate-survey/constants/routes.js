@@ -782,6 +782,17 @@ module.exports = {
 			service:"survey"
 		},
 		{
+			sourceRoute: '/survey/v1/observations/create',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/observations/create',
+				type: 'POST'
+			},
+			service:"survey"
+		},
+		{
 			sourceRoute: '/survey/v1/observations/entities',
 			type: 'POST',
 			inSequence: false,
