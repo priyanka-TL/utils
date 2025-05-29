@@ -244,12 +244,12 @@ module.exports = {
 		},
 		{
 			sourceRoute: '/survey/v1/solutions/list',
-			type: 'GET',
+			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
 				path: '/survey/v1/solutions/list',
-				type: 'GET'
+				type: 'POST'
 			},
 			service:"survey"
 		},
