@@ -3016,5 +3016,16 @@ module.exports = {
             },
             service: "project"
         },
+        {
+            sourceRoute: "/project/v1/userExtension/bulkUpload",
+            type: "POST",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/userExtension/bulkUpload",
+                type: "POST"
+            },
+            service: "project"
+        },
     ]
 }
