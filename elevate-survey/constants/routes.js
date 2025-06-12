@@ -2912,6 +2912,17 @@ module.exports = {
 			},
 			service:"survey"
 		},
+		{
+			sourceRoute: '/survey/v1/userExtension/bulkUpload',
+			type: 'POST',
+			inSequence: false,
+			orchestrated: false,
+			targetRoute: {
+				path: '/survey/v1/userExtension/bulkUpload',
+				type: 'POST'
+			},
+			service:"survey"
+		},
 	],
 }
 
