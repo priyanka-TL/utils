@@ -12063,6 +12063,19 @@
 					"packageName": "elevate-mentoring"
 				}
 			]
+		},
+		{
+			"sourceRoute": "/user/v1/public/userInvites",
+			"type": "GET",
+			"priority": "MUST_HAVE",
+			"inSequence": false,
+			"orchestrated": false,
+			"targetPackages": [
+				{
+					"basePackageName": "mentoring",
+					"packageName": "elevate-mentoring"
+				}
+			]
 		}
 	]
 }
