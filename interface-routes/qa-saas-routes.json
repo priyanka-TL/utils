@@ -247,7 +247,7 @@
 				}
 			],
 			"rateLimit": {
-				"type": "public-low"
+				"type": "public-minimum"
 			}
 		},
 		{
@@ -307,7 +307,7 @@
 				}
 			],
 			"rateLimit": {
-				"type": "public-low"
+				"type": "public-minimum"
 			}
 		},
 		{
@@ -498,7 +498,10 @@
 					"basePackageName": "mentoring",
 					"packageName": "elevate-mentoring"
 				}
-			]
+			],
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/user/v1/form/read/:id",
@@ -511,7 +514,10 @@
 					"basePackageName": "mentoring",
 					"packageName": "elevate-mentoring"
 				}
-			]
+			],
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/user/v1/form/update",
@@ -1492,7 +1498,10 @@
 					"basePackageName": "mentoring",
 					"packageName": "elevate-mentoring"
 				}
-			]
+			],
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/mentoring/v1/form/read/:id",
@@ -5478,7 +5487,10 @@
 					"packageName": "elevate-project"
 				}
 			],
-			"service": "project"
+			"service": "project",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/project/v1/forms/read/:id",
@@ -5492,7 +5504,10 @@
 					"packageName": "elevate-project"
 				}
 			],
-			"service": "project"
+			"service": "project",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/project/v1/admin/dbFind",
@@ -6095,7 +6110,7 @@
 				}
 			],
 			"rateLimit": {
-				"type": "public-low"
+				"type": "public-minimum"
 			},
 			"service": "user"
 		},
@@ -6144,7 +6159,7 @@
 				}
 			],
 			"rateLimit": {
-				"type": "public-low"
+				"type": "public-minimum"
 			},
 			"service": "user"
 		},
@@ -6331,7 +6346,10 @@
 					"packageName": "elevate-project"
 				}
 			],
-			"service": "user"
+			"service": "user",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/user/v1/form/read/:id",
@@ -6345,7 +6363,10 @@
 					"packageName": "elevate-project"
 				}
 			],
-			"service": "user"
+			"service": "user",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/user/v1/form/update",
@@ -9235,7 +9256,10 @@
 					"packageName": "elevate-survey-observation"
 				}
 			],
-			"service": "survey"
+			"service": "survey",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/survey/v1/forms/read/:id",
@@ -9249,7 +9273,10 @@
 					"packageName": "elevate-survey-observation"
 				}
 			],
-			"service": "survey"
+			"service": "survey",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/survey/v1/forms/update",
@@ -9768,7 +9795,7 @@
 				}
 			],
 			"rateLimit": {
-				"type": "public-low"
+				"type": "public-minimum"
 			},
 			"service": "user"
 		},
@@ -9817,7 +9844,7 @@
 				}
 			],
 			"rateLimit": {
-				"type": "public-low"
+				"type": "public-minimum"
 			},
 			"service": "user"
 		},
@@ -10004,7 +10031,10 @@
 					"packageName": "elevate-survey-observation"
 				}
 			],
-			"service": "user"
+			"service": "user",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/user/v1/form/read/:id",
@@ -10018,7 +10048,10 @@
 					"packageName": "elevate-survey-observation"
 				}
 			],
-			"service": "user"
+			"service": "user",
+			"rateLimit": {
+				"type": "public-low"
+			}
 		},
 		{
 			"sourceRoute": "/user/v1/form/update",
