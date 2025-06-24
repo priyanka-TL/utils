@@ -584,23 +584,23 @@ module.exports = {
 			service:"survey"
 		},
 		{
-			sourceRoute: '/survey/v1/surveys/importSurveryTemplateToSolution/:id',
+			sourceRoute: '/survey/v1/surveys/importSurveyTemplateToSolution/:id',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/survey/v1/surveys/importSurveryTemplateToSolution/:id',
+				path: '/survey/v1/surveys/importSurveyTemplateToSolution/:id',
 				type: 'POST'
 			},
 			service:"survey"
 		},
 		{
-			sourceRoute: '/survey/v1/surveys/importSurveryTemplateToSolution',
+			sourceRoute: '/survey/v1/surveys/importSurveyTemplateToSolution',
 			type: 'POST',
 			inSequence: false,
 			orchestrated: false,
 			targetRoute: {
-				path: '/survey/v1/surveys/importSurveryTemplateToSolution',
+				path: '/survey/v1/surveys/importSurveyTemplateToSolution',
 				type: 'POST'
 			},
 			service:"survey"
