@@ -750,6 +750,28 @@ module.exports = {
             service: "project"
         },
         {
+            sourceRoute: "/project/v1/programs/read",
+            type: "GET",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/programs/read",
+                type: "GET"
+            },
+            service: "project"
+        },
+        {
+            sourceRoute: "/project/v1/programs/read/:id",
+            type: "GET",
+            inSequence: false,
+            orchestrated: false,
+            targetRoute: {
+                path: "/project/v1/programs/read/:id",
+                type: "GET"
+            },
+            service: "project"
+        },
+        {
             sourceRoute: "/project/v1/programs/addRolesInScope",
             type: "POST",
             inSequence: false,
