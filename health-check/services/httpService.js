@@ -37,27 +37,13 @@ exports.check = async (service) => {
 
 		const res = await axios(axiosConfig);
         console.log(`[${name}] Received response:`, res.status, res.data);
-		// // Check status
-		// if (expectedResponse.status && res.status !== expectedResponse.status) {
-		// 	console.warn(`[${name}] Failed status check: Expected ${expectedResponse.status}, got ${res.status}`);
-		// 	return false;
-		// }
-
-		// // Deep body match if defined
-		// if (expectedResponse.body && !_.isMatch(res.data, expectedResponse.body)) {
-		// 	console.warn(`[${name}] Failed body match. Expected part of response body:`, expectedResponse.body);
-		// 	console.warn(`[${name}] Actual response body:`, res.data);
-		// 	return false;
-		// }
         for (const [key, expectedValue] of Object.entries(expectedResponse)) {
-        const actualValue = _.get(res.data, key);
-        if (!_.isEqual(actualValue, expectedValue)) {
-            console.warn(`[${name}] Response key mismatch: '${key}' expected '${expectedValue}', got '${actualValue}'`);
-            return false;
-        }
-}
-
-
+			const actualValue = _.get(res.data, key);
+			if (!_.isEqual(actualValue, expectedValue)) {
+				console.warn(`[${name}] Response key mismatch: '${key}' expected '${expectedValue}', got '${actualValue}'`);
+				return false;
+			}
+		}
 		return true;
 	} catch (err) {
 		console.error(`[${service.name || 'Service'}] HTTP health check failed:`, err.message);

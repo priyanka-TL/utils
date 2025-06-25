@@ -1,7 +1,7 @@
 /**
  * name : kafka.js
- * author : Vishnu & Aman Karki
- * created-date : 01-Feb-2021
+ * author : Vishnu
+ * created-date : 25-june-2025
  * Description : Kafka health check functionality (send + receive).
  */
 
@@ -97,7 +97,7 @@ async function check(kafkaUrl) {
 						client.close();
 						resolve(false);
 					});
-				}, 10000); // 5 seconds
+				}, 10000); 
 
 				consumer.on('message', (message) => {
 					console.log('[Kafka Health Check] Received message:', message.value);
