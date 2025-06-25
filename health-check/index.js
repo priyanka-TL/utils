@@ -1,3 +1,10 @@
+/**
+ * name : index.js
+ * author : Vishnu
+ * created-date : 25-june-2025
+ * Description : Health check functionality for various services.
+ */
+
 const { v1: uuidv1 } = require('uuid');
 const mongodb = require('./services/mongodb');
 const kafka = require('./services/kafka');
@@ -5,16 +12,14 @@ const httpService = require('./services/httpService');
 
 async function healthCheckHandler(config) {
 	const checks = [];
-	console.log('Health check started for', config.name);
+	
 	if (config.checks.mongodb?.enabled) {
 		const healthy = await mongodb.check(config.checks.mongodb.url);
-		console.log('MongoDB health check result:', healthy);
 		checks.push(serviceResult('MongoDB', healthy));
 	}
-	console.log('Kafka URL:', config.checks.kafka?.url);
+	
 	if (config.checks.kafka?.enabled) {
 		const healthy = await kafka.check(config.checks.kafka.url);
-		console.log('Kafka health check result:', healthy);
 		checks.push(serviceResult('Kafka', healthy));
 	}
 
@@ -22,7 +27,6 @@ async function healthCheckHandler(config) {
 		for (let ms of config.checks.microservices) {
 			if (!ms.enabled) continue;
 			const healthy = await httpService.check(ms);
-			console.log(`Microservice ${ms.name} health check result:`, healthy);
 			checks.push(serviceResult(ms.name, healthy));
 		}
 	}
