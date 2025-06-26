@@ -1,0 +1,53 @@
+name: Publish NPM package
+
+on:
+  push:
+    paths:
+      - '**/package.json'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package-dir:
+          # - Elevate-Encryption
+          # - Elevate-logger
+          # - Elevate-Node-Cache
+          # - Files-Cloud-Storage
+          # - Transcribe-Translate-Recordings
+          # - elevate-entity-management
+          - test-elevate-kafka
+          # Add other directories here
+    defaults:
+      run:
+        working-directory: ${{ matrix.package-dir }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Check if package changed
+        id: changes
+        run: |
+          git fetch --depth=2
+          if git diff --quiet HEAD^ HEAD -- ${{ matrix.package-dir }}; then
+            echo "No changes in ${{ matrix.package-dir }}"
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected in ${{ matrix.package-dir }}"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install and Publish
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          npm install
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
